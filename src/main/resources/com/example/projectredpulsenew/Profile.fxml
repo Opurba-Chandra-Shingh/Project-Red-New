@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #F3F4F6;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectredpulsenew.Profile_Controller">
+    <!-- ================= SIDEBAR (UNCHANGED) ================= -->
+    <left>
+        <VBox fx:id="sidebar" prefHeight="724.0" prefWidth="260.0" spacing="12" styleClass="sidebar" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+            <children>
+                <HBox fx:id="sidebarHeader" alignment="CENTER" styleClass="sidebar-header">
+                    <children>
+                        <Label fx:id="appNameLabel" prefHeight="35.0" prefWidth="164.0" styleClass="welcome-text" stylesheets="@styles.css" text="RedPulse" textFill="RED">
+                            <font>
+                                <Font name="Berlin Sans FB Demi Bold" size="39.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <Separator />
+                <VBox fx:id="sidebarButtons" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="235.0" spacing="15.0">
+                    <children>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                    <children>
+                                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/house.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="btnHome" mnemonicParsing="false" onAction="#ProftoHome" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Home">
+                                            <font>
+                                                <Font name="Bell MT Bold" size="16.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                           <styleClass>
+                              <String fx:value="sidebar-button-hbox" />
+                              <String fx:value="sidebar-button-hbox-h" />
+                           </styleClass>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                    <children>
+                                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/newspaper-folded.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="btnNewsFeed" mnemonicParsing="false" onAction="#ProftoNews" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Newsfeed">
+                                            <font>
+                                                <Font name="Bell MT Bold" size="16.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                           <styleClass>
+                              <String fx:value="sidebar-button-hbox" />
+                              <String fx:value="sidebar-button-hbox-h" />
+                           </styleClass>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="255.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                    <children>
+                                        <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/icons8-create-post-48.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="btnCreatePost" mnemonicParsing="false" onAction="#ProftoCreate" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Creat Post">
+                                            <font>
+                                                <Font name="Bell MT Bold" size="16.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                           <styleClass>
+                              <String fx:value="sidebar-button-hbox" />
+                              <String fx:value="sidebar-button-hbox-h" />
+                           </styleClass>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="298.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                    <children>
+                                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/bell.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="btnNotifications" mnemonicParsing="false" onAction="#ProftoNoti" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Notification">
+                                            <font>
+                                                <Font name="Bell MT Bold" size="16.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                           <styleClass>
+                              <String fx:value="sidebar-button-hbox" />
+                              <String fx:value="sidebar-button-hbox-h" />
+                           </styleClass>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="341.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                    <children>
+                                        <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/icons8-chat-50.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="btnChat" mnemonicParsing="false" onAction="#ProftoChat" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Chat">
+                                            <font>
+                                                <Font name="Bell MT Bold" size="16.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                           <styleClass>
+                              <String fx:value="sidebar-button-hbox" />
+                              <String fx:value="sidebar-button-hbox-h" />
+                           </styleClass>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="384.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                    <children>
+                                        <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/icons8-profile-50.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="btnProfile" mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" stylesheets="@styles.css" text="Profile">
+                                            <font>
+                                                <Font name="Bell MT Bold" size="16.0" />
+                                            </font>
+                                            <styleClass>
+                                                <String fx:value="sidebar-button" />
+                                                <String fx:value="clicked-button" />
+                                            </styleClass>
+                                        </Button>
+                                    </children>
+                                    <styleClass>
+                                        <String fx:value="sidebar-button-hbox" />
+                                        <String fx:value="clicked-button" />
+                                    </styleClass>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="428.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                    <children>
+                                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/icons8-setting-50.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="btnSettings" mnemonicParsing="false" onAction="#ProftoStng" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Setting">
+                                            <font>
+                                                <Font name="Bell MT Bold" size="16.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                           <styleClass>
+                              <String fx:value="sidebar-button-hbox" />
+                              <String fx:value="sidebar-button-hbox-h" />
+                           </styleClass>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <Pane prefHeight="203.0" prefWidth="235.0" VBox.vgrow="ALWAYS" />
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+        </VBox>
+    </left>
+
+    <!-- ================= TOP BAR (UNCHANGED) ================= -->
+    <top>
+        <HBox fx:id="topBar" prefHeight="51.0" prefWidth="1366.0" spacing="12" styleClass="topbar" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+            <children>
+                <Pane prefHeight="27.0" prefWidth="1194.0" HBox.hgrow="ALWAYS" />
+                <HBox fx:id="topBarRight" alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="64.0" spacing="5.0">
+                    <children>
+                        <Button fx:id="btnLogOut" onAction="#logout_p" stylesheets="@styles.css" text="Log Out" textFill="WHITE">
+                            <styleClass>
+                                <String fx:value="login-button" />
+                                <String fx:value="login-button" />
+                            </styleClass>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="10" left="20" right="20" top="10" />
+            </padding>
+        </HBox>
+    </top>
+
+    <!-- ================= CENTER: PROFILE CONTENT ================= -->
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="prof-scroll-pane" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+            <content>
+                <VBox alignment="TOP_CENTER" spacing="20.0">
+                    <padding>
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                    </padding>
+                    <children>
+
+                        <!-- 1. Header Profile Card -->
+                        <HBox alignment="CENTER_LEFT" maxWidth="1000.0" spacing="20.0" styleClass="prof-card" stylesheets="@styles.css">
+                            <children>
+                                <!-- Avatar Circle -->
+                                <StackPane prefHeight="80.0" prefWidth="80.0">
+                                    <children>
+                                        <Circle fill="#264653" radius="45.0" stroke="TRANSPARENT" />
+                                        <SVGPath content="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#E9C46A" scaleX="2.0" scaleY="2.0" />
+                                    </children>
+                                </StackPane>
+                                <!-- Profile Info -->
+                                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label styleClass="prof-header-name" text="Sajjad Hossain" />
+                                        <Label styleClass="prof-header-sub" text="Blood Group: O+, 28 years, Male" />
+                                        <Label styleClass="prof-header-sub" text="Dhaka, Gulshan" />
+                                        <Label styleClass="prof-badge-green" text="Eligible for Donation" />
+                                    </children>
+                                </VBox>
+                            </children>
+                            <padding>
+                                <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+                            </padding>
+                        </HBox>
+
+                        <!-- 2. Info Columns Grid (Personal, Location, Donation) -->
+                        <GridPane hgap="20.0" maxWidth="1000.0" vgap="20.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="33.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="33.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="33.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+
+                                <!-- Personal Info Card -->
+                                <VBox spacing="15.0" styleClass="prof-card">
+                                    <padding>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                    </padding>
+                                    <children>
+                                        <Label styleClass="prof-section-title" text="Personal Information" />
+                                        <VBox spacing="12.0">
+                                            <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                    <SVGPath content="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#6B7280" />
+                                                    <Label styleClass="prof-info-text" text="Sajjad Hossain" />
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                    <SVGPath content="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z" fill="#6B7280" scaleX="0.8" scaleY="0.8" />
+                                                    <Label styleClass="prof-info-text" text="28 years" />
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                    <SVGPath content="M9 11.75c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm6 0c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21 1.01.33 2.05.33 3.1 0 4.41-3.59 8-8 8z" fill="#6B7280" />
+                                                    <Label styleClass="prof-info-text" text="Male" />
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                    <SVGPath content="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8z" fill="#6B7280" scaleX="0.8" scaleY="0.8" />
+                                                    <Label styleClass="prof-info-text" text="O+ (Positive)" />
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                    <SVGPath content="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="#6B7280" scaleX="0.9" scaleY="0.9" />
+                                                    <Label styleClass="prof-info-text" text="+880 123 456 7890" />
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                    <SVGPath content="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="#6B7280" scaleX="0.9" scaleY="0.9" />
+                                                    <Label styleClass="prof-info-text" text="sajjad.h@example.com" />
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+
+                                <!-- Location Info Card -->
+                                <VBox spacing="15.0" styleClass="prof-card" GridPane.columnIndex="1">
+                                    <padding>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                    </padding>
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT">
+                                            <children>
+                                                <Label styleClass="prof-section-title" text="Location Information" />
+                                                <Pane HBox.hgrow="ALWAYS" />
+                                                <Button styleClass="prof-btn-link" text="✎ Edit" />
+                                            </children>
+                                        </HBox>
+                                        <VBox spacing="12.0">
+                                            <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                    <SVGPath content="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#6B7280" />
+                                                    <Label styleClass="prof-info-text" text="Dhaka" />
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                    <SVGPath content="M15 11V5l-3-3-3 3v2H2v11h20V11h-7zM7 16H5v-2h2v2zm0-4H5V8h2v4zm6 4h-2v-2h2v2zm0-4h-2V8h2v4zm4 4h-2v-2h2v2zm0-4h-2V8h2v4z" fill="#6B7280" scaleX="0.9" scaleY="0.9" />
+                                                    <Label styleClass="prof-info-text" text="Gulshan" />
+                                                </HBox>
+                                                <HBox alignment="TOP_LEFT" spacing="10.0">
+                                                    <SVGPath content="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="#6B7280" />
+                                                    <Label maxWidth="200.0" styleClass="prof-info-text" text="House 123, Road 4, Block B, Gulshan-1, Dhaka-1212" wrapText="true" />
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+
+                                <!-- Donation Info Card -->
+                                <VBox spacing="15.0" styleClass="prof-card" GridPane.columnIndex="2">
+                                    <padding>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                    </padding>
+                                    <children>
+                                        <Label styleClass="prof-section-title" text="Donation Information" />
+                                        <VBox spacing="15.0">
+                                            <children>
+                                                <HBox spacing="10.0">
+                                                    <SVGPath content="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z" fill="#6B7280" />
+                                                    <VBox>
+                                                        <children>
+                                                            <Label styleClass="prof-label-small" text="Last Donation Date" />
+                                                            <Label styleClass="prof-info-text-dark" text="15th July, 2024" />
+                                                        </children>
+                                                    </VBox>
+                                                </HBox>
+                                                <HBox spacing="10.0">
+                                                    <SVGPath content="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1z" fill="#6B7280" />
+                                                    <VBox>
+                                                        <children>
+                                                            <Label styleClass="prof-label-small" text="Next Eligibility Date" />
+                                                            <Label styleClass="prof-info-text-dark" text="15th October, 2024" />
+                                                        </children>
+                                                    </VBox>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </GridPane>
+
+                        <!-- 3. Document Verification -->
+                        <VBox maxWidth="1000.0" spacing="10.0">
+                            <children>
+                                <Label styleClass="prof-section-title-large" text="Document Verification" />
+                                <GridPane hgap="20.0" vgap="20.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+
+                                        <!-- Doc 1 -->
+                                        <VBox alignment="CENTER" spacing="10.0" styleClass="prof-card">
+                                            <padding>
+                                                <Insets bottom="30.0" top="30.0" />
+                                            </padding>
+                                            <children>
+                                                <StackPane maxHeight="150.0" maxWidth="250.0" prefHeight="150.0" prefWidth="250.0" styleClass="prof-doc-placeholder">
+                                                    <children>
+                                                        <SVGPath content="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#9CA3AF" scaleX="2.0" scaleY="2.0" />
+                                                    </children>
+                                                </StackPane>
+                                                <Label styleClass="prof-info-text-dark" text="Medical Health Certificate" />
+                                                <HBox alignment="CENTER" spacing="5.0">
+                                                    <SVGPath content="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#4CAF50" />
+                                                    <Label styleClass="prof-verified-text" text="Verified" />
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+
+                                        <!-- Doc 2 -->
+                                        <VBox alignment="CENTER" spacing="10.0" styleClass="prof-card" GridPane.columnIndex="1">
+                                            <padding>
+                                                <Insets bottom="30.0" top="30.0" />
+                                            </padding>
+                                            <children>
+                                                <StackPane maxHeight="150.0" maxWidth="250.0" prefHeight="150.0" prefWidth="250.0" styleClass="prof-doc-placeholder">
+                                                    <children>
+                                                        <SVGPath content="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#9CA3AF" scaleX="2.0" scaleY="2.0" />
+                                                    </children>
+                                                </StackPane>
+                                                <Label styleClass="prof-info-text-dark" text="National Identity Document" />
+                                                <HBox alignment="CENTER" spacing="5.0">
+                                                    <SVGPath content="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#4CAF50" />
+                                                    <Label styleClass="prof-verified-text" text="Verified" />
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </VBox>
+
+                        <!-- 4. Bottom Action Bar -->
+                        <HBox alignment="CENTER" spacing="30.0">
+                            <children>
+                                <Button styleClass="prof-btn-primary" text="Edit Profile" />
+                                <Button styleClass="prof-btn-text" text="Update Photo" />
+                                <Button styleClass="prof-btn-text" text="View Donation History" />
+                                <Button styleClass="prof-btn-text" text="Update Documents" />
+                            </children>
+                            <padding>
+                                <Insets top="20.0" />
+                            </padding>
+                        </HBox>
+
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

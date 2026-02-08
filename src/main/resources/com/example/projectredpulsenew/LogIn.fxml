@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" styleClass="root-login" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectredpulsenew.LogIn_Controller">
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="398.0" styleClass="login-anch" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="129.0" layoutY="32.0" prefHeight="46.0" prefWidth="140.0" styleClass="welcome-text" stylesheets="@styles.css" text="RedPuls" textFill="RED">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="39.0" />
+               </font>
+            </Label>
+            <Text layoutX="104.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Back" wrappingWidth="202.13671875">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="27.0" />
+               </font>
+            </Text>
+            <VBox alignment="CENTER" layoutX="3.0" layoutY="191.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="103.0" prefWidth="392.0" spacing="30.0">
+               <children>
+                  <TextField fx:id="login_email" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="271.0" promptText="Email" />
+                  <TextField fx:id="login_pass" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="271.0" promptText="Password" />
+               </children>
+            </VBox>
+            <Button fx:id="loginBtn" layoutX="152.0" layoutY="325.0" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="106.0" styleClass="login-page-button" stylesheets="@styles.css" text="Login" textFill="WHITE">
+               <font>
+                  <Font name="Bell MT Bold" size="15.0" />
+               </font>
+            </Button>
+            <AnchorPane layoutX="88.0" layoutY="363.0" prefHeight="26.0" prefWidth="234.0">
+               <children>
+                  <Text layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have any account?" wrappingWidth="147.0133056640625">
+                     <font>
+                        <Font name="Bell MT" size="14.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="login_signup" layoutX="129.0" layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logtosign" prefHeight="29.0" prefWidth="70.0" styleClass="login-signup" stylesheets="@styles.css" text="sign up">
+                     <font>
+                        <Font name="Bell MT Bold" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <Label fx:id="loginMessage" alignment="CENTER" layoutX="3.0" layoutY="294.0" prefHeight="10.0" prefWidth="394.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow height="18.66" radius="11.17" width="28.02" />
+         </effect>
+      </AnchorPane>
+   </center>
+</BorderPane>

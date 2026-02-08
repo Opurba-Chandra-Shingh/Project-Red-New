@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #F3F4F6;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectredpulsenew.Notification_Controller">
+
+    <!-- ================= SIDEBAR (UNCHANGED) ================= -->
+    <left>
+        <VBox fx:id="sidebar" prefHeight="724.0" prefWidth="260.0" spacing="12" styleClass="sidebar" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+            <children>
+                <HBox fx:id="sidebarHeader" alignment="CENTER" styleClass="sidebar-header">
+                    <children>
+                        <Label fx:id="appNameLabel" prefHeight="35.0" prefWidth="164.0" styleClass="welcome-text" stylesheets="@styles.css" text="RedPulse" textFill="RED">
+                            <font>
+                                <Font name="Berlin Sans FB Demi Bold" size="39.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <Separator />
+                <VBox fx:id="sidebarButtons" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="235.0" spacing="15.0">
+                    <children>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                    <children>
+                                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/house.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="btnHome" mnemonicParsing="false" onAction="#NotitoHome" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Home">
+                                            <font>
+                                                <Font name="Bell MT Bold" size="16.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                           <styleClass>
+                              <String fx:value="sidebar-button-hbox" />
+                              <String fx:value="sidebar-button-hbox-h" />
+                           </styleClass>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                    <children>
+                                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/newspaper-folded.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="btnNewsFeed" mnemonicParsing="false" onAction="#NotitoNews" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Newsfeed">
+                                            <font>
+                                                <Font name="Bell MT Bold" size="16.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                           <styleClass>
+                              <String fx:value="sidebar-button-hbox" />
+                              <String fx:value="sidebar-button-hbox-h" />
+                           </styleClass>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="255.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                    <children>
+                                        <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/icons8-create-post-48.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="btnCreatePost" mnemonicParsing="false" onAction="#NotitoCreate" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Creat Post">
+                                            <font>
+                                                <Font name="Bell MT Bold" size="16.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                           <styleClass>
+                              <String fx:value="sidebar-button-hbox" />
+                              <String fx:value="sidebar-button-hbox-h" />
+                           </styleClass>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="298.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                    <children>
+                                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/bell.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="btnNotifications" mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" stylesheets="@styles.css" text="Notification">
+                                            <font>
+                                                <Font name="Bell MT Bold" size="16.0" />
+                                            </font>
+                                            <styleClass>
+                                                <String fx:value="sidebar-button" />
+                                                <String fx:value="clicked-button" />
+                                            </styleClass>
+                                        </Button>
+                                    </children>
+                                    <styleClass>
+                                        <String fx:value="sidebar-button-hbox" />
+                                        <String fx:value="clicked-button" />
+                                    </styleClass>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="341.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                    <children>
+                                        <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/icons8-chat-50.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="btnChat" mnemonicParsing="false" onAction="#NotitoChat" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Chat">
+                                            <font>
+                                                <Font name="Bell MT Bold" size="16.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                           <styleClass>
+                              <String fx:value="sidebar-button-hbox" />
+                              <String fx:value="sidebar-button-hbox-h" />
+                           </styleClass>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="384.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                    <children>
+                                        <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/icons8-profile-50.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="btnProfile" mnemonicParsing="false" onAction="#NotitoProf" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Profile">
+                                            <font>
+                                                <Font name="Bell MT Bold" size="16.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                           <styleClass>
+                              <String fx:value="sidebar-button-hbox" />
+                              <String fx:value="sidebar-button-hbox-h" />
+                           </styleClass>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="428.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                    <children>
+                                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/icons8-setting-50.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="btnSettings" mnemonicParsing="false" onAction="#NotitoStng" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Setting">
+                                            <font>
+                                                <Font name="Bell MT Bold" size="16.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                           <styleClass>
+                              <String fx:value="sidebar-button-hbox" />
+                              <String fx:value="sidebar-button-hbox-h" />
+                           </styleClass>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <Pane prefHeight="203.0" prefWidth="235.0" VBox.vgrow="ALWAYS" />
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+        </VBox>
+    </left>
+
+    <!-- ================= TOP BAR (UNCHANGED) ================= -->
+    <top>
+        <HBox fx:id="topBar" prefHeight="51.0" prefWidth="1366.0" spacing="12" styleClass="topbar" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+            <children>
+                <Pane prefHeight="27.0" prefWidth="1194.0" HBox.hgrow="ALWAYS" />
+                <HBox fx:id="topBarRight" alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="64.0" spacing="5.0">
+                    <children>
+                        <Button fx:id="btnLogOut" onAction="#logout_noti" stylesheets="@styles.css" text="Log Out" textFill="WHITE">
+                            <styleClass>
+                                <String fx:value="login-button" />
+                                <String fx:value="login-button" />
+                            </styleClass>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="10" left="20" right="20" top="10" />
+            </padding>
+        </HBox>
+    </top>
+
+    <!-- ================= CENTER: SCROLLABLE NOTIFICATION LIST ================= -->
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="noti-scroll-pane" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+            <content>
+                <VBox alignment="TOP_CENTER" spacing="20.0">
+                    <padding>
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                    </padding>
+                    <children>
+
+                        <!-- Header and Filters Container -->
+                        <VBox maxWidth="900.0" spacing="15.0">
+                            <children>
+                                <Label style="-fx-text-fill: black;" text="Notifications" textFill="#111827">
+                                    <font>
+                                        <Font name="System Bold" size="28.0" />
+                                    </font>
+                                </Label>
+                                <!-- Filter Buttons -->
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Button mnemonicParsing="false" styleClass="noti-filter-btn-active" text="All" />
+                                        <Button mnemonicParsing="false" styleClass="noti-filter-btn-inactive" text="Requests" />
+                                        <Button mnemonicParsing="false" styleClass="noti-filter-btn-inactive" text="Messages" />
+                                        <Button mnemonicParsing="false" styleClass="noti-filter-btn-inactive" text="Interests" />
+                                    </children>
+                                </HBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </VBox>
+
+                        <!-- NOTIFICATION CARD 1 -->
+                        <HBox maxWidth="900.0" styleClass="noti-card" stylesheets="@styles.css">
+                            <children>
+                                <StackPane prefHeight="50.0" prefWidth="50.0" styleClass="noti-icon-bg-red">
+                                    <children>
+                                        <SVGPath content="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#D32F2F" scaleX="0.6" scaleY="0.6" />
+                                    </children>
+                                </StackPane>
+                                <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label styleClass="noti-title" text="A donor showed interest in your blood request." />
+                                        <Label styleClass="noti-subtitle" text="Blood Group: O+" />
+                                    </children>
+                                    <padding>
+                                        <Insets left="15.0" top="5.0" />
+                                    </padding>
+                                </VBox>
+                                <Label styleClass="noti-time" text="5m ago">
+                                    <padding>
+                                        <Insets top="5.0" />
+                                    </padding>
+                                </Label>
+                            </children>
+                        </HBox>
+
+                        <!-- NOTIFICATION CARD 2 -->
+                        <HBox layoutX="10.0" layoutY="103.0" maxWidth="900.0" styleClass="noti-card" stylesheets="@styles.css">
+                            <children>
+                                <StackPane prefHeight="50.0" prefWidth="50.0" styleClass="noti-icon-bg-gray">
+                                    <children>
+                                        <SVGPath content="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" fill="#666666" scaleX="0.6" scaleY="0.6" />
+                                    </children>
+                                </StackPane>
+                                <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label styleClass="noti-title" text="Your post has received a new comment." />
+                                        <Label styleClass="noti-subtitle" text="John Doe commented: 'I can help.'" />
+                                    </children>
+                                    <padding>
+                                        <Insets left="15.0" top="5.0" />
+                                    </padding>
+                                </VBox>
+                                <Label styleClass="noti-time" text="30m ago">
+                                    <padding>
+                                        <Insets top="5.0" />
+                                    </padding>
+                                </Label>
+                            </children>
+                        </HBox>
+
+                        <!-- NOTIFICATION CARD 3 -->
+                        <HBox layoutX="10.0" layoutY="188.0" maxWidth="900.0" styleClass="noti-card" stylesheets="@styles.css">
+                            <children>
+                                <StackPane prefHeight="50.0" prefWidth="50.0" styleClass="noti-icon-bg-red">
+                                    <children>
+                                        <SVGPath content="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#D32F2F" scaleX="0.7" scaleY="0.7" />
+                                    </children>
+                                </StackPane>
+                                <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label styleClass="noti-title" text="New O+ blood request detected nearby." />
+                                        <Label styleClass="noti-subtitle" text="Location: Central City Hospital" />
+                                    </children>
+                                    <padding>
+                                        <Insets left="15.0" top="5.0" />
+                                    </padding>
+                                </VBox>
+                                <Label styleClass="noti-time" text="1h ago">
+                                    <padding>
+                                        <Insets top="5.0" />
+                                    </padding>
+                                </Label>
+                            </children>
+                        </HBox>
+
+                        <!-- NOTIFICATION CARD 4 -->
+                        <HBox layoutX="10.0" layoutY="273.0" maxWidth="900.0" styleClass="noti-card" stylesheets="@styles.css">
+                            <children>
+                                <StackPane prefHeight="50.0" prefWidth="50.0" styleClass="noti-icon-bg-gray">
+                                    <children>
+                                        <SVGPath content="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#666666" scaleX="0.6" scaleY="0.6" />
+                                    </children>
+                                </StackPane>
+                                <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label styleClass="noti-title" text="Your donor verification has been approved." />
+                                        <Label styleClass="noti-subtitle" text="You can now respond to requests." />
+                                    </children>
+                                    <padding>
+                                        <Insets left="15.0" top="5.0" />
+                                    </padding>
+                                </VBox>
+                                <Label styleClass="noti-time" text="1d ago">
+                                    <padding>
+                                        <Insets top="5.0" />
+                                    </padding>
+                                </Label>
+                            </children>
+                        </HBox>
+
+                        <!-- NOTIFICATION CARD 5 -->
+                        <HBox layoutX="263.0" layoutY="370.0" maxWidth="900.0" styleClass="noti-card" stylesheets="@styles.css">
+                            <children>
+                                <StackPane prefHeight="50.0" prefWidth="50.0" styleClass="noti-icon-bg-gray">
+                                    <children>
+                                        <SVGPath content="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" fill="#666666" scaleX="0.6" scaleY="0.6" />
+                                    </children>
+                                </StackPane>
+                                <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label styleClass="noti-title" text="Reminder: Blood drive tomorrow." />
+                                        <Label styleClass="noti-subtitle" text="Location: Downtown Community Center" />
+                                    </children>
+                                    <padding>
+                                        <Insets left="15.0" top="5.0" />
+                                    </padding>
+                                </VBox>
+                                <Label styleClass="noti-time" text="Yesterday">
+                                    <padding>
+                                        <Insets top="5.0" />
+                                    </padding>
+                                </Label>
+                            </children>
+                        </HBox>
+                  <HBox layoutX="102.0" layoutY="166.0" maxWidth="900.0" styleClass="noti-card" stylesheets="@styles.css">
+                     <children>
+                        <StackPane prefHeight="50.0" prefWidth="50.0" styleClass="noti-icon-bg-red">
+                           <children>
+                              <SVGPath content="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#D32F2F" scaleX="0.6" scaleY="0.6" />
+                           </children>
+                        </StackPane>
+                        <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="noti-title" text="A donor showed interest in your blood request." />
+                              <Label styleClass="noti-subtitle" text="Blood Group: O+" />
+                           </children>
+                           <padding>
+                              <Insets left="15.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                        <Label styleClass="noti-time" text="5m ago">
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="96.0" layoutY="166.0" maxWidth="900.0" styleClass="noti-card" stylesheets="@styles.css">
+                     <children>
+                        <StackPane prefHeight="50.0" prefWidth="50.0" styleClass="noti-icon-bg-red">
+                           <children>
+                              <SVGPath content="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#D32F2F" scaleX="0.6" scaleY="0.6" />
+                           </children>
+                        </StackPane>
+                        <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="noti-title" text="A donor showed interest in your blood request." />
+                              <Label styleClass="noti-subtitle" text="Blood Group: O+" />
+                           </children>
+                           <padding>
+                              <Insets left="15.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                        <Label styleClass="noti-time" text="5m ago">
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>
