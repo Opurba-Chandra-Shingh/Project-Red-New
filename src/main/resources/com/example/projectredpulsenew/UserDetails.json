@@ -1,38 +1,11 @@
 [
   {
-    "name": "Apurbo",
-    "age": "22",
-    "gender": "Male",
-    "bloodGroup": "O+",
-    "district": "Netrokona",
-    "email": "apurbocse61@gmail.com",
-    "password": "1234"
-  },
-  {
     "name": "aaa",
-    "age": "12",
+    "age": "122",
     "gender": "Male",
     "bloodGroup": "O+",
     "district": "Bagerhat",
-    "email": "a",
-    "password": "1"
-  },
-  {
-    "name": "Parvej",
-    "age": "23",
-    "gender": "Male",
-    "bloodGroup": "O+",
-    "district": "Bagerhat",
-    "email": "fgdfgd",
-    "password": "2"
-  },
-  {
-    "name": "Abin",
-    "age": "30",
-    "gender": "Male",
-    "bloodGroup": "AB+",
-    "district": "Bandarban",
-    "email": "shuidgiuoiq",
-    "password": "123"
+    "email": "aaa",
+    "password": "aaa"
   }
 ]

@@ -110,7 +110,7 @@ public class SignUp_Controller implements Initializable {
 
     private void saveUserToJson(User user) {
         try {
-            File file = new File("D:\\Projects\\Redpulse\\src\\main\\resources\\com\\example\\projectdemo3\\UserDetails.json");
+            File file = new File("D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\UserDetails.json");
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             List<User> userList;
 

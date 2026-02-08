@@ -22,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.Reader;
@@ -34,50 +35,24 @@ import java.util.ResourceBundle;
 
 public class Newsfeed_Controller implements Initializable {
 
-    @FXML
-    private Label appNameLabel;
+    @FXML private Label appNameLabel;
+    @FXML private Button btnChat;
+    @FXML private Button btnCreatePost;
+    @FXML private Button btnNewsHome;
+    @FXML private Button btnNewsFeed;
+    @FXML private Button btnNotifications;
+    @FXML private Button btnProfile;
+    @FXML private Button btnSettings;
+    @FXML private Button btnLogOut;
 
-    @FXML
-    private Button btnChat;
+    @FXML private VBox sidebar;
+    @FXML private VBox sidebarButtons;
+    @FXML private HBox sidebarHeader;
+    @FXML private HBox topBar;
+    @FXML private HBox topBarRight;
+    @FXML private VBox feedContainer;
 
-    @FXML
-    private Button btnCreatePost;
-
-    @FXML
-    private Button btnNewsHome;
-
-    @FXML
-    private Button btnNewsFeed;
-
-    @FXML
-    private Button btnNotifications;
-
-    @FXML
-    private Button btnProfile;
-
-    @FXML
-    private Button btnSettings;
-
-    @FXML
-    private Button btnLogOut;
-
-    @FXML
-    private VBox sidebar;
-
-    @FXML
-    private VBox sidebarButtons;
-
-    @FXML
-    private HBox sidebarHeader;
-
-    @FXML
-    private HBox topBar;
-
-    @FXML
-    private HBox topBarRight;
-
-    @FXML
-    private VBox feedContainer;
+    private final String filePath = System.getProperty("user.dir") + File.separator + "D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\PostDetails.json";
 
     @FXML
     void NewstoDash(ActionEvent event) throws Exception {
@@ -133,33 +108,35 @@ public class Newsfeed_Controller implements Initializable {
     }
 
     private void loadPosts() {
-        String filePath = "PostDetails.json";
+        // ফিক্স: CreatePost_Controller এর ফাইলের পাথের সাথে মিলিয়ে দেওয়া হয়েছে
+        String filePath = "D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\PostDetails.json";
         List<PostDetails> posts = new ArrayList<>();
         Gson gson = new Gson();
 
         try {
             File file = new File(filePath);
+            System.out.println("Reading from file at: " + file.getAbsolutePath());
             if (file.exists() && file.length() > 0) {
-                Reader reader = new FileReader(file);
-                Type listType = new TypeToken<List<PostDetails>>(){}.getType();
-                List<PostDetails> existingPosts = gson.fromJson(reader, listType);
+                try (Reader reader = new FileReader(file)) {
+                    Type listType = new TypeToken<List<PostDetails>>(){}.getType();
+                    List<PostDetails> existingPosts = gson.fromJson(reader, listType);
 
-                if (existingPosts != null && !existingPosts.isEmpty()) {
-                    posts = existingPosts;
+                    if (existingPosts != null && !existingPosts.isEmpty()) {
+                        posts = existingPosts;
+                    }
                 }
-                reader.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error loading posts: " + e.getMessage());
         }
 
-        // Clear any previous posts (keep only the header section)
+        // ফিক্স: আগের সব পোস্ট কন্টেইনার থেকে রিমুভ করা (হেডার বাদ দিয়ে)
         if (feedContainer.getChildren().size() > 1) {
             feedContainer.getChildren().remove(1, feedContainer.getChildren().size());
         }
 
-        // If no posts, show a message
+        // যদি কোনো পোস্ট না থাকে
         if (posts.isEmpty()) {
             Label emptyLabel = new Label("No blood requests yet. Be the first to post!");
             emptyLabel.setStyle("-fx-text-fill: #888888; -fx-font-size: 16px;");
@@ -168,10 +145,10 @@ public class Newsfeed_Controller implements Initializable {
             return;
         }
 
-        // Reverse to show newest posts first
+        // নতুন পোস্টগুলো উপরে দেখানোর জন্য লিস্ট রিভার্স করা
         Collections.reverse(posts);
 
-        // Add each post card
+        // ফাইলে থাকা প্রতিটি ডাটার জন্য কার্ড এড করা
         for (PostDetails post : posts) {
             System.out.println("Adding post for: " + post.getUserName());
             addPostCard(post);
@@ -179,28 +156,24 @@ public class Newsfeed_Controller implements Initializable {
     }
 
     private void addPostCard(PostDetails post) {
-        // 1. Main Card Container
+        // Main Card Container
         VBox card = new VBox();
         card.setMaxWidth(800.0);
         card.getStyleClass().add("feed-card");
         card.setPadding(new Insets(20, 25, 20, 25));
         VBox.setMargin(card, new Insets(0, 0, 15, 0));
 
-        // ================= Top Row: Avatar, Name, Time =================
+        // Top Row: Avatar, Name, Time
         HBox topRow = new HBox(10);
         topRow.setAlignment(Pos.CENTER_LEFT);
 
-        // Avatar Circle
         Circle avatar = new Circle(20);
         avatar.setFill(Color.web("#e0e0e0"));
         avatar.setStroke(Color.WHITE);
         avatar.setStrokeType(javafx.scene.shape.StrokeType.INSIDE);
 
-        // Name and Time Box
         VBox nameBox = new VBox();
-
-        // ✅ Fixed: Get userName from post object only
-        String displayName = post.getUserName(); // Already has fallback in getter
+        String displayName = post.getUserName();
 
         Label userName = new Label(displayName);
         userName.setTextFill(Color.web("#1a1a1a"));
@@ -212,25 +185,22 @@ public class Newsfeed_Controller implements Initializable {
 
         nameBox.getChildren().addAll(userName, timeLabel);
 
-        // Spacer
         Pane spacer = new Pane();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        // Urgent Badge
         Label urgent = new Label("URGENT");
         urgent.getStyleClass().add("urgent-badge");
 
         topRow.getChildren().addAll(avatar, nameBox, spacer, urgent);
 
-        // ================= Separator =================
+        // Separator
         Separator sep = new Separator();
         sep.setStyle("-fx-opacity: 0.5;");
         VBox.setMargin(sep, new Insets(15, 0, 15, 0));
 
-        // ================= Content Row: Blood Group + Grid =================
+        // Content Row: Blood Group + Grid
         HBox contentRow = new HBox(25);
 
-        // Blood Group Indicator
         StackPane bloodPane = new StackPane();
         bloodPane.getStyleClass().add("blood-group-indicator");
 
@@ -272,7 +242,7 @@ public class Newsfeed_Controller implements Initializable {
 
         contentRow.getChildren().addAll(bloodPane, grid);
 
-        // ================= Notes Section =================
+        // Notes Section
         VBox notesBox = new VBox(5);
         VBox.setMargin(notesBox, new Insets(10, 0, 0, 0));
 
@@ -285,7 +255,7 @@ public class Newsfeed_Controller implements Initializable {
 
         notesBox.getChildren().addAll(notesTitle, notesText);
 
-        // ================= Action Buttons =================
+        // Action Buttons
         HBox actions = new HBox(15);
         actions.setAlignment(Pos.CENTER_RIGHT);
         VBox.setMargin(actions, new Insets(20, 0, 0, 0));
@@ -298,10 +268,9 @@ public class Newsfeed_Controller implements Initializable {
 
         actions.getChildren().addAll(btnInfo, btnInterest);
 
-        // ================= Final Assembly =================
+        // Final Assembly
         card.getChildren().addAll(topRow, sep, contentRow, notesBox, actions);
 
-        // Add card to feed container
         feedContainer.getChildren().add(card);
     }
 

@@ -84,7 +84,7 @@ public class LogIn_Controller {
     private List<User> loadUsersFromJson() {
         List<User> userList = new ArrayList<>();
         try {
-            File file = new File("D:\\Projects\\Redpulse\\src\\main\\resources\\com\\example\\projectdemo3\\UserDetails.json");
+            File file = new File("D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\UserDetails.json");
             if (file.exists()) {
                 Reader reader = new FileReader(file);
                 Type listType = new TypeToken<List<User>>(){}.getType();

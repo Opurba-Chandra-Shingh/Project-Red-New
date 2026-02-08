@@ -49,6 +49,8 @@ public class CreatePost_Controller {
     @FXML private TextArea notesArea;
     @FXML private Button submitBtn;
 
+    private final String filePath = System.getProperty("user.dir") + File.separator + "D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\PostDetails.json";
+
     // ------------------- Navigation Buttons -------------------
 
     @FXML
@@ -102,25 +104,24 @@ public class CreatePost_Controller {
     // ------------------- Save Data to JSON -------------------
 
     private void savePostToJson(PostDetails post) {
-//        String filePath = "PostDetails.json";
-        String filePath = System.getProperty("user.home") + File.separator + "PostDetails.json";
+        // ফিক্স: রিলেটিভ পাথ ব্যবহার করা হয়েছে যেন নিউজফিডের সাথে ফাইল লোকেশন মিলে যায়
+        String filePath = "D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\PostDetails.json";
 
 
-       File file = null;
-//        System.out.println("Saving to file at: " + file.getAbsolutePath());
 
         List<PostDetails> posts = new ArrayList<>();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+
         try {
-            file = new File(filePath);
+            File file = new File(filePath);
+            System.out.println("Writing to file at: " + file.getAbsolutePath());
             if (file.exists() && file.length() > 0) {
-                Reader reader = new FileReader(file);
-                Type listType = new TypeToken<List<PostDetails>>() {
-                }.getType();
-                List<PostDetails> existingPosts = gson.fromJson(reader, listType);
-                if (existingPosts != null) posts = existingPosts;
-                reader.close();
+                try (Reader reader = new FileReader(file)) {
+                    Type listType = new TypeToken<List<PostDetails>>() {}.getType();
+                    List<PostDetails> existingPosts = gson.fromJson(reader, listType);
+                    if (existingPosts != null) posts = existingPosts;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -168,8 +169,8 @@ public class CreatePost_Controller {
                 return;
             }
 
-            // ✅ Get current user's name - Only from LoginDetails
-            String currentUserName = "Anonymous"; // Fallback
+            // Get current user's name
+            String currentUserName = "Anonymous";
 
             try {
                 User temp2 = LoginDetails.getUser();
@@ -180,16 +181,16 @@ public class CreatePost_Controller {
                 System.out.println("Could not get username: " + e.getMessage());
             }
 
-            // Create post with userName
+            // Create post
             PostDetails post = new PostDetails(
-                    currentUserName,  // userName from logged-in user
-                    patient,          // patientName
-                    blood,            // bloodGroup
-                    unit,             // units
-                    loc,              // location
-                    date,             // dateNeeded
-                    phone,            // phone
-                    notes             // notes
+                    currentUserName,
+                    patient,
+                    blood,
+                    unit,
+                    loc,
+                    date,
+                    phone,
+                    notes
             );
 
             System.out.println("Creating post by: " + currentUserName);
