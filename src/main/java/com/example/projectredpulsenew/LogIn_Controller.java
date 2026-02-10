@@ -94,7 +94,8 @@ public class LogIn_Controller {
                 }
                 reader.close();
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
         return userList;

@@ -171,19 +171,25 @@ public class CreatePost_Controller {
 
             // Get current user's name
             String currentUserName = "Anonymous";
+            String currentUserEmail = "N/A";
+            String currentUserPassword = "N/A";
 
             try {
                 User temp2 = LoginDetails.getUser();
-                if (temp2 != null && temp2.getName() != null && !temp2.getName().isEmpty()) {
-                    currentUserName = temp2.getName();
+                if (temp2 != null) {
+                    if (temp2.getName() != null) currentUserName = temp2.getName();
+                    if (temp2.getEmail() != null) currentUserEmail = temp2.getEmail();
+                    if (temp2.getPassword() != null) currentUserPassword = temp2.getPassword();
                 }
             } catch (Exception e) {
-                System.out.println("Could not get username: " + e.getMessage());
+                System.out.println("Could not get user info: " + e.getMessage());
             }
 
             // Create post
             PostDetails post = new PostDetails(
                     currentUserName,
+                    currentUserEmail,
+                    currentUserPassword,
                     patient,
                     blood,
                     unit,

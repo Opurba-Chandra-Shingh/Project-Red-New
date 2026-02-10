@@ -1,5 +1,6 @@
 package com.example.projectredpulsenew;
 
+import com.google.gson.GsonBuilder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,9 +24,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.Reader;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ArrayList;
@@ -265,6 +264,7 @@ public class Newsfeed_Controller implements Initializable {
 
         Button btnInterest = new Button("Interested");
         btnInterest.getStyleClass().add("btn-filled");
+        btnInterest.setOnAction(e -> handleInterest(post));
 
         actions.getChildren().addAll(btnInfo, btnInterest);
 
@@ -290,6 +290,63 @@ public class Newsfeed_Controller implements Initializable {
         grid.add(title, 0, row);
         grid.add(value, 1, row);
     }
+
+
+    private void handleInterest(PostDetails post) {
+
+        // 1️⃣ Clicker (current logged-in user)
+        User clicker = LoginDetails.getUser();
+        if (clicker == null) {
+            System.out.println("No user logged in!");
+            return;
+        }
+
+        // 2️⃣ Receiver (post owner)
+        String receiverEmail = post.getUserEmail();
+        String receiverPassword = post.getUserPassword();
+
+        // 3️⃣ Notification object
+        NotificationDetails noti = new NotificationDetails(
+                clicker.getEmail(),
+                clicker.getPassword(),
+                receiverEmail,
+                receiverPassword,
+                "interested"
+        );
+
+        saveNotification(noti);
+    }
+
+    private void saveNotification(NotificationDetails noti) {
+
+        String filePath = "D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\Noti.json";
+        List<NotificationDetails> notifications = new ArrayList<>();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try {
+            File file = new File(filePath);
+            if (file.exists() && file.length() > 0) {
+                Reader reader = new FileReader(file);
+                Type listType = new TypeToken<List<NotificationDetails>>(){}.getType();
+                List<NotificationDetails> existing = gson.fromJson(reader, listType);
+                if (existing != null) notifications = existing;
+                reader.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        notifications.add(noti);
+
+        try (Writer writer = new FileWriter(filePath)) {
+            gson.toJson(notifications, writer);
+            System.out.println("Notification saved!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     @FXML
     void logout_n(ActionEvent event) throws Exception {

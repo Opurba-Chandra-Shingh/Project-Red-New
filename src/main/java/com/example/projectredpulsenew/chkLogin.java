@@ -14,6 +14,7 @@ public class chkLogin {
 
         public static void setlogout() {
             loggedIn = false;
+            LoginDetails.temp = null;
         }
 
         public static void alert() {

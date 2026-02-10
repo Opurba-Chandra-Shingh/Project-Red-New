@@ -7,5 +7,32 @@
     "district": "Bagerhat",
     "email": "aaa",
     "password": "aaa"
+  },
+  {
+    "name": "Apurbo",
+    "age": "23",
+    "gender": "Male",
+    "bloodGroup": "O+",
+    "district": "Netrokona",
+    "email": "Apurbo@",
+    "password": "apurbo45"
+  },
+  {
+    "name": "Abin",
+    "age": "23",
+    "gender": "Male",
+    "bloodGroup": "O+",
+    "district": "Sylhet",
+    "email": "Abin@",
+    "password": "abin"
+  },
+  {
+    "name": "Muaj",
+    "age": "23",
+    "gender": "Male",
+    "bloodGroup": "O+",
+    "district": "Sylhet",
+    "email": "Muaj@",
+    "password": "muaj"
   }
 ]

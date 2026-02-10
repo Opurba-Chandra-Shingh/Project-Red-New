@@ -1,0 +1,23 @@
+[
+  {
+    "clickerEmail": "Abin@",
+    "clickerPassword": "abin",
+    "receiverEmail": "Apurbo@",
+    "receiverPassword": "apurbo45",
+    "notiType": "interested"
+  },
+  {
+    "clickerEmail": "Abin@",
+    "clickerPassword": "abin",
+    "receiverEmail": "Muaj@",
+    "receiverPassword": "muaj",
+    "notiType": "interested"
+  },
+  {
+    "clickerEmail": "Abin@",
+    "clickerPassword": "abin",
+    "receiverEmail": "Apurbo@",
+    "receiverPassword": "apurbo45",
+    "notiType": "interested"
+  }
+]

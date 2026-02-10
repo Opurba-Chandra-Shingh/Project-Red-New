@@ -1,5 +1,7 @@
 package com.example.projectredpulsenew;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,8 +10,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.lang.reflect.Type;
+import java.util.List;
 
 public class Notification_Controller {
 
@@ -17,47 +27,17 @@ public class Notification_Controller {
     private Label appNameLabel;
 
     @FXML
-    private Button btnChat;
+    private Button btnChat, btnCreatePost, btnLogOut, btnNewsFeed, btnHome, btnNotifications, btnProfile, btnSettings;
 
     @FXML
-    private Button btnCreatePost;
+    private VBox sidebar, sidebarButtons, notificationContainer;
 
     @FXML
-    private Button btnLogOut;
+    private HBox sidebarHeader, topBar, topBarRight;
 
+    // ================== NAVIGATION BUTTONS ==================
     @FXML
-    private Button btnNewsFeed;
-
-    @FXML
-    private Button btnHome;
-
-    @FXML
-    private Button btnNotifications;
-
-    @FXML
-    private Button btnProfile;
-
-    @FXML
-    private Button btnSettings;
-
-    @FXML
-    private VBox sidebar;
-
-    @FXML
-    private VBox sidebarButtons;
-
-    @FXML
-    private HBox sidebarHeader;
-
-    @FXML
-    private HBox topBar;
-
-    @FXML
-    private HBox topBarRight;
-
-
-    @FXML
-    void NotitoNews(ActionEvent event)throws Exception{
+    void NotitoNews(ActionEvent event) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Newsfeed.fxml"));
         Stage stage = (Stage) btnNewsFeed.getScene().getWindow();
         stage.setScene(new Scene(root));
@@ -65,7 +45,7 @@ public class Notification_Controller {
     }
 
     @FXML
-    void NotitoHome(ActionEvent event)throws Exception{
+    void NotitoHome(ActionEvent event) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
         Stage stage = (Stage) btnHome.getScene().getWindow();
         stage.setScene(new Scene(root));
@@ -73,7 +53,7 @@ public class Notification_Controller {
     }
 
     @FXML
-    void NotitoCreate(ActionEvent event)throws Exception{
+    void NotitoCreate(ActionEvent event) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("CreatePost.fxml"));
         Stage stage = (Stage) btnCreatePost.getScene().getWindow();
         stage.setScene(new Scene(root));
@@ -81,7 +61,7 @@ public class Notification_Controller {
     }
 
     @FXML
-    void NotitoChat(ActionEvent event)throws Exception{
+    void NotitoChat(ActionEvent event) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Chat.fxml"));
         Stage stage = (Stage) btnChat.getScene().getWindow();
         stage.setScene(new Scene(root));
@@ -89,7 +69,7 @@ public class Notification_Controller {
     }
 
     @FXML
-    void NotitoProf(ActionEvent event)throws Exception{
+    void NotitoProf(ActionEvent event) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Profile.fxml"));
         Stage stage = (Stage) btnProfile.getScene().getWindow();
         stage.setScene(new Scene(root));
@@ -97,22 +77,102 @@ public class Notification_Controller {
     }
 
     @FXML
-    void NotitoStng(ActionEvent event)throws Exception{
+    void NotitoStng(ActionEvent event) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Settings.fxml"));
         Stage stage = (Stage) btnSettings.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
     }
 
-
     @FXML
     void logout_noti(ActionEvent event) throws Exception {
         chkLogin.setlogout();
-        //updateTopButtons();
-
         Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
         Stage stage = (Stage) btnLogOut.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    // ================== INITIALIZE ==================
+    @FXML
+    public void initialize() {
+        loadNotifications();
+    }
+
+    // ================== LOAD NOTIFICATIONS ==================
+    private void loadNotifications() {
+        try {
+            Gson gson = new Gson();
+            InputStream is = getClass().getResourceAsStream("/Noti.json");
+            Reader reader = new InputStreamReader(is);
+
+            Type listType = new TypeToken<List<NotificationDetails>>(){}.getType();
+            List<NotificationDetails> notiList = gson.fromJson(reader, listType);
+
+            User Cur_user = LoginDetails.getUser();
+            String currentEmail = Cur_user.getEmail();
+            String currentPass  = Cur_user.getPassword();
+
+            notificationContainer.getChildren().clear(); // Clean previous
+
+            for (NotificationDetails n : notiList) {
+                // Only show notifications for current logged-in user
+                if (n.getReceiverEmail().equals(currentEmail)
+                        && n.getReceiverPassword().equals(currentPass)) {
+
+                    HBox card = createNotificationCard(n);
+                    notificationContainer.getChildren().add(card);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error loading notifications: " + e.getMessage());
+        }
+    }
+
+    // ================== CREATE DYNAMIC CARD ==================
+    private HBox createNotificationCard(NotificationDetails n) {
+
+        HBox card = new HBox(15);
+        card.setMaxWidth(900);
+        card.getStyleClass().add("noti-card");
+
+        // Icon Background
+        StackPane iconBg = new StackPane();
+        iconBg.setPrefSize(50, 50);
+
+        Label title = new Label();
+        Label subtitle = new Label();
+
+        if (n.getNotiType().equalsIgnoreCase("interested")) {
+            iconBg.getStyleClass().add("noti-icon-bg-red");
+            title.setText("A donor showed interest in your post");
+            subtitle.setText("User: " + n.getClickerEmail());
+        } else if (n.getNotiType().equalsIgnoreCase("request")) {
+            iconBg.getStyleClass().add("noti-icon-bg-gray");
+            title.setText("New request on your post");
+            subtitle.setText("From: " + n.getClickerEmail());
+        }
+
+        title.getStyleClass().add("noti-title");
+        subtitle.getStyleClass().add("noti-subtitle");
+
+        VBox textBox = new VBox(4, title, subtitle);
+        HBox.setHgrow(textBox, Priority.ALWAYS);
+
+        Label time = new Label("Just now");
+        time.getStyleClass().add("noti-time");
+
+        card.getChildren().addAll(iconBg, textBox, time);
+
+        // Optionally: click to open post if postId exists
+        /*
+        if (n.getPostId() != null) {
+            card.setOnMouseClicked(e -> openPost(n.getPostId()));
+        }
+        */
+
+        return card;
     }
 }
