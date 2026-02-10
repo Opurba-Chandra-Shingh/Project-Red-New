@@ -247,95 +247,33 @@
 
     <!-- ================= CENTER: SCROLLABLE NOTIFICATION LIST ================= -->
     <center>
-        <ScrollPane fitToWidth="true" styleClass="noti-scroll-pane" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+        <ScrollPane fitToWidth="true" styleClass="noti-scroll-pane" stylesheets="@styles.css">
             <content>
                 <VBox alignment="TOP_CENTER" spacing="20.0">
-                    <padding>
-                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
-                    </padding>
-                    <children>
+                    <padding><Insets top="40" bottom="40" left="40" right="40"/></padding>
 
-                        <!-- Header and Filters Container -->
-                        <VBox maxWidth="900.0" spacing="15.0">
-                            <children>
-                                <Label style="-fx-text-fill: black;" text="Notifications" textFill="#111827">
-                                    <font>
-                                        <Font name="System Bold" size="28.0" />
-                                    </font>
-                                </Label>
-                                <!-- Filter Buttons -->
-                                <HBox spacing="10.0">
-                                    <children>
-                                        <Button mnemonicParsing="false" styleClass="noti-filter-btn-active" text="All" />
-                                        <Button mnemonicParsing="false" styleClass="noti-filter-btn-inactive" text="Requests" />
-                                        <Button mnemonicParsing="false" styleClass="noti-filter-btn-inactive" text="Messages" />
-                                        <Button mnemonicParsing="false" styleClass="noti-filter-btn-inactive" text="Interests" />
-                                    </children>
-                                </HBox>
-                            </children>
-                            <VBox.margin>
-                                <Insets bottom="10.0" />
-                            </VBox.margin>
-                        </VBox>
+                    <!-- Header and Filter Buttons -->
+                    <VBox maxWidth="900.0" spacing="15.0">
+                        <children>
+                            <Label style="-fx-text-fill: black;" text="Notifications">
+                                <font><Font name="System Bold" size="28.0"/></font>
+                            </Label>
+                            <HBox spacing="10.0">
+                                <children>
+                                    <Button mnemonicParsing="false" styleClass="noti-filter-btn-active" text="All"/>
+                                    <Button mnemonicParsing="false" styleClass="noti-filter-btn-inactive" text="Requests"/>
+                                    <Button mnemonicParsing="false" styleClass="noti-filter-btn-inactive" text="Messages"/>
+                                    <Button mnemonicParsing="false" styleClass="noti-filter-btn-inactive" text="Interests"/>
+                                </children>
+                            </HBox>
+                        </children>
+                    </VBox>
 
+                    <!-- Dynamic notifications will be inserted here -->
+                    <VBox fx:id="notificationContainer" alignment="TOP_CENTER" spacing="20.0">
+                        <padding><Insets top="40" bottom="40" left="40" right="40"/></padding>
+                    </VBox>
 
-<!--                        Notifications will place in this box-->
-                        <VBox fx:id="notificationContainer"
-                              alignment="TOP_CENTER"
-                              spacing="20.0">
-                            <padding>
-                                <Insets bottom="40" left="40" right="40" top="40"/>
-                            </padding>
-                        </VBox>
-
-                        <HBox layoutX="102.0" layoutY="166.0" maxWidth="900.0" styleClass="noti-card" stylesheets="@styles.css">
-                     <children>
-                        <StackPane prefHeight="50.0" prefWidth="50.0" styleClass="noti-icon-bg-red">
-                           <children>
-                              <SVGPath content="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#D32F2F" scaleX="0.6" scaleY="0.6" />
-                           </children>
-                        </StackPane>
-                        <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                           <children>
-                              <Label styleClass="noti-title" text="A donor showed interest in your blood request." />
-                              <Label styleClass="noti-subtitle" text="Blood Group: O+" />
-                           </children>
-                           <padding>
-                              <Insets left="15.0" top="5.0" />
-                           </padding>
-                        </VBox>
-                        <Label styleClass="noti-time" text="5m ago">
-                           <padding>
-                              <Insets top="5.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="96.0" layoutY="166.0" maxWidth="900.0" styleClass="noti-card" stylesheets="@styles.css">
-                     <children>
-                        <StackPane prefHeight="50.0" prefWidth="50.0" styleClass="noti-icon-bg-red">
-                           <children>
-                              <SVGPath content="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#D32F2F" scaleX="0.6" scaleY="0.6" />
-                           </children>
-                        </StackPane>
-                        <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                           <children>
-                              <Label styleClass="noti-title" text="A donor showed interest in your blood request." />
-                              <Label styleClass="noti-subtitle" text="Blood Group: O+" />
-                           </children>
-                           <padding>
-                              <Insets left="15.0" top="5.0" />
-                           </padding>
-                        </VBox>
-                        <Label styleClass="noti-time" text="5m ago">
-                           <padding>
-                              <Insets top="5.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
-
-                    </children>
                 </VBox>
             </content>
         </ScrollPane>

@@ -103,7 +103,7 @@ public class Notification_Controller {
     private void loadNotifications() {
         try {
             Gson gson = new Gson();
-            InputStream is = getClass().getResourceAsStream("/Noti.json");
+            InputStream is = getClass().getResourceAsStream("/com/example/projectredpulsenew/Noti.json");
             Reader reader = new InputStreamReader(is);
 
             Type listType = new TypeToken<List<NotificationDetails>>(){}.getType();
@@ -143,22 +143,34 @@ public class Notification_Controller {
         iconBg.setPrefSize(50, 50);
 
         Label title = new Label();
-        Label subtitle = new Label();
+        VBox infoBox = new VBox(2);
 
         if (n.getNotiType().equalsIgnoreCase("interested")) {
             iconBg.getStyleClass().add("noti-icon-bg-red");
-            title.setText("A donor showed interest in your post");
-            subtitle.setText("User: " + n.getClickerEmail());
+            title.setText(n.getClickerName() + " showed interest in your post");
+
+            Label emailLabel = new Label("Donor's email: " + n.getClickerEmail());
+            Label numberLabel = new Label("Donor's number: " + n.getClickerNumber());
+            Label bloodLabel = new Label("Donor's Blood group: " + n.getClickerBloodgroup());
+            Label districtLabel = new Label("Donor's District: " + n.getClickerDistrict());
+
+            emailLabel.getStyleClass().add("noti-subtitle");
+            numberLabel.getStyleClass().add("noti-subtitle");
+            bloodLabel.getStyleClass().add("noti-subtitle");
+            districtLabel.getStyleClass().add("noti-subtitle");
+
+            infoBox.getChildren().addAll(emailLabel, numberLabel, bloodLabel, districtLabel);
+
         } else if (n.getNotiType().equalsIgnoreCase("request")) {
             iconBg.getStyleClass().add("noti-icon-bg-gray");
-            title.setText("New request on your post");
-            subtitle.setText("From: " + n.getClickerEmail());
+            title.setText("New request blood request posted");
+
         }
 
         title.getStyleClass().add("noti-title");
-        subtitle.getStyleClass().add("noti-subtitle");
+//        subtitle.getStyleClass().add("noti-subtitle");
 
-        VBox textBox = new VBox(4, title, subtitle);
+        VBox textBox = new VBox(4, title, infoBox);
         HBox.setHgrow(textBox, Priority.ALWAYS);
 
         Label time = new Label("Just now");

@@ -1,19 +1,20 @@
 [
   {
-    "clickerEmail": "Abin@",
-    "clickerPassword": "abin",
-    "receiverEmail": "Apurbo@",
-    "receiverPassword": "apurbo45",
-    "notiType": "interested"
-  },
-  {
-    "clickerEmail": "Abin@",
-    "clickerPassword": "abin",
+    "clickerName": "Apurbo",
+    "clickerBloodgroup": "O+",
+    "clickerDistrict": "Netrokona",
+    "clickerNumber": "01781691400",
+    "clickerEmail": "Apurbo@",
+    "clickerPassword": "apurbo45",
     "receiverEmail": "Muaj@",
     "receiverPassword": "muaj",
     "notiType": "interested"
   },
   {
+    "clickerName": "Abin",
+    "clickerBloodgroup": "O+",
+    "clickerDistrict": "Sylhet",
+    "clickerNumber": "01780946249",
     "clickerEmail": "Abin@",
     "clickerPassword": "abin",
     "receiverEmail": "Apurbo@",

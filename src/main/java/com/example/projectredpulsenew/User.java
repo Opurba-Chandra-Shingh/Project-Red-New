@@ -8,17 +8,19 @@ public class User {
     private String district;
     private String email;
     private String password;
+    private String Number;
 
 
     public User() {
     }
 
-    public User(String name, String age, String gender, String bloodGroup, String district, String email, String password) {
+    public User(String name, String age, String gender, String bloodGroup, String district, String Number, String email, String password) {
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.bloodGroup = bloodGroup;
         this.district = district;
+        this.Number = Number;
         this.email = email;
         this.password = password;
     }
@@ -38,6 +40,9 @@ public class User {
 
     public String getDistrict() { return district; }
     //public void setDistrict(String district) { this.district = district; }
+
+    public String getNumber() { return Number; }
+    //public void setNumber(String Number) { this.district = district; }
 
     public String getEmail() { return email; }
     //public void setEmail(String email) { this.email = email; }

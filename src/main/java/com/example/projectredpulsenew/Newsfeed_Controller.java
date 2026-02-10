@@ -307,6 +307,10 @@ public class Newsfeed_Controller implements Initializable {
 
         // 3️⃣ Notification object
         NotificationDetails noti = new NotificationDetails(
+                clicker.getName(),
+                clicker.getBloodGroup(),
+                clicker.getDistrict(),
+                clicker.getNumber(),
                 clicker.getEmail(),
                 clicker.getPassword(),
                 receiverEmail,

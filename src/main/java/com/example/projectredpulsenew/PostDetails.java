@@ -40,9 +40,7 @@ public class PostDetails {
     public String getUserEmail() { return userEmail != null && !userEmail.isEmpty() ? userEmail : "N/A"; }
     public String getUserPassword() { return userPassword != null && !userPassword.isEmpty() ? userPassword : "N/A"; }
 
-    public String getPatientName() {
-        return patientName != null && !patientName.isEmpty() ? patientName : "N/A";
-    }
+    public String getPatientName() {return patientName != null && !patientName.isEmpty() ? patientName : "N/A";}
 
     public String getBloodGroup() {
         return bloodGroup != null && !bloodGroup.isEmpty() ? bloodGroup : "N/A";
@@ -67,6 +65,9 @@ public class PostDetails {
     public String getNotes() {
         return notes != null && !notes.isEmpty() ? notes : "No additional notes";
     }
+
+
+
 
     // Setters (useful for future modifications)
     public void setUserName(String userName) {

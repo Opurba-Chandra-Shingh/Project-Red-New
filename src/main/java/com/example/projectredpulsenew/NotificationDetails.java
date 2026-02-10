@@ -2,6 +2,10 @@ package com.example.projectredpulsenew;
 
 public class NotificationDetails {
 
+    private String clickerName;
+    private String clickerBloodgroup;
+    private String clickerDistrict;
+    private String clickerNumber;
     private String clickerEmail;
     private String clickerPassword;
 
@@ -10,9 +14,19 @@ public class NotificationDetails {
 
     private String notiType;
 
-    public NotificationDetails(String clickerEmail, String clickerPassword,
+    // ✅ No-argument constructor (required for Gson)
+    public NotificationDetails() {
+    }
+
+    // Parameterized constructor (optional)
+    public NotificationDetails(String clickerName, String clickerBloodgroup, String clickerDistrict, String clickerNumber,
+                               String clickerEmail, String clickerPassword,
                                String receiverEmail, String receiverPassword,
                                String notiType) {
+        this.clickerName = clickerName;
+        this.clickerBloodgroup = clickerBloodgroup;
+        this.clickerDistrict = clickerDistrict;
+        this.clickerNumber = clickerNumber;
         this.clickerEmail = clickerEmail;
         this.clickerPassword = clickerPassword;
         this.receiverEmail = receiverEmail;
@@ -20,12 +34,25 @@ public class NotificationDetails {
         this.notiType = notiType;
     }
 
+    // =================== Getters ===================
+    public String getClickerName() { return clickerName; }
+    public String getClickerBloodgroup() { return clickerBloodgroup; }
+    public String getClickerDistrict() { return clickerDistrict; }
+    public String getClickerNumber() { return clickerNumber; }
     public String getClickerEmail() { return clickerEmail; }
     public String getClickerPassword() { return clickerPassword; }
-
     public String getReceiverEmail() { return receiverEmail; }
     public String getReceiverPassword() { return receiverPassword; }
-
     public String getNotiType() { return notiType; }
-}
 
+    // =================== Setters =================== (optional)
+    public void setClickerName(String clickerName) { this.clickerName = clickerName; }
+    public void setClickerBloodgroup(String clickerBloodgroup) { this.clickerBloodgroup = clickerBloodgroup; }
+    public void setClickerDistrict(String clickerDistrict) { this.clickerDistrict = clickerDistrict; }
+    public void setClickerNumber(String clickerNumber) { this.clickerNumber = clickerNumber; }
+    public void setClickerEmail(String clickerEmail) { this.clickerEmail = clickerEmail; }
+    public void setClickerPassword(String clickerPassword) { this.clickerPassword = clickerPassword; }
+    public void setReceiverEmail(String receiverEmail) { this.receiverEmail = receiverEmail; }
+    public void setReceiverPassword(String receiverPassword) { this.receiverPassword = receiverPassword; }
+    public void setNotiType(String notiType) { this.notiType = notiType; }
+}

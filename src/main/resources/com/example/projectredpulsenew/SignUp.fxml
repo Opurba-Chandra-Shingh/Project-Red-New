@@ -108,6 +108,19 @@
                         <Insets left="50.0" />
                      </padding>
                   </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="239.0" prefHeight="26.0" prefWidth="485.0" spacing="36.0">
+                     <children>
+                        <Label prefHeight="22.0" prefWidth="125.0" text="Phone Number :  ">
+                           <font>
+                              <Font name="Bell MT Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="number" prefHeight="26.0" prefWidth="230.0" promptText="Phone Number" />
+                     </children>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="263.0" prefHeight="22.0" prefWidth="456.0" spacing="82.0">
                      <children>
                         <Label prefHeight="22.0" prefWidth="77.0" text="Password :">
@@ -135,12 +148,12 @@
                      </padding>
                   </HBox>
                </children></VBox>
-            <Button fx:id="signupBtn" layoutX="180.0" layoutY="544.0" mnemonicParsing="false" onAction="#signup" prefHeight="30.0" prefWidth="106.0" styleClass="login-page-button" stylesheets="@styles.css" text="Sign Up" textFill="WHITE">
+            <Button fx:id="signupBtn" layoutX="180.0" layoutY="572.0" mnemonicParsing="false" onAction="#signup" prefHeight="30.0" prefWidth="106.0" styleClass="login-page-button" stylesheets="@styles.css" text="Sign Up" textFill="WHITE">
                <font>
                   <Font name="Bell MT Bold" size="15.0" />
                </font>
             </Button>
-            <Label fx:id="signupMassage" alignment="CENTER" layoutX="3.0" layoutY="516.0" prefHeight="18.0" prefWidth="461.0" />
+            <Label fx:id="signupMassage" alignment="CENTER" layoutX="2.0" layoutY="552.0" prefHeight="18.0" prefWidth="461.0" />
          </children>
          <effect>
             <DropShadow height="49.13" radius="23.465" width="46.73" />

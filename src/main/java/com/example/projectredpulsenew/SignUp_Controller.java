@@ -23,6 +23,7 @@ import java.util.List;
 
 public class SignUp_Controller implements Initializable {
 
+    public TextField number;
     @FXML
     private Button signupBtn;
 
@@ -154,6 +155,7 @@ public class SignUp_Controller implements Initializable {
             String bloodInput = bloodGroupOption.getValue();
             String districtInput = district_items.getValue();
             String emailInput = email.getText();
+            String numberInput = number.getText();
             String passwordInput = password.getText();
             String confirmPasswordInput = confirm_pass.getText();
 
@@ -189,6 +191,11 @@ public class SignUp_Controller implements Initializable {
                 signupMassage.setStyle("-fx-text-fill: red;");
                 return;
             }
+            else if (numberInput.isEmpty()) {
+                signupMassage.setText("Please Enter Phone Number!");
+                signupMassage.setStyle("-fx-text-fill: red;");
+                return;
+            }
             else if (passwordInput == null || passwordInput.isEmpty()) {
                 signupMassage.setText("Please enter a Valid Password!");
                 signupMassage.setStyle("-fx-text-fill: red;");
@@ -207,7 +214,7 @@ public class SignUp_Controller implements Initializable {
 
 
 
-            User newUser = new User(nameInput, ageInput, genderInput, bloodInput, districtInput, emailInput, passwordInput);
+            User newUser = new User(nameInput, ageInput, genderInput, bloodInput, districtInput, numberInput, emailInput, passwordInput);
 
             saveUserToJson(newUser);
 
