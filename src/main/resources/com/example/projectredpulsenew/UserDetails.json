@@ -7,7 +7,11 @@
     "district": "Bagerhat",
     "email": "aaa",
     "password": "aaa",
-    "Number": "017******"
+    "Number": "017******",
+    "profilePicPath": "D:\\project-redpulse-new\\files\\default.jpg",
+    "medicalPdfPath": "D:\\project-redpulse-new\\files\\Medical Certificate.pdf",
+    "nidFrontPath": "D:\\project-redpulse-new\\files\\Id front.png",
+    "nidBackPath": "D:\\project-redpulse-new\\files\\Id back.png"
   },
   {
     "name": "Apurbo",
@@ -17,7 +21,11 @@
     "district": "Netrokona",
     "email": "Apurbo@",
     "password": "apurbo45",
-    "Number": "01781691400"
+    "Number": "01781691400",
+    "profilePicPath": "D:\\project-redpulse-new\\files\\apurbo.jpg",
+    "medicalPdfPath": "D:\\project-redpulse-new\\files\\Medical Certificate.pdf",
+    "nidFrontPath": "D:\\project-redpulse-new\\files\\Id front.png",
+    "nidBackPath": "D:\\project-redpulse-new\\files\\Id back.png"
   },
   {
     "name": "Abin",
@@ -27,7 +35,11 @@
     "district": "Sylhet",
     "email": "Abin@",
     "password": "abin",
-    "Number": "01780946249"
+    "Number": "01780946249",
+    "profilePicPath": "D:\\project-redpulse-new\\files\\Abin.jpg",
+    "medicalPdfPath": "D:\\project-redpulse-new\\files\\Medical Certificate.pdf",
+    "nidFrontPath": "D:\\project-redpulse-new\\files\\Id front.png",
+    "nidBackPath": "D:\\project-redpulse-new\\files\\Id back.png"
   },
   {
     "name": "Muaj",
@@ -37,17 +49,11 @@
     "district": "Sylhet",
     "email": "Muaj@",
     "password": "muaj",
-    "Number": "01765613738"
-  },
-  {
-    "name": "Apurbo",
-    "age": "23",
-    "gender": "Male",
-    "bloodGroup": "O+",
-    "district": "Netrokona",
-    "email": "Apurbo@",
-    "password": "1111",
-    "Number": "01781691400"
+    "Number": "01765613738",
+    "profilePicPath": "D:\\project-redpulse-new\\files\\muaj.jpg",
+    "medicalPdfPath": "D:\\project-redpulse-new\\files\\Medical Certificate.pdf",
+    "nidFrontPath": "D:\\project-redpulse-new\\files\\Id front.png",
+    "nidBackPath": "D:\\project-redpulse-new\\files\\Id back.png"
   },
   {
     "name": "Sojib",

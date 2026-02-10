@@ -8,8 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 
 import com.google.gson.Gson;
@@ -167,9 +169,32 @@ public class Newsfeed_Controller implements Initializable {
         topRow.setAlignment(Pos.CENTER_LEFT);
 
         Circle avatar = new Circle(20);
-        avatar.setFill(Color.web("#e0e0e0"));
         avatar.setStroke(Color.WHITE);
         avatar.setStrokeType(javafx.scene.shape.StrokeType.INSIDE);
+
+//        Post owner profile pic
+        try {
+            String picPath = post.getUserProfilePic();
+            File picFile = (picPath != null && !picPath.equals("N/A")) ? new File(picPath) : null;
+
+            if (picFile != null && picFile.exists()) {
+                Image img = new Image("file:" + picFile.getAbsolutePath(), false);
+                avatar.setFill(new ImagePattern(img));
+            } else {
+                // Default picture
+                File defaultFile = new File("D:\\project-redpulse-new\\files\\default.jpg");
+                if (defaultFile.exists()) {
+                    Image img = new Image("file:" + defaultFile.getAbsolutePath(), false);
+                    avatar.setFill(new ImagePattern(img));
+                } else {
+                    avatar.setFill(Color.web("#e0e0e0")); // fallback color if even default pic missing
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            avatar.setFill(Color.web("#e0e0e0")); // fallback color in case of error
+        }
+//        ---------------------------
 
         VBox nameBox = new VBox();
         String displayName = post.getUserName();
@@ -313,6 +338,7 @@ public class Newsfeed_Controller implements Initializable {
                 clicker.getNumber(),
                 clicker.getEmail(),
                 clicker.getPassword(),
+                clicker.getProfilePicPath(),
                 receiverEmail,
                 receiverPassword,
                 "interested"

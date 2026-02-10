@@ -173,6 +173,7 @@ public class CreatePost_Controller {
             String currentUserName = "Anonymous";
             String currentUserEmail = "N/A";
             String currentUserPassword = "N/A";
+            String currentUserProfilePic = "N/A";
 
             try {
                 User temp2 = LoginDetails.getUser();
@@ -180,6 +181,7 @@ public class CreatePost_Controller {
                     if (temp2.getName() != null) currentUserName = temp2.getName();
                     if (temp2.getEmail() != null) currentUserEmail = temp2.getEmail();
                     if (temp2.getPassword() != null) currentUserPassword = temp2.getPassword();
+                    if (temp2.getProfilePicPath() != null) currentUserProfilePic = temp2.getProfilePicPath();
                 }
             } catch (Exception e) {
                 System.out.println("Could not get user info: " + e.getMessage());
@@ -190,6 +192,7 @@ public class CreatePost_Controller {
                     currentUserName,
                     currentUserEmail,
                     currentUserPassword,
+                    currentUserProfilePic,
                     patient,
                     blood,
                     unit,

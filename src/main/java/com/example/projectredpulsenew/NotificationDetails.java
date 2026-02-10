@@ -8,6 +8,7 @@ public class NotificationDetails {
     private String clickerNumber;
     private String clickerEmail;
     private String clickerPassword;
+    private String clickerProfilePic;
 
     private String receiverEmail;
     private String receiverPassword;
@@ -20,7 +21,7 @@ public class NotificationDetails {
 
     // Parameterized constructor (optional)
     public NotificationDetails(String clickerName, String clickerBloodgroup, String clickerDistrict, String clickerNumber,
-                               String clickerEmail, String clickerPassword,
+                               String clickerEmail, String clickerPassword, String clickerProfilePic,
                                String receiverEmail, String receiverPassword,
                                String notiType) {
         this.clickerName = clickerName;
@@ -29,6 +30,7 @@ public class NotificationDetails {
         this.clickerNumber = clickerNumber;
         this.clickerEmail = clickerEmail;
         this.clickerPassword = clickerPassword;
+        this.clickerProfilePic = clickerProfilePic;
         this.receiverEmail = receiverEmail;
         this.receiverPassword = receiverPassword;
         this.notiType = notiType;
@@ -41,6 +43,7 @@ public class NotificationDetails {
     public String getClickerNumber() { return clickerNumber; }
     public String getClickerEmail() { return clickerEmail; }
     public String getClickerPassword() { return clickerPassword; }
+    public String getClickerProfilePic() { return clickerProfilePic; }
     public String getReceiverEmail() { return receiverEmail; }
     public String getReceiverPassword() { return receiverPassword; }
     public String getNotiType() { return notiType; }

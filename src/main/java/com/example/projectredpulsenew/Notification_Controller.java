@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
@@ -20,6 +22,14 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.List;
+
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.scene.image.Image;
+
+import java.io.File;
 
 public class Notification_Controller {
 
@@ -111,7 +121,7 @@ public class Notification_Controller {
 
             User Cur_user = LoginDetails.getUser();
             String currentEmail = Cur_user.getEmail();
-            String currentPass  = Cur_user.getPassword();
+            String currentPass = Cur_user.getPassword();
 
             notificationContainer.getChildren().clear(); // Clean previous
 
@@ -138,15 +148,40 @@ public class Notification_Controller {
         card.setMaxWidth(900);
         card.getStyleClass().add("noti-card");
 
-        // Icon Background
-        StackPane iconBg = new StackPane();
+        // Icon Background - Circle with profile pic or default
+        Circle avatar = new Circle(25); // radius 25
+        avatar.setStroke(Color.WHITE);
+        avatar.setStrokeType(javafx.scene.shape.StrokeType.INSIDE);
+
+        try {
+            String picPath = n.getClickerProfilePic();
+            File picFile = (picPath != null && !picPath.isEmpty()) ? new File(picPath) : null;
+
+            if (picFile != null && picFile.exists()) {
+                Image img = new Image("file:" + picFile.getAbsolutePath(), false);
+                avatar.setFill(new ImagePattern(img));
+            } else {
+                // Default picture
+                File defaultFile = new File("D:\\project-redpulse-new\\files\\default.jpg");
+                if (defaultFile.exists()) {
+                    Image img = new Image("file:" + defaultFile.getAbsolutePath(), false);
+                    avatar.setFill(new ImagePattern(img));
+                } else {
+                    avatar.setFill(Color.web("#cccccc")); // fallback color
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            avatar.setFill(Color.web("#cccccc")); // fallback color in case of error
+        }
+
+        StackPane iconBg = new StackPane(avatar);
         iconBg.setPrefSize(50, 50);
 
         Label title = new Label();
         VBox infoBox = new VBox(2);
 
         if (n.getNotiType().equalsIgnoreCase("interested")) {
-            iconBg.getStyleClass().add("noti-icon-bg-red");
             title.setText(n.getClickerName() + " showed interest in your post");
 
             Label emailLabel = new Label("Donor's email: " + n.getClickerEmail());
@@ -162,7 +197,6 @@ public class Notification_Controller {
             infoBox.getChildren().addAll(emailLabel, numberLabel, bloodLabel, districtLabel);
 
         } else if (n.getNotiType().equalsIgnoreCase("request")) {
-            iconBg.getStyleClass().add("noti-icon-bg-gray");
             title.setText("New request blood request posted");
 
         }

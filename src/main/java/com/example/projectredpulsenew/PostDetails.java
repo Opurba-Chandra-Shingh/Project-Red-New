@@ -4,6 +4,7 @@ public class PostDetails {
     private String userName;// ✅ Changed from UserName to userName (lowercase)
     private String userEmail;
     private String userPassword;
+    private String UserProfilePic;
 
 
     private String patientName;
@@ -18,12 +19,13 @@ public class PostDetails {
     public PostDetails() {}
 
     // Constructor with all fields
-    public PostDetails(String userName, String userEmail, String userPassword, String patientName, String bloodGroup,
+    public PostDetails(String userName, String userEmail, String userPassword, String UserProfilePic, String patientName, String bloodGroup,
                        String units, String location, String dateNeeded,
                        String phone, String notes) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
+        this.UserProfilePic = UserProfilePic;
         this.patientName = patientName;
         this.bloodGroup = bloodGroup;
         this.units = units;
@@ -39,6 +41,7 @@ public class PostDetails {
     }
     public String getUserEmail() { return userEmail != null && !userEmail.isEmpty() ? userEmail : "N/A"; }
     public String getUserPassword() { return userPassword != null && !userPassword.isEmpty() ? userPassword : "N/A"; }
+    public String getUserProfilePic() { return UserProfilePic != null && !UserProfilePic.isEmpty() ? UserProfilePic : "N/A"; }
 
     public String getPatientName() {return patientName != null && !patientName.isEmpty() ? patientName : "N/A";}
 

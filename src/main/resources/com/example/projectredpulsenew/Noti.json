@@ -6,6 +6,7 @@
     "clickerNumber": "01781691400",
     "clickerEmail": "Apurbo@",
     "clickerPassword": "apurbo45",
+    "clickerProfilePic": "D:\\project-redpulse-new\\files\\apurbo.jpg",
     "receiverEmail": "Muaj@",
     "receiverPassword": "muaj",
     "notiType": "interested"
@@ -17,6 +18,7 @@
     "clickerNumber": "01780946249",
     "clickerEmail": "Abin@",
     "clickerPassword": "abin",
+    "clickerProfilePic": "D:\\project-redpulse-new\\files\\Abin.jpg",
     "receiverEmail": "Apurbo@",
     "receiverPassword": "apurbo45",
     "notiType": "interested"
@@ -28,6 +30,7 @@
     "clickerNumber": "01780946249",
     "clickerEmail": "Abin@",
     "clickerPassword": "abin",
+    "clickerProfilePic": "D:\\project-redpulse-new\\files\\Abin.jpg",
     "receiverEmail": "Apurbo@",
     "receiverPassword": "apurbo45",
     "notiType": "interested"
@@ -39,8 +42,45 @@
     "clickerNumber": "09839878",
     "clickerEmail": "sojib@",
     "clickerPassword": "sojib",
+    "clickerProfilePic": "D:\\project-redpulse-new\\files\\Sojib.jpg",
     "receiverEmail": "Apurbo@",
     "receiverPassword": "apurbo45",
+    "notiType": "interested"
+  },
+  {
+    "clickerName": "Sojib",
+    "clickerBloodgroup": "O+",
+    "clickerDistrict": "Sylhet",
+    "clickerNumber": "09839878",
+    "clickerEmail": "sojib@",
+    "clickerPassword": "sojib",
+    "clickerProfilePic": "D:\\project-redpulse-new\\files\\Sojib.jpg",
+    "receiverEmail": "Apurbo@",
+    "receiverPassword": "apurbo45",
+    "notiType": "interested"
+  },
+  {
+    "clickerName": "Sojib",
+    "clickerBloodgroup": "O+",
+    "clickerDistrict": "Sylhet",
+    "clickerNumber": "09839878",
+    "clickerEmail": "sojib@",
+    "clickerPassword": "sojib",
+    "clickerProfilePic": "D:\\project-redpulse-new\\files\\Sojib.jpg",
+    "receiverEmail": "Apurbo@",
+    "receiverPassword": "apurbo45",
+    "notiType": "interested"
+  },
+  {
+    "clickerName": "Apurbo",
+    "clickerBloodgroup": "O+",
+    "clickerDistrict": "Netrokona",
+    "clickerNumber": "01781691400",
+    "clickerEmail": "Apurbo@",
+    "clickerPassword": "apurbo45",
+    "clickerProfilePic": "D:\\project-redpulse-new\\files\\apurbo.jpg",
+    "receiverEmail": "sojib@",
+    "receiverPassword": "sojib",
     "notiType": "interested"
   }
 ]
