@@ -1,6 +1,8 @@
 package com.example.projectredpulsenew;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,61 +11,53 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.lang.reflect.Type;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class SignUp_Controller implements Initializable {
 
-    public TextField number;
+    // ================= EXISTING FIELDS =================
     @FXML
-    private Button signupBtn;
+    private TextField name, age, email, number;
 
     @FXML
-    private TextField age;
+    private PasswordField password, confirm_pass;
 
     @FXML
-    private TextField name;
-
-    @FXML
-    private TextField email;
-
-    @FXML
-    private PasswordField password;
-
-    @FXML
-    private PasswordField confirm_pass;
-
-    @FXML
-    private ComboBox<String> genderItems;
-
-    @FXML
-    private ComboBox<String> bloodGroupOption;
-
-    @FXML
-    private ComboBox<String> district_items;
+    private ComboBox<String> genderItems, bloodGroupOption, district_items;
 
     @FXML
     private Label signupMassage;
 
+    @FXML
+    private Button signupBtn;
 
+    // ================= NEW FIELDS =================
+    @FXML
+    private Button chooseProfilePicBtn, chooseMedicalPdfBtn, chooseNidFrontBtn, chooseNidBackBtn;
 
+    @FXML
+    private Label profilePicStatus, medicalPdfStatus, nidFrontStatus, nidBackStatus;
 
-
+    // File references to store selected files
+    private File profilePicFile, medicalPdfFile, nidFrontFile, nidBackFile;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Gender options
         genderItems.setItems(FXCollections.observableArrayList("Male", "Female"));
+
+        // Blood Group options
         bloodGroupOption.setItems(FXCollections.observableArrayList("O+", "A+", "B+", "AB+", "O-", "A-", "B-", "AB-"));
 
+        // District options
         district_items.setItems(FXCollections.observableArrayList(
                 "Bagerhat", "Bandarban", "Barguna", "Barishal", "Bhola", "Bogura",
                 "Brahmanbaria", "Chandpur", "Chapainawabganj", "Chattogram", "Chuadanga",
@@ -79,36 +73,65 @@ public class SignUp_Controller implements Initializable {
                 "Sirajganj", "Sunamganj", "Sylhet", "Tangail", "Thakurgaon"
         ));
 
+        // ================= FILE CHOOSER BUTTONS =================
+        chooseProfilePicBtn.setOnAction(this::chooseProfilePic);
+        chooseMedicalPdfBtn.setOnAction(this::chooseMedicalPdf);
+        chooseNidFrontBtn.setOnAction(this::chooseNidFront);
+        chooseNidBackBtn.setOnAction(this::chooseNidBack);
     }
 
-    private void GenderSelect(ActionEvent event) {
-        String gender = genderItems.getValue();
-        if (gender == null || gender.isEmpty()) {
-            System.out.println("Please select a gender.");
-            return;
+    // ================= FILE CHOOSER HANDLERS =================
+    private void chooseProfilePic(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Profile Picture");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+        profilePicFile = fileChooser.showOpenDialog(signupBtn.getScene().getWindow());
+        if (profilePicFile != null) {
+            profilePicStatus.setText(profilePicFile.getName());
+        } else {
+            profilePicStatus.setText("No file chosen");
         }
-        //System.out.println("Selected gender: " + gender);
     }
 
-    private void bloodGroupSelect(ActionEvent event) {
-        String Group = bloodGroupOption.getValue();
-        if (Group == null || Group.isEmpty()) {
-            System.out.println("Please select a blood group.");
-            return;
+    private void chooseMedicalPdf(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Upload Medical Certificate PDF");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+        medicalPdfFile = fileChooser.showOpenDialog(signupBtn.getScene().getWindow());
+        if (medicalPdfFile != null) {
+            medicalPdfStatus.setText(medicalPdfFile.getName());
+        } else {
+            medicalPdfStatus.setText("No file chosen");
         }
-        //System.out.println("Selected gender: " + gender);
     }
 
-    private void districtSelect(ActionEvent event) {
-        String district = district_items.getValue();
-        if (district == null || district.isEmpty()) {
-            System.out.println("Please select a district.");
-            return;
+    private void chooseNidFront(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select NID Front Image");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        nidFrontFile = fileChooser.showOpenDialog(signupBtn.getScene().getWindow());
+        if (nidFrontFile != null) {
+            nidFrontStatus.setText(nidFrontFile.getName());
+        } else {
+            nidFrontStatus.setText("No file chosen");
         }
-        //System.out.println("Selected gender: " + gender);
     }
 
+    private void chooseNidBack(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select NID Back Image");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        nidBackFile = fileChooser.showOpenDialog(signupBtn.getScene().getWindow());
+        if (nidBackFile != null) {
+            nidBackStatus.setText(nidBackFile.getName());
+        } else {
+            nidBackStatus.setText("No file chosen");
+        }
+    }
 
+    // ================= SAVE USER TO JSON =================
     private void saveUserToJson(User user) {
         try {
             File file = new File("D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\UserDetails.json");
@@ -117,11 +140,9 @@ public class SignUp_Controller implements Initializable {
 
             if (file.exists()) {
                 Reader reader = new FileReader(file);
-                Type listType = new TypeToken<List<User>>(){}.getType();
+                Type listType = new TypeToken<List<User>>() {}.getType();
                 userList = gson.fromJson(reader, listType);
-                if (userList == null) {
-                    userList = new ArrayList<>();
-                }
+                if (userList == null) userList = new ArrayList<>();
                 reader.close();
             } else {
                 userList = new ArrayList<>();
@@ -129,7 +150,6 @@ public class SignUp_Controller implements Initializable {
 
 
             userList.add(user);
-
 
             // Write pretty JSON
             Writer writer = new FileWriter(file);
@@ -143,12 +163,10 @@ public class SignUp_Controller implements Initializable {
         }
     }
 
-
-
+    // ================= SIGN UP BUTTON =================
     @FXML
-    void signup(ActionEvent event) throws Exception{
+    void signup(ActionEvent event) throws Exception {
         try {
-
             String nameInput = name.getText();
             String ageInput = age.getText();
             String genderInput = genderItems.getValue();
@@ -159,67 +177,33 @@ public class SignUp_Controller implements Initializable {
             String passwordInput = password.getText();
             String confirmPasswordInput = confirm_pass.getText();
 
+            // ================= VALIDATION =================
+            if (nameInput.isEmpty()) { showError("Please Enter your Name!"); return; }
+            if (ageInput.isEmpty()) { showError("Please Enter your Age!"); return; }
+            if (genderInput == null || genderInput.isEmpty()) { showError("Please Select your Gender!"); return; }
+            if (bloodInput == null || bloodInput.isEmpty()) { showError("Please Select your Blood Group!"); return; }
+            if (districtInput == null || districtInput.isEmpty()) { showError("Please Enter your Address!"); return; }
+            if (emailInput.isEmpty()) { showError("Please Enter a valid Email!"); return; }
+            if (numberInput.isEmpty()) { showError("Please Enter Phone Number!"); return; }
+            if (passwordInput == null || passwordInput.isEmpty()) { showError("Please enter a Valid Password!"); return; }
+            if (confirmPasswordInput == null || confirmPasswordInput.isEmpty()) { showError("Please Write again to Confirm the Password!"); return; }
+            if (!passwordInput.equals(confirmPasswordInput)) { showError("Passwords do not match!"); return; }
 
+            // Optional: Check if files are uploaded
+            if (profilePicFile == null) { showError("Please upload Profile Picture!"); return; }
+            if (medicalPdfFile == null) { showError("Please upload Medical Certificate!"); return; }
+            if (nidFrontFile == null) { showError("Please upload NID Front Image!"); return; }
+            if (nidBackFile == null) { showError("Please upload NID Back Image!"); return; }
 
-            if (nameInput.isEmpty()) {
-                signupMassage.setText("Please Enter your Name!");
-                signupMassage.setStyle("-fx-text-fill: red;");
-                return;
-            }
-            else if (ageInput.isEmpty()) {
-                signupMassage.setText("Please Enter your Age!");
-                signupMassage.setStyle("-fx-text-fill: red;");
-                return;
-            }
-            else if (genderInput == null || genderInput.isEmpty()) {
-                signupMassage.setText("Please Select your Gender!");
-                signupMassage.setStyle("-fx-text-fill: red;");
-                return;
-            }
-            else if (bloodInput == null || bloodInput.isEmpty()) {
-                signupMassage.setText("Please Select your Blood Group!");
-                signupMassage.setStyle("-fx-text-fill: red;");
-                return;
-            }
-            else if (districtInput == null || districtInput.isEmpty()) {
-                signupMassage.setText("Please Enter your Address!");
-                signupMassage.setStyle("-fx-text-fill: red;");
-                return;
-            }
-            else if (emailInput.isEmpty()) {
-                signupMassage.setText("Please Enter a valid Email!");
-                signupMassage.setStyle("-fx-text-fill: red;");
-                return;
-            }
-            else if (numberInput.isEmpty()) {
-                signupMassage.setText("Please Enter Phone Number!");
-                signupMassage.setStyle("-fx-text-fill: red;");
-                return;
-            }
-            else if (passwordInput == null || passwordInput.isEmpty()) {
-                signupMassage.setText("Please enter a Valid Password!");
-                signupMassage.setStyle("-fx-text-fill: red;");
-                return;
-            }
-            else if (confirmPasswordInput == null || confirmPasswordInput.isEmpty()) {
-                signupMassage.setText("Please Write again to Confirm the Password!");
-                signupMassage.setStyle("-fx-text-fill: red;");
-                return;
-            }
-            else if (!passwordInput.equals(confirmPasswordInput)) {
-                signupMassage.setText("Passwords do not match!");
-                signupMassage.setStyle("-fx-text-fill: red;");
-                return;
-            }
+            // ================= CREATE USER =================
+            User newUser = new User(nameInput, ageInput, genderInput, bloodInput, districtInput, numberInput, emailInput, passwordInput, profilePicFile.getAbsolutePath(), medicalPdfFile.getAbsolutePath(), nidFrontFile.getAbsolutePath(), nidBackFile.getAbsolutePath());
 
-
-
-            User newUser = new User(nameInput, ageInput, genderInput, bloodInput, districtInput, numberInput, emailInput, passwordInput);
-
+            // Save files paths
             saveUserToJson(newUser);
 
+            // Redirect to login
             Parent root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
-            Stage stage = (Stage)signupBtn.getScene().getWindow();
+            Stage stage = (Stage) signupBtn.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
 
@@ -228,5 +212,9 @@ public class SignUp_Controller implements Initializable {
         }
     }
 
+    // ================= HELPER METHOD =================
+    private void showError(String message) {
+        signupMassage.setText(message);
+        signupMassage.setStyle("-fx-text-fill: red;");
+    }
 }
-

@@ -20,5 +20,27 @@
     "receiverEmail": "Apurbo@",
     "receiverPassword": "apurbo45",
     "notiType": "interested"
+  },
+  {
+    "clickerName": "Abin",
+    "clickerBloodgroup": "O+",
+    "clickerDistrict": "Sylhet",
+    "clickerNumber": "01780946249",
+    "clickerEmail": "Abin@",
+    "clickerPassword": "abin",
+    "receiverEmail": "Apurbo@",
+    "receiverPassword": "apurbo45",
+    "notiType": "interested"
+  },
+  {
+    "clickerName": "Sojib",
+    "clickerBloodgroup": "O+",
+    "clickerDistrict": "Sylhet",
+    "clickerNumber": "09839878",
+    "clickerEmail": "sojib@",
+    "clickerPassword": "sojib",
+    "receiverEmail": "Apurbo@",
+    "receiverPassword": "apurbo45",
+    "notiType": "interested"
   }
 ]

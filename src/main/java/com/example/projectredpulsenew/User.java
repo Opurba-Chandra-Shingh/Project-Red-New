@@ -10,11 +10,17 @@ public class User {
     private String password;
     private String Number;
 
+    // ================= NEW FILE PATH FIELDS =================
+    private String profilePicPath;
+    private String medicalPdfPath;
+    private String nidFrontPath;
+    private String nidBackPath;
+
 
     public User() {
     }
 
-    public User(String name, String age, String gender, String bloodGroup, String district, String Number, String email, String password) {
+    public User(String name, String age, String gender, String bloodGroup, String district, String Number, String email, String password, String profilePicPath, String medicalPdfPath, String nidFrontPath, String nidBackPath) {
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -23,6 +29,10 @@ public class User {
         this.Number = Number;
         this.email = email;
         this.password = password;
+        this.profilePicPath = profilePicPath;
+        this.medicalPdfPath = medicalPdfPath;
+        this.nidFrontPath = nidFrontPath;
+        this.nidBackPath = nidBackPath;
     }
 
     // Getters & Setters
@@ -51,5 +61,17 @@ public class User {
     //public void setPassword(String password) { this.password = password; }
 
 
+    // ================= NEW FILE PATH GETTERS & SETTERS =================
+    public String getProfilePicPath() { return profilePicPath; }
+    //public void setProfilePicPath(String profilePicPath) { this.profilePicPath = profilePicPath; }
+
+    public String getMedicalPdfPath() { return medicalPdfPath; }
+    //public void setMedicalPdfPath(String medicalPdfPath) { this.medicalPdfPath = medicalPdfPath; }
+
+    public String getNidFrontPath() { return nidFrontPath; }
+    //public void setNidFrontPath(String nidFrontPath) { this.nidFrontPath = nidFrontPath; }
+
+    public String getNidBackPath() { return nidBackPath; }
+    //public void setNidBackPath(String nidBackPath) { this.nidBackPath = nidBackPath; }
 }
 
