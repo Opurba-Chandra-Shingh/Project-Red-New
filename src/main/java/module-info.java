@@ -12,6 +12,7 @@ module com.example.projectredpulsenew {
     requires com.almasb.fxgl.all;
     requires javafx.base;
     requires javafx.graphics;
+    requires java.desktop;
 
     // এই লাইনটি এখন কাজ করবে কারণ pom.xml এ Gson আছে
     requires com.google.gson;
