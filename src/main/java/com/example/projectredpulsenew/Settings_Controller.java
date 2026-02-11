@@ -3,13 +3,17 @@ package com.example.projectredpulsenew;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Settings_Controller {
 
@@ -104,6 +108,17 @@ public class Settings_Controller {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+    @FXML
+    private void gotoEdit(MouseEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Edit.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+    }
+
 
 
 

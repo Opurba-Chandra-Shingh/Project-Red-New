@@ -37,41 +37,41 @@ public class User {
 
     // Getters & Setters
     public String getName() { return name; }
-    //public void setName(String name) { this.name = name; }
+    public void setName(String name) { this.name = name; }
 
     public String getAge() { return age; }
-    //public void setAge(String age) { this.age = age; }
+    public void setAge(String age) { this.age = age; }
 
     public String getGender() { return gender; }
-    //public void setGender(String gender) { this.gender = gender; }
+    public void setGender(String gender) { this.gender = gender; }
 
     public String getBloodGroup() { return bloodGroup; }
-    //public void setBloodGroup(String bloodGroup) { this.bloodGroup = bloodGroup; }
+    public void setBloodGroup(String bloodGroup) { this.bloodGroup = bloodGroup; }
 
     public String getDistrict() { return district; }
-    //public void setDistrict(String district) { this.district = district; }
+    public void setDistrict(String district) { this.district = district; }
 
     public String getNumber() { return Number; }
-    //public void setNumber(String Number) { this.district = district; }
+    public void setNumber(String Number) { this.Number = Number; }
 
     public String getEmail() { return email; }
-    //public void setEmail(String email) { this.email = email; }
+    public void setEmail(String email) { this.email = email; }
 
     public String getPassword() { return password; }
-    //public void setPassword(String password) { this.password = password; }
+    public void setPassword(String password) { this.password = password; }
 
 
     // ================= NEW FILE PATH GETTERS & SETTERS =================
     public String getProfilePicPath() { return profilePicPath; }
-    //public void setProfilePicPath(String profilePicPath) { this.profilePicPath = profilePicPath; }
+    public void setProfilePicPath(String profilePicPath) { this.profilePicPath = profilePicPath; }
 
     public String getMedicalPdfPath() { return medicalPdfPath; }
-    //public void setMedicalPdfPath(String medicalPdfPath) { this.medicalPdfPath = medicalPdfPath; }
+    public void setMedicalPdfPath(String medicalPdfPath) { this.medicalPdfPath = medicalPdfPath; }
 
     public String getNidFrontPath() { return nidFrontPath; }
-    //public void setNidFrontPath(String nidFrontPath) { this.nidFrontPath = nidFrontPath; }
+    public void setNidFrontPath(String nidFrontPath) { this.nidFrontPath = nidFrontPath; }
 
     public String getNidBackPath() { return nidBackPath; }
-    //public void setNidBackPath(String nidBackPath) { this.nidBackPath = nidBackPath; }
+    public void setNidBackPath(String nidBackPath) { this.nidBackPath = nidBackPath; }
 }
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -14,28 +13,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.Pane?>
-<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectredpulsenew.Profile_Controller" prefWidth="1366" prefHeight="768" style="-fx-background-color: #F3F4F6;">
+<BorderPane prefHeight="768" prefWidth="1366" style="-fx-background-color: #F3F4F6;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectredpulsenew.Profile_Controller">
 
     <!-- ================= SIDEBAR (UNCHANGED) ================= -->
     <left>
@@ -265,88 +249,91 @@
     </top>
 
     <!-- ================= CENTER: PROFILE CONTENT ================= -->
-    <!-- ================= CENTER: PROFILE CONTENT ================= -->
     <center>
-        <ScrollPane fitToWidth="true" styleClass="prof-scroll-pane">
+        <ScrollPane fitToWidth="true" styleClass="prof-scroll-pane" stylesheets="@styles.css">
             <content>
                 <VBox alignment="TOP_CENTER" spacing="20">
                     <padding>
-                        <Insets top="30" right="30" bottom="30" left="30"/>
+                        <Insets bottom="30" left="30" right="30" top="30" />
                     </padding>
 
                     <!-- Profile Header Card -->
-                    <HBox alignment="CENTER_LEFT" spacing="20" styleClass="prof-card" maxWidth="1000">
+                    <HBox alignment="CENTER_LEFT" maxWidth="1000" spacing="20" stylesheets="@styles.css">
                         <padding>
-                            <Insets top="20" right="20" bottom="20" left="20"/>
+                            <Insets bottom="20" left="20" right="20" top="20" />
                         </padding>
                         <children>
                             <StackPane>
-                                <Circle fx:id="profileCircle" radius="60" stroke="WHITE" strokeWidth="2"/>
+                                <Circle fx:id="profileCircle" radius="80" stroke="WHITE" strokeWidth="2" />
                             </StackPane>
-                            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                                <VBox>
+                                <VBox.margin>
+                                    <Insets top="30" right="0" bottom="0" left="20"/>
+                                </VBox.margin>
+                                </VBox>
                                 <Label fx:id="lblUserName" styleClass="prof-header-name"/>
-                                <Label fx:id="lblHeaderDistrict" styleClass="prof-header-sub"/>
-                                <Label styleClass="prof-badge-green" text="Eligible for Donation"/>
+                                <Label fx:id="lblHeaderDistrict" styleClass="prof-header-sub" />
+                                <Label styleClass="prof-badge-green" text="Eligible for Donation" />
                             </VBox>
                         </children>
+                  <styleClass>
+                      <String fx:value="prof-card" />
+                  </styleClass>
                     </HBox>
 
                     <!-- Personal Info & Documents Grid -->
-                    <GridPane hgap="20" vgap="20" maxWidth="1000">
-                        <columnConstraints>
-                            <ColumnConstraints percentWidth="50"/>
-                            <ColumnConstraints percentWidth="50"/>
-                        </columnConstraints>
+                    <HBox maxWidth="1000" spacing="20" alignment="CENTER" >
 
                         <!-- Personal Info -->
-                        <VBox spacing="12" styleClass="prof-card">
+                        <VBox prefWidth="500" maxWidth="1000" spacing="12" stylesheets="styles.css" styleClass="prof-card">
                             <padding>
-                                <Insets top="15" right="15" bottom="15" left="15"/>
+                                <Insets bottom="15" left="15" right="15" top="15" />
                             </padding>
                             <children>
-                                <Label text="Personal Information" styleClass="prof-section-title"/>
+                                <Label styleClass="prof-section-title" text="Personal Information" />
                                 <VBox spacing="10">
-                                    <Label fx:id="lblFullName" styleClass="prof-info-text"/>
-                                    <Label fx:id="lblAge" styleClass="prof-info-text"/>
-                                    <Label fx:id="lblGender" styleClass="prof-info-text"/>
-                                    <Label fx:id="lblBloodGroup" styleClass="prof-info-text"/>
-                                    <Label fx:id="lblPhone" styleClass="prof-info-text"/>
-                                    <Label fx:id="lblEmail" styleClass="prof-info-text"/>
-                                    <Label fx:id="lblDistrict" styleClass="prof-info-text"/>
+                                    <Label fx:id="lblFullName" styleClass="prof-info-text" />
+                                    <Label fx:id="lblAge" styleClass="prof-info-text" />
+                                    <Label fx:id="lblGender" styleClass="prof-info-text" />
+                                    <Label fx:id="lblBloodGroup" styleClass="prof-info-text" />
+                                    <Label fx:id="lblPhone" styleClass="prof-info-text" />
+                                    <Label fx:id="lblEmail" styleClass="prof-info-text" />
+                                    <Label fx:id="lblDistrict" styleClass="prof-info-text" />
                                 </VBox>
                             </children>
                         </VBox>
 
                         <!-- Document Verification -->
-                        <VBox spacing="15" styleClass="prof-card" GridPane.columnIndex="1">
+                        <VBox prefWidth="500" maxWidth="1000" spacing="15" styleClass="prof-card" GridPane.columnIndex="1">
                             <padding>
-                                <Insets top="15" right="15" bottom="15" left="15"/>
+                                <Insets bottom="15" left="15" right="15" top="15" />
                             </padding>
                             <children>
-                                <Label text="Medical Certificate" styleClass="prof-section-title-large"/>
-                                <Button fx:id="btnMedicalPdf" text="Open PDF" styleClass="prof-btn-primary"/>
+                                <Label styleClass="prof-section-title-large" text="Medical Certificate" />
+                                <Button fx:id="btnMedicalPdf" styleClass="prof-btn-primary" text="Open PDF" />
                             </children>
                         </VBox>
-                    </GridPane>
+                    </HBox>
 
                     <!-- NID Images -->
-                    <HBox spacing="20" maxWidth="1000">
-                        <VBox spacing="10" alignment="CENTER" styleClass="prof-card">
+                    <HBox maxWidth="1000" spacing="20" alignment="CENTER">
+                        <VBox alignment="CENTER" prefWidth="500" maxWidth="1000" spacing="10" styleClass="prof-card">
                             <padding>
-                                <Insets top="15" right="15" bottom="15" left="15"/>
+                                <Insets bottom="15" left="15" right="15" top="15" />
                             </padding>
                             <children>
-                                <ImageView fx:id="imgNidFront" fitHeight="180" preserveRatio="true"/>
-                                <Label text="NID Front" styleClass="prof-info-text-dark"/>
+                                <ImageView fx:id="imgNidFront" fitHeight="180" preserveRatio="true" />
+                                <Label styleClass="prof-info-text-dark" text="NID Front" />
                             </children>
                         </VBox>
-                        <VBox spacing="10" alignment="CENTER" styleClass="prof-card">
+                        <VBox alignment="CENTER" prefWidth="500" spacing="10" styleClass="prof-card">
                             <padding>
-                                <Insets top="15" right="15" bottom="15" left="15"/>
+                                <Insets bottom="15" left="15" right="15" top="15" />
                             </padding>
                             <children>
-                                <ImageView fx:id="imgNidBack" fitHeight="180" preserveRatio="true"/>
-                                <Label text="NID Back" styleClass="prof-info-text-dark"/>
+                                <ImageView fx:id="imgNidBack" fitHeight="180" preserveRatio="true" />
+                                <Label styleClass="prof-info-text-dark" text="NID Back" />
                             </children>
                         </VBox>
                     </HBox>
@@ -354,11 +341,11 @@
                     <!-- Bottom Action Buttons -->
                     <HBox alignment="CENTER" spacing="25">
                         <padding>
-                            <Insets top="20" right="0" bottom="20" left="0"/>
+                            <Insets bottom="20" left="0" right="0" top="20" />
                         </padding>
-                        <Button fx:id="btnEditProfile" text="Edit Profile" styleClass="prof-btn-primary"/>
-                        <Button fx:id="btnUpdatePhoto" text="Update Photo" styleClass="prof-btn-text"/>
-                        <Button fx:id="btnUpdateDocuments" text="Update Documents" styleClass="prof-btn-text"/>
+                        <Button fx:id="btnEditProfile" styleClass="prof-btn-primary" text="Edit Profile" />
+                        <Button fx:id="btnUpdatePhoto" styleClass="prof-btn-text" text="Update Photo" />
+                        <Button fx:id="btnUpdateDocuments" styleClass="prof-btn-text" text="Update Documents" />
                     </HBox>
 
                 </VBox>

@@ -113,8 +113,9 @@ public class Notification_Controller {
     private void loadNotifications() {
         try {
             Gson gson = new Gson();
-            InputStream is = getClass().getResourceAsStream("/com/example/projectredpulsenew/Noti.json");
-            Reader reader = new InputStreamReader(is);
+            // ✅ Absolute path directly with FileReader
+            String path = "D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\Noti.json";
+            Reader reader = new java.io.FileReader(path);  // <-- important change
 
             Type listType = new TypeToken<List<NotificationDetails>>(){}.getType();
             List<NotificationDetails> notiList = gson.fromJson(reader, listType);

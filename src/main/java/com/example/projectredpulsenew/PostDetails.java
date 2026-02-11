@@ -76,6 +76,15 @@ public class PostDetails {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+    public void setUserProfilePic(String UserProfilePic) {
+        this.UserProfilePic = UserProfilePic;
+    }
 
     public void setPatientName(String patientName) {
         this.patientName = patientName;

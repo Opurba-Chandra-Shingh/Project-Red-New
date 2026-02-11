@@ -541,9 +541,12 @@
 
 /* White Card Style */
 .prof-card {
-    -fx-background-color: white;
-    -fx-background-radius: 12;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);
+    -fx-background-color: #FDFDFD;
+     -fx-border-color: #000000;
+     -fx-border-width: 1px;
+     -fx-border-radius: 10;
+     -fx-background-radius: 10;
+     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.20), 20, 0, 5, 5);
 }
 
 /* Header Text */
@@ -709,4 +712,61 @@
 }
 .settings-logout-btn:hover {
     -fx-background-color: #FECACA;
+}
+
+/* =======================================================
+                        EDIT PAGE
+======================================================= */
+
+/* Edit Card */
+.edit-card {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-padding: 40;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 12, 0, 0, 5);
+}
+
+/* Input Fields
+.text-field,
+.password-field,
+.combo-box {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #DDDDDD;
+    -fx-padding: 8 10 8 10;
+}
+
+.text-field:focused,
+.password-field:focused,
+.combo-box:focused {
+    -fx-border-color: #E53935;
+    -fx-border-width: 1.5;
+}*/
+
+/* ComboBox arrow color
+.combo-box .arrow {
+    -fx-background-color: #E53935;
+}
+*/
+
+/* Save Button */
+.edit-save-btn {
+    -fx-background-color: #E53935;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-font-weight: bold;
+}
+
+.edit-save-btn:hover {
+    -fx-background-color: #C62828;
+}
+
+/* Cancel Button */
+.edit-cancel-btn {
+    -fx-background-color: #EEEEEE;
+    -fx-background-radius: 8;
+}
+
+.edit-cancel-btn:hover {
+    -fx-background-color: #DDDDDD;
 }

@@ -1,6 +1,6 @@
 [
   {
-    "clickerName": "Apurbo",
+    "clickerName": "Apurbo Singh",
     "clickerBloodgroup": "O+",
     "clickerDistrict": "Netrokona",
     "clickerNumber": "01781691400",
@@ -12,11 +12,11 @@
     "notiType": "interested"
   },
   {
-    "clickerName": "Abin",
+    "clickerName": "Mahmudul Hasa",
     "clickerBloodgroup": "O+",
     "clickerDistrict": "Sylhet",
     "clickerNumber": "01780946249",
-    "clickerEmail": "Abin@",
+    "clickerEmail": "abin@",
     "clickerPassword": "abin",
     "clickerProfilePic": "D:\\project-redpulse-new\\files\\Abin.jpg",
     "receiverEmail": "Apurbo@",
@@ -24,11 +24,11 @@
     "notiType": "interested"
   },
   {
-    "clickerName": "Abin",
+    "clickerName": "Mahmudul Hasa",
     "clickerBloodgroup": "O+",
     "clickerDistrict": "Sylhet",
     "clickerNumber": "01780946249",
-    "clickerEmail": "Abin@",
+    "clickerEmail": "abin@",
     "clickerPassword": "abin",
     "clickerProfilePic": "D:\\project-redpulse-new\\files\\Abin.jpg",
     "receiverEmail": "Apurbo@",
@@ -72,7 +72,7 @@
     "notiType": "interested"
   },
   {
-    "clickerName": "Apurbo",
+    "clickerName": "Apurbo Singh",
     "clickerBloodgroup": "O+",
     "clickerDistrict": "Netrokona",
     "clickerNumber": "01781691400",
@@ -81,6 +81,18 @@
     "clickerProfilePic": "D:\\project-redpulse-new\\files\\apurbo.jpg",
     "receiverEmail": "sojib@",
     "receiverPassword": "sojib",
+    "notiType": "interested"
+  },
+  {
+    "clickerName": "Sojib",
+    "clickerBloodgroup": "O+",
+    "clickerDistrict": "Sylhet",
+    "clickerNumber": "09839878",
+    "clickerEmail": "sojib@",
+    "clickerPassword": "sojib",
+    "clickerProfilePic": "D:\\project-redpulse-new\\files\\Sojib.jpg",
+    "receiverEmail": "Muaj@",
+    "receiverPassword": "muaj",
     "notiType": "interested"
   }
 ]

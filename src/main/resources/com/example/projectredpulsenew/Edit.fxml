@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.projectredpulsenew.Edit_Controller"
+            prefWidth="1366" prefHeight="768"
+            stylesheets="styles.css"
+            style="-fx-background-color: #F3F4F6;">
+
+    <!-- ================= CENTER EDIT FORM ================= -->
+    <center>
+
+        <VBox alignment="CENTER" spacing="30">
+            <padding>
+                <Insets top="60"/>
+            </padding>
+
+            <!-- ================= EDIT CARD ================= -->
+            <VBox spacing="18"
+                  maxWidth="650"
+                  styleClass="edit-card">
+
+                <!-- Title -->
+                <Label text="Edit Profile">
+                    <font>
+                        <Font size="26"/>
+                    </font>
+                </Label>
+
+                <!-- ========== FULL NAME ========== -->
+                <TextField fx:id="txtName"
+                           promptText="Full Name"
+                           styleClass="text-field"/>
+
+                <!-- ========== AGE ========== -->
+                <TextField fx:id="txtAge"
+                           promptText="Age"
+                           styleClass="text-field"/>
+
+                <!-- ========== GENDER ========== -->
+                <ComboBox fx:id="cmbGender"
+                          promptText="Select Gender"
+                          styleClass="combo-box"/>
+
+                <!-- ========== BLOOD GROUP ========== -->
+                <ComboBox fx:id="cmbBlood"
+                          promptText="Select Blood Group"
+                          styleClass="combo-box"/>
+
+                <!-- ========== DISTRICT ========== -->
+                <TextField fx:id="txtDistrict"
+                           promptText="District"
+                           styleClass="text-field"/>
+
+                <!-- ========== PHONE ========== -->
+                <TextField fx:id="txtPhone"
+                           promptText="Phone Number"
+                           styleClass="text-field"/>
+
+                <!-- ========== EMAIL ========== -->
+                <TextField fx:id="txtEmail"
+                           promptText="Email"
+                           styleClass="text-field"/>
+
+                <!-- ================= BUTTONS ================= -->
+                <HBox spacing="25" alignment="CENTER">
+
+                    <Button text="Save Changes"
+                            fx:id="btnSave"
+                            onAction="#handleSave"
+                            styleClass="edit-save-btn"
+                            prefWidth="160"/>
+
+                    <Button text="Cancel"
+                            fx:id="btnCancel"
+                            onAction="#handleCancel"
+                            styleClass="edit-cancel-btn"
+                            prefWidth="120"/>
+
+                </HBox>
+
+            </VBox>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>
