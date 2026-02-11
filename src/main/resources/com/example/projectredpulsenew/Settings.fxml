@@ -286,7 +286,7 @@
                             <children>
 
                                 <!-- Item 1: Edit Profile -->
-                                <Button maxWidth="1.7976931348623157E308" styleClass="settings-row-btn">
+                                <Button fx:id="btnProfEdit" onAction="#gotoEdit" maxWidth="1.7976931348623157E308" styleClass="settings-row-btn">
                                     <graphic>
                                         <HBox alignment="CENTER_LEFT" spacing="15.0">
                                             <children>
@@ -295,7 +295,7 @@
                                                         <SVGPath content="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#555555" />
                                                     </children>
                                                 </StackPane>
-                                                <VBox fx:id="boxEdit" onMouseClicked="#gotoEdit" alignment="CENTER_LEFT">
+                                                <VBox alignment="CENTER_LEFT">
                                                     <children>
                                                         <Label styleClass="settings-item-title" text="Edit Profile" />
                                                         <Label styleClass="settings-item-sub" text="Update your personal details" />
@@ -334,7 +334,7 @@
                                 <Separator />
 
                                 <!-- Item 3: Medical Certificate -->
-                                <Button maxWidth="1.7976931348623157E308" styleClass="settings-row-btn">
+                                <Button fx:id="btnDocEdit" onAction="#gotoDocEdit" maxWidth="1.7976931348623157E308" styleClass="settings-row-btn">
                                     <graphic>
                                         <HBox alignment="CENTER_LEFT" spacing="15.0">
                                             <children>

@@ -42,6 +42,12 @@ public class Settings_Controller {
     private Button btnProfile;
 
     @FXML
+    private Button btnProfEdit;
+
+    @FXML
+    private Button btnDocEdit;
+
+    @FXML
     private Button btnSettings;
 
     @FXML
@@ -110,13 +116,19 @@ public class Settings_Controller {
     }
 
     @FXML
-    private void gotoEdit(MouseEvent event) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Edit.fxml"));
-        Parent root = loader.load();
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    void gotoEdit(ActionEvent event)throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("Edit.fxml"));
+        Stage stage = (Stage) btnProfEdit.getScene().getWindow();
         stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    void gotoDocEdit(ActionEvent event)throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("EditDocuments.fxml"));
+        Stage stage = (Stage) btnDocEdit.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
 
