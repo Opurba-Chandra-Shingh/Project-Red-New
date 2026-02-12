@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import com.google.gson.Gson;
@@ -55,6 +56,13 @@ public class Newsfeed_Controller implements Initializable {
 
     private final String filePath = System.getProperty("user.dir") + File.separator + "D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\PostDetails.json";
 
+
+    private final String POST_DETAILS_FILE = "D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\PostDetails.json";
+    private final String POSTOWNER_FILE = "D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\UserDetails.json";
+
+    private List<User> allPostOwners = new ArrayList<>();
+
+    //--------------------Navigatin bar start---------------------------
     @FXML
     void NewstoDash(ActionEvent event) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
@@ -102,12 +110,15 @@ public class Newsfeed_Controller implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+    //------------------------------Navigation bar end--------------------------------------------------------------------
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadPostOwners();
         loadPosts();
     }
 
+    //---------------------------------Main Profile Show Start----------------------------------------------------------
     private void loadPosts() {
         // ফিক্স: CreatePost_Controller এর ফাইলের পাথের সাথে মিলিয়ে দেওয়া হয়েছে
         String filePath = "D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\PostDetails.json";
@@ -286,6 +297,7 @@ public class Newsfeed_Controller implements Initializable {
 
         Button btnInfo = new Button("Contact Info");
         btnInfo.getStyleClass().add("btn-outline");
+        setupContactButton(btnInfo, post);
 
         Button btnInterest = new Button("Interested");
         btnInterest.getStyleClass().add("btn-filled");
@@ -315,8 +327,10 @@ public class Newsfeed_Controller implements Initializable {
         grid.add(title, 0, row);
         grid.add(value, 1, row);
     }
+    //----------------------------------Main Profile Show End-------------------------------------------------------------
 
 
+    //------------------------------------Handle Interest button start------------------------------------------------
     private void handleInterest(PostDetails post) {
 
         // 1️⃣ Clicker (current logged-in user)
@@ -375,9 +389,76 @@ public class Newsfeed_Controller implements Initializable {
             e.printStackTrace();
         }
     }
+    //-------------------------------------Handle Interest button end-------------------------------------------------
+
+    //-------------------------------------Handle Contact-Info Button Start-------------------------------------------
+    // ==========================================================
+    // Load all post owners once
+    // ==========================================================
+    private void loadPostOwners() {
+        Gson gson = new Gson();
+        try {
+            File file = new File(POSTOWNER_FILE);
+            if (file.exists() && file.length() > 0) {
+                try (Reader reader = new FileReader(file)) {
+                    Type listType = new TypeToken<List<User>>() {}.getType();
+                    List<User> postOwnerList = gson.fromJson(reader, listType);
+                    if (postOwnerList != null) allPostOwners = postOwnerList;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // ==========================================================
+    // Find post owner by email
+    // ==========================================================
+    private User findPostOwnerByEmail(String email) {
+        if (email == null) return null;
+        for (User postOwner : allPostOwners) {
+            if (postOwner.getEmail() != null && postOwner.getEmail().equals(email))
+                return postOwner;
+        }
+        return null;
+    }
+
+    // ==========================================================
+    // Open Profile Popup
+    // ==========================================================
+    private void openPostOwnerProfile(User postOwner) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("PostOwnerProfileView.fxml"));
+            Parent root = loader.load();
+
+            PostOwnerProfileView_Controller controller = loader.getController();
+            controller.setPostOwnerData(postOwner);
+
+            Stage stage = new Stage();
+            stage.setTitle("Profile Details");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // ==========================================================
+    // Setup Contact Info Button
+    // ==========================================================
+    private void setupContactButton(Button btnInfo, PostDetails post) {
+        btnInfo.setOnAction(e -> {
+            User postOwner = findPostOwnerByEmail(post.getUserEmail());
+            if (postOwner != null) openPostOwnerProfile(postOwner);
+            else System.out.println("Post owner not found: " + post.getUserEmail());
+        });
+    }
+    //-------------------------------------Handle Contact-Info Button End-------------------------------------------
 
 
-
+    //---------------------------Log Out Button Handle------------------------------------------------------
     @FXML
     void logout_n(ActionEvent event) throws Exception {
         chkLogin.setlogout();
