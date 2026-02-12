@@ -48,6 +48,9 @@ public class Settings_Controller {
     private Button btnDocEdit;
 
     @FXML
+    private Button btnChangePass;
+
+    @FXML
     private Button btnSettings;
 
     @FXML
@@ -131,6 +134,13 @@ public class Settings_Controller {
         stage.show();
     }
 
+    @FXML
+    void gotoChangePass(ActionEvent event)throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("ChangePass.fxml"));
+        Stage stage = (Stage) btnChangePass.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 
 
 

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.projectredpulsenew.ChangePass_Controller"
+            prefWidth="1366" prefHeight="768"
+            stylesheets="styles.css"
+            style="-fx-background-color: #F3F4F6;">
+
+    <center>
+        <VBox alignment="CENTER" spacing="30">
+            <padding>
+                <Insets top="80"/>
+            </padding>
+
+            <VBox spacing="18"
+                  maxWidth="500"
+                  id="changePassCard">
+
+                <Label text="Change Password" id="changePassTitle">
+                    <font>
+                        <Font size="26"/>
+                    </font>
+                </Label>
+
+                <PasswordField fx:id="txtOldPass"
+                               promptText="Old Password"
+                               id="changePassField"/>
+
+                <PasswordField fx:id="txtNewPass"
+                               promptText="New Password"
+                               id="changePassField"/>
+
+                <PasswordField fx:id="txtConfirmPass"
+                               promptText="Confirm New Password"
+                               id="changePassField"/>
+
+                <Label fx:id="lblMessage"
+                       id="changePassMessage"/>
+
+                <HBox spacing="25" alignment="CENTER">
+
+                    <Button text="Update Password"
+                            onAction="#handleChangePass"
+                            fx:id="changePassSaveBtn"
+                            prefWidth="170"/>
+
+                    <Button text="Cancel"
+                            onAction="#handlePassCancel"
+                            fx:id="changePassCancelBtn"
+                            prefWidth="120"/>
+                </HBox>
+
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>
