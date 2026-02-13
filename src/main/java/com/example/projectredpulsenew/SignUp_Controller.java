@@ -37,7 +37,7 @@ public class SignUp_Controller implements Initializable {
     private Label signupMassage;
 
     @FXML
-    private Button signupBtn;
+    private Button signupBtn, btnCancel;
 
     // ================= NEW FIELDS =================
     @FXML
@@ -201,11 +201,14 @@ public class SignUp_Controller implements Initializable {
             // Save files paths
             saveUserToJson(newUser);
 
-            // Redirect to login
-            Parent root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
             Stage stage = (Stage) signupBtn.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
+            stage.close();
+
+//            // Redirect to login
+//            Parent root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
+//            Stage stage = (Stage) signupBtn.getScene().getWindow();
+//            stage.setScene(new Scene(root));
+//            stage.show();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -216,5 +219,13 @@ public class SignUp_Controller implements Initializable {
     private void showError(String message) {
         signupMassage.setText(message);
         signupMassage.setStyle("-fx-text-fill: red;");
+    }
+
+
+    // ================= CANCEL =================
+    @FXML
+    void handleCancel(ActionEvent event) {
+        Stage stage = (Stage) btnCancel.getScene().getWindow();
+        stage.close();
     }
 }

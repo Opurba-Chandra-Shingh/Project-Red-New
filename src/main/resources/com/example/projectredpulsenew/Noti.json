@@ -5,8 +5,8 @@
     "clickerDistrict": "Netrokona",
     "clickerNumber": "0178169140*",
     "clickerEmail": "Apurbo@",
-    "clickerPassword": "88888",
-    "clickerProfilePic": "C:\\Users\\HP\\Downloads\\Code and caffeinated creativity.png",
+    "clickerPassword": "apurbo",
+    "clickerProfilePic": "D:\\project-redpulse-new\\files\\apurbo.jpg",
     "receiverEmail": "Muaj@",
     "receiverPassword": "muaj",
     "notiType": "interested"
@@ -20,7 +20,7 @@
     "clickerPassword": "abin",
     "clickerProfilePic": "D:\\project-redpulse-new\\files\\Abin.jpg",
     "receiverEmail": "Apurbo@",
-    "receiverPassword": "88888",
+    "receiverPassword": "apurbo",
     "notiType": "interested"
   },
   {
@@ -32,7 +32,7 @@
     "clickerPassword": "abin",
     "clickerProfilePic": "D:\\project-redpulse-new\\files\\Abin.jpg",
     "receiverEmail": "Apurbo@",
-    "receiverPassword": "88888",
+    "receiverPassword": "apurbo",
     "notiType": "interested"
   },
   {
@@ -44,7 +44,7 @@
     "clickerPassword": "sojib",
     "clickerProfilePic": "D:\\project-redpulse-new\\files\\Sojib.jpg",
     "receiverEmail": "Apurbo@",
-    "receiverPassword": "88888",
+    "receiverPassword": "apurbo",
     "notiType": "interested"
   },
   {
@@ -56,7 +56,7 @@
     "clickerPassword": "sojib",
     "clickerProfilePic": "D:\\project-redpulse-new\\files\\Sojib.jpg",
     "receiverEmail": "Apurbo@",
-    "receiverPassword": "88888",
+    "receiverPassword": "apurbo",
     "notiType": "interested"
   },
   {
@@ -68,7 +68,7 @@
     "clickerPassword": "sojib",
     "clickerProfilePic": "D:\\project-redpulse-new\\files\\Sojib.jpg",
     "receiverEmail": "Apurbo@",
-    "receiverPassword": "88888",
+    "receiverPassword": "apurbo",
     "notiType": "interested"
   },
   {
@@ -77,8 +77,8 @@
     "clickerDistrict": "Netrokona",
     "clickerNumber": "0178169140*",
     "clickerEmail": "Apurbo@",
-    "clickerPassword": "88888",
-    "clickerProfilePic": "C:\\Users\\HP\\Downloads\\Code and caffeinated creativity.png",
+    "clickerPassword": "apurbo",
+    "clickerProfilePic": "D:\\project-redpulse-new\\files\\apurbo.jpg",
     "receiverEmail": "sojib@",
     "receiverPassword": "sojib",
     "notiType": "interested"
@@ -101,8 +101,20 @@
     "clickerDistrict": "Netrokona",
     "clickerNumber": "0178169140*",
     "clickerEmail": "Apurbo@",
-    "clickerPassword": "88888",
-    "clickerProfilePic": "C:\\Users\\HP\\Downloads\\Code and caffeinated creativity.png",
+    "clickerPassword": "apurbo",
+    "clickerProfilePic": "D:\\project-redpulse-new\\files\\apurbo.jpg",
+    "receiverEmail": "Nahid@",
+    "receiverPassword": "1111",
+    "notiType": "interested"
+  },
+  {
+    "clickerName": "Apurbo Singh",
+    "clickerBloodgroup": "O+",
+    "clickerDistrict": "Netrokona",
+    "clickerNumber": "0178169140*",
+    "clickerEmail": "Apurbo@",
+    "clickerPassword": "apurbo",
+    "clickerProfilePic": "D:\\project-redpulse-new\\files\\apurbo.jpg",
     "receiverEmail": "Nahid@",
     "receiverPassword": "1111",
     "notiType": "interested"

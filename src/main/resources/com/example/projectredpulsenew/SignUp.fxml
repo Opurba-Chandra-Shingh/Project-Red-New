@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -9,342 +8,248 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="768" prefWidth="1366" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectredpulsenew.SignUp_Controller">
+<AnchorPane prefHeight="720.0" prefWidth="600.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectredpulsenew.SignUp_Controller">
+    <children>
 
-    <!-- ================= TOP BAR (UNCHANGED) ================= -->
-    <top>
-        <HBox fx:id="topBar" alignment="CENTER" prefHeight="51.0" prefWidth="1366.0" spacing="8.0" styleClass="topbar" BorderPane.alignment="CENTER">
+        <!-- ================= HEADER SECTION ================= -->
+        <VBox alignment="CENTER" prefHeight="100.0" style="-fx-background-color: linear-gradient(to right, #D31027, #EA384D); -fx-background-radius: 15 15 0 0;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Pane prefHeight="27.0" prefWidth="1194.0" HBox.hgrow="ALWAYS" />
-                <HBox alignment="CENTER" prefHeight="27.0" prefWidth="68.0">
-
-                </HBox>
-
+                <Label text="Join RedPulse" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="32.0" />
+                    </font>
+                    <effect>
+                        <DropShadow radius="2.0" spread="0.2" offsetY="1.0">
+                            <color>
+                                <Color opacity="0.3" />
+                            </color>
+                        </DropShadow>
+                    </effect>
+                </Label>
+                <Label text="Create your account to start saving lives" textFill="#ffeff1">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin>
+                </Label>
             </children>
-            <padding>
-                <Insets bottom="10" left="20" right="20" top="10" />
-            </padding>
-        </HBox>
-    </top>
+        </VBox>
 
-    <!-- ================= SIDEBAR (UNCHANGED) ================= -->
-    <left>
-        <VBox fx:id="sidebar" prefHeight="724.0" prefWidth="260.0" spacing="12" styleClass="sidebar" BorderPane.alignment="CENTER">
-            <children>
-                <HBox fx:id="sidebarHeader" alignment="CENTER" styleClass="sidebar-header">
+        <!-- ================= SCROLLABLE FORM ================= -->
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutY="100.0" style="-fx-background-color: transparent; -fx-background: white;" vbarPolicy="AS_NEEDED" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+            <content>
+                <VBox spacing="12.0" style="-fx-background-color: white;">
+                    <padding>
+                        <Insets bottom="30.0" left="30.0" right="30.0" top="20.0" />
+                    </padding>
                     <children>
-                        <Label fx:id="appNameLabel" prefHeight="35.0" prefWidth="164.0" styleClass="welcome-text" text="RedPulse" textFill="RED">
+
+                        <!-- SECTION 1: PERSONAL DETAILS -->
+                        <Label text="Personal Details" textFill="#D31027">
                             <font>
-                                <Font name="Berlin Sans FB Demi Bold" size="39.0" />
+                                <Font name="System Bold" size="16.0" />
                             </font>
                         </Label>
-                    </children>
-                </HBox>
-                <Separator />
-                <VBox fx:id="sidebarButtons" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="235.0" spacing="15.0">
-                    <children>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
-                            <padding>
-                                <Insets left="10.0" right="10.0" />
-                            </padding>
+                        <Separator />
+
+                        <!-- Name -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
                             <children>
-                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                <Label prefWidth="130.0" text="Full Name" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <Label text=":" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <TextField fx:id="name" promptText="Enter full name" style="-fx-background-radius: 8; -fx-border-color: #E0E0E0; -fx-border-radius: 8; -fx-background-color: #FAFAFA;" HBox.hgrow="ALWAYS" prefHeight="40.0"/>
+                            </children>
+                        </HBox>
+
+                        <!-- Age -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <children>
+                                <Label prefWidth="130.0" text="Age" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <Label text=":" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <TextField fx:id="age" promptText="Age" style="-fx-background-radius: 8; -fx-border-color: #E0E0E0; -fx-border-radius: 8; -fx-background-color: #FAFAFA;" HBox.hgrow="ALWAYS" prefHeight="40.0"/>
+                            </children>
+                        </HBox>
+
+                        <!-- Gender -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <children>
+                                <Label prefWidth="130.0" text="Gender" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <Label text=":" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <ComboBox fx:id="genderItems" maxWidth="1.7976931348623157E308" promptText="Select Gender" style="-fx-background-color: #FAFAFA; -fx-border-color: #E0E0E0; -fx-border-radius: 8;" HBox.hgrow="ALWAYS" prefHeight="40.0"/>
+                            </children>
+                        </HBox>
+
+                        <!-- Blood Group -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <children>
+                                <Label prefWidth="130.0" text="Blood Group" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <Label text=":" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <ComboBox fx:id="bloodGroupOption" maxWidth="1.7976931348623157E308" promptText="Select Blood Group" style="-fx-background-color: #FAFAFA; -fx-border-color: #E0E0E0; -fx-border-radius: 8;" HBox.hgrow="ALWAYS" prefHeight="40.0"/>
+                            </children>
+                        </HBox>
+
+                        <!-- District -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <children>
+                                <Label prefWidth="130.0" text="District" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <Label text=":" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <ComboBox fx:id="district_items" maxWidth="1.7976931348623157E308" promptText="Select District" style="-fx-background-color: #FAFAFA; -fx-border-color: #E0E0E0; -fx-border-radius: 8;" HBox.hgrow="ALWAYS" prefHeight="40.0"/>
+                            </children>
+                        </HBox>
+
+                        <!-- SECTION 2: CONTACT & SECURITY -->
+                        <Label text="Contact &amp; Security" textFill="#D31027">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Separator />
+
+                        <!-- Email -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <children>
+                                <Label prefWidth="130.0" text="Email" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <Label text=":" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <TextField fx:id="email" promptText="Email Address" style="-fx-background-radius: 8; -fx-border-color: #E0E0E0; -fx-border-radius: 8; -fx-background-color: #FAFAFA;" HBox.hgrow="ALWAYS" prefHeight="40.0"/>
+                            </children>
+                        </HBox>
+
+                        <!-- Phone -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <children>
+                                <Label prefWidth="130.0" text="Phone Number" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <Label text=":" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <TextField fx:id="number" promptText="Phone Number" style="-fx-background-radius: 8; -fx-border-color: #E0E0E0; -fx-border-radius: 8; -fx-background-color: #FAFAFA;" HBox.hgrow="ALWAYS" prefHeight="40.0"/>
+                            </children>
+                        </HBox>
+
+                        <!-- Password -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <children>
+                                <Label prefWidth="130.0" text="Password" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <Label text=":" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <PasswordField fx:id="password" promptText="Password" style="-fx-background-radius: 8; -fx-border-color: #E0E0E0; -fx-border-radius: 8; -fx-background-color: #FAFAFA;" HBox.hgrow="ALWAYS" prefHeight="40.0"/>
+                            </children>
+                        </HBox>
+
+                        <!-- Confirm Password -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <children>
+                                <Label prefWidth="130.0" text="Confirm Password" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <Label text=":" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <PasswordField fx:id="confirm_pass" promptText="Retype Password" style="-fx-background-radius: 8; -fx-border-color: #E0E0E0; -fx-border-radius: 8; -fx-background-color: #FAFAFA;" HBox.hgrow="ALWAYS" prefHeight="40.0"/>
+                            </children>
+                        </HBox>
+
+                        <!-- SECTION 3: DOCUMENTS -->
+                        <Label text="Documents" textFill="#D31027">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Separator />
+
+                        <!-- Profile Picture -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <children>
+                                <Label prefWidth="130.0" text="Profile Picture" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <Label text=":" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-color: #E0E0E0; -fx-border-radius: 8; -fx-padding: 5; -fx-background-color: #FAFAFA;" HBox.hgrow="ALWAYS">
                                     <children>
-                                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@img/house.png" />
-                                            </image>
-                                        </ImageView>
-                                        <Button fx:id="btnHome" mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Home">
-                                            <font>
-                                                <Font name="Bell MT Bold" size="16.0" />
-                                            </font>
-                                        </Button>
+                                        <Button fx:id="chooseProfilePicBtn" text="Choose File" style="-fx-background-color: #EEE; -fx-cursor: hand;"/>
+                                        <Label fx:id="profilePicStatus" text="No file selected" textFill="#999999"/>
                                     </children>
-                                    <styleClass>
-                                        <String fx:value="sidebar-button-hbox" />
-                                        <String fx:value="clicked-button" />
-                                    </styleClass>
                                 </HBox>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
-                            <padding>
-                                <Insets left="10.0" right="10.0" />
-                            </padding>
+
+                        <!-- Medical Cert -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
                             <children>
-                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                <Label prefWidth="130.0" text="Medical Cert." textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <Label text=":" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-color: #E0E0E0; -fx-border-radius: 8; -fx-padding: 5; -fx-background-color: #FAFAFA;" HBox.hgrow="ALWAYS">
                                     <children>
-                                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@img/newspaper-folded.png" />
-                                            </image>
-                                        </ImageView>
-                                        <Button fx:id="btnNewsFeed" mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Newsfeed">
-                                            <font>
-                                                <Font name="Bell MT Bold" size="16.0" />
-                                            </font>
-                                        </Button>
+                                        <Button fx:id="chooseMedicalPdfBtn" text="Upload PDF" style="-fx-background-color: #EEE; -fx-cursor: hand;"/>
+                                        <Label fx:id="medicalPdfStatus" text="No file selected" textFill="#999999"/>
                                     </children>
-                                    <styleClass>
-                                        <String fx:value="sidebar-button-hbox" />
-                                        <String fx:value="sidebar-button-hbox-h" />
-                                        <String fx:value="sidebar-button-hbox-a" />
-                                    </styleClass>
                                 </HBox>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="255.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
-                            <padding>
-                                <Insets left="10.0" right="10.0" />
-                            </padding>
+
+                        <!-- NID Front -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
                             <children>
-                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                <Label prefWidth="130.0" text="NID Front" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <Label text=":" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-color: #E0E0E0; -fx-border-radius: 8; -fx-padding: 5; -fx-background-color: #FAFAFA;" HBox.hgrow="ALWAYS">
                                     <children>
-                                        <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@img/icons8-create-post-48.png" />
-                                            </image>
-                                        </ImageView>
-                                        <Button fx:id="btnCreatePost" mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Creat Post">
-                                            <font>
-                                                <Font name="Bell MT Bold" size="16.0" />
-                                            </font>
-                                        </Button>
+                                        <Button fx:id="chooseNidFrontBtn" text="Choose Image" style="-fx-background-color: #EEE; -fx-cursor: hand;"/>
+                                        <Label fx:id="nidFrontStatus" text="No file selected" textFill="#999999"/>
                                     </children>
-                                    <styleClass>
-                                        <String fx:value="sidebar-button-hbox" />
-                                        <String fx:value="sidebar-button-hbox-h" />
-                                    </styleClass>
                                 </HBox>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="298.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
-                            <padding>
-                                <Insets left="10.0" right="10.0" />
-                            </padding>
+
+                        <!-- NID Back -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
                             <children>
-                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                <Label prefWidth="130.0" text="NID Back" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <Label text=":" textFill="#555555"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-color: #E0E0E0; -fx-border-radius: 8; -fx-padding: 5; -fx-background-color: #FAFAFA;" HBox.hgrow="ALWAYS">
                                     <children>
-                                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@img/bell.png" />
-                                            </image>
-                                        </ImageView>
-                                        <Button fx:id="btnNotifications" mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Notification">
-                                            <font>
-                                                <Font name="Bell MT Bold" size="16.0" />
-                                            </font>
-                                        </Button>
+                                        <Button fx:id="chooseNidBackBtn" text="Choose Image" style="-fx-background-color: #EEE; -fx-cursor: hand;"/>
+                                        <Label fx:id="nidBackStatus" text="No file selected" textFill="#999999"/>
                                     </children>
-                                    <styleClass>
-                                        <String fx:value="sidebar-button-hbox" />
-                                        <String fx:value="sidebar-button-hbox-h" />
-                                    </styleClass>
                                 </HBox>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="341.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
-                            <padding>
-                                <Insets left="10.0" right="10.0" />
-                            </padding>
-                            <children>
-                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
-                                    <children>
-                                        <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@img/icons8-chat-50.png" />
-                                            </image>
-                                        </ImageView>
-                                        <Button fx:id="btnChat" mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Chat">
-                                            <font>
-                                                <Font name="Bell MT Bold" size="16.0" />
-                                            </font>
-                                        </Button>
-                                    </children>
-                                    <styleClass>
-                                        <String fx:value="sidebar-button-hbox" />
-                                        <String fx:value="sidebar-button-hbox-h" />
-                                    </styleClass>
-                                </HBox>
-                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="384.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
-                            <padding>
-                                <Insets left="10.0" right="10.0" />
-                            </padding>
-                            <children>
-                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
-                                    <children>
-                                        <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@img/icons8-profile-50.png" />
-                                            </image>
-                                        </ImageView>
-                                        <Button fx:id="btnProfile" mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Profile">
-                                            <font>
-                                                <Font name="Bell MT Bold" size="16.0" />
-                                            </font>
-                                        </Button>
-                                    </children>
-                                    <styleClass>
-                                        <String fx:value="sidebar-button-hbox" />
-                                        <String fx:value="sidebar-button-hbox-h" />
-                                    </styleClass>
-                                </HBox>
-                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="428.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
-                            <padding>
-                                <Insets left="10.0" right="10.0" />
-                            </padding>
-                            <children>
-                                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
-                                    <children>
-                                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@img/icons8-setting-50.png" />
-                                            </image>
-                                        </ImageView>
-                                        <Button fx:id="btnSettings" mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Setting">
-                                            <font>
-                                                <Font name="Bell MT Bold" size="16.0" />
-                                            </font>
-                                        </Button>
-                                    </children>
-                                    <styleClass>
-                                        <String fx:value="sidebar-button-hbox" />
-                                        <String fx:value="sidebar-button-hbox-h" />
-                                    </styleClass>
-                                </HBox>
-                            </children>
-                        </HBox>
-                        <Pane prefHeight="203.0" prefWidth="235.0" VBox.vgrow="ALWAYS" />
+
+                        <!-- Error Message -->
+<!--                        <Label fx:id="signupMassage" alignment="CENTER" maxWidth="1.7976931348623157E308" textFill="RED">-->
+<!--                            <font>-->
+<!--                                <Font name="System Bold" size="12.0" />-->
+<!--                            </font>-->
+<!--                        </Label>-->
+
                     </children>
                 </VBox>
-            </children>
-            <padding>
-                <Insets bottom="20" left="20" right="20" top="20" />
-            </padding>
-        </VBox>
-    </left>
-
-    <!-- ================= MAIN CONTENT WITH SCROLL ================= -->
-    <center>
-        <ScrollPane fitToHeight="true" fitToWidth="true">
-            <content>
-                <AnchorPane fx:id="mainContent" prefWidth="1060" styleClass="main-content">
-                    <children>
-
-                        <!-- Header -->
-                        <Label layoutX="400" layoutY="30" style="-fx-font-size: 36px; -fx-font-weight: bold;" text="Sign Up" />
-
-                        <!-- Form Container -->
-                        <VBox layoutX="50" layoutY="100" spacing="15">
-
-                            <!-- Name -->
-                            <HBox alignment="CENTER_LEFT" spacing="20">
-                                <Label prefWidth="120" text="Name :" />
-                                <TextField fx:id="name" prefWidth="250" promptText="Name" />
-                            </HBox>
-
-                            <!-- Age -->
-                            <HBox alignment="CENTER_LEFT" spacing="20">
-                                <Label prefWidth="120" text="Age :" />
-                                <TextField fx:id="age" prefWidth="250" promptText="Age" />
-                            </HBox>
-
-                            <!-- Gender -->
-                            <HBox alignment="CENTER_LEFT" spacing="20">
-                                <Label prefWidth="120" text="Gender :" />
-                                <ComboBox fx:id="genderItems" prefWidth="250" promptText="Select gender" />
-                            </HBox>
-
-                            <!-- Blood Group -->
-                            <HBox alignment="CENTER_LEFT" spacing="20">
-                                <Label prefWidth="120" text="Blood Group :" />
-                                <ComboBox fx:id="bloodGroupOption" prefWidth="250" promptText="Select Your Blood Group" />
-                            </HBox>
-
-                            <!-- District -->
-                            <HBox alignment="CENTER_LEFT" spacing="20">
-                                <Label prefWidth="120" text="District :" />
-                                <ComboBox fx:id="district_items" prefWidth="250" promptText="Select your Home District" />
-                            </HBox>
-
-                            <!-- Email -->
-                            <HBox alignment="CENTER_LEFT" spacing="20">
-                                <Label prefWidth="120" text="Email :" />
-                                <TextField fx:id="email" prefWidth="250" promptText="Email" />
-                            </HBox>
-
-                            <!-- Phone Number -->
-                            <HBox alignment="CENTER_LEFT" spacing="20">
-                                <Label prefWidth="120" text="Phone Number :" />
-                                <TextField fx:id="number" prefWidth="250" promptText="Phone Number" />
-                            </HBox>
-
-                            <!-- Password -->
-                            <HBox alignment="CENTER_LEFT" spacing="20">
-                                <Label prefWidth="120" text="Password :" />
-                                <PasswordField fx:id="password" prefWidth="250" promptText="Password" />
-                            </HBox>
-
-                            <!-- Confirm Password -->
-                            <HBox alignment="CENTER_LEFT" spacing="20">
-                                <Label prefWidth="120" text="Confirm Password :" />
-                                <PasswordField fx:id="confirm_pass" prefWidth="250" promptText="Confirm Password" />
-                            </HBox>
-
-                            <!-- Profile Picture -->
-                            <HBox alignment="CENTER_LEFT" spacing="20">
-                                <Label prefWidth="120" text="Profile Picture :" />
-                                <Button fx:id="chooseProfilePicBtn" text="Choose Image" />
-                                <Label fx:id="profilePicStatus" text="No file chosen" />
-                            </HBox>
-
-                            <!-- Medical Certificate PDF -->
-                            <HBox alignment="CENTER_LEFT" spacing="20">
-                                <Label prefWidth="120" text="Medical Certificate :" />
-                                <Button fx:id="chooseMedicalPdfBtn" text="Upload PDF" />
-                                <Label fx:id="medicalPdfStatus" text="No file chosen" />
-                            </HBox>
-
-                            <!-- NID Front -->
-                            <HBox alignment="CENTER_LEFT" spacing="20">
-                                <Label prefWidth="120" text="NID (Front) :" />
-                                <Button fx:id="chooseNidFrontBtn" text="Choose Image" />
-                                <Label fx:id="nidFrontStatus" text="No file chosen" />
-                            </HBox>
-
-                            <!-- NID Back -->
-                            <HBox alignment="CENTER_LEFT" spacing="20">
-                                <Label prefWidth="120" text="NID (Back) :" />
-                                <Button fx:id="chooseNidBackBtn" text="Choose Image" />
-                                <Label fx:id="nidBackStatus" text="No file chosen" />
-                            </HBox>
-
-                        </VBox>
-
-                        <!-- Sign Up Button -->
-                        <Button fx:id="signupBtn" onAction="#signup" layoutX="473.0" layoutY="659.0" prefHeight="40" prefWidth="120" text="Sign Up" />
-
-                        <!-- Signup Message -->
-                        <Label fx:id="signupMassage" alignment="CENTER" layoutX="333.0" layoutY="632.0" prefWidth="400" />
-
-                    </children>
-                </AnchorPane>
             </content>
         </ScrollPane>
-    </center>
 
-</BorderPane>
+        <!-- ================= FOOTER BUTTONS ================= -->
+        <VBox alignment="CENTER" layoutY="620.0" prefHeight="80.0" spacing="5.0" style="-fx-background-color: #FAFAFA; -fx-background-radius: 0 0 15 15; -fx-border-color: #EEEEEE; -fx-border-width: 1 0 0 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+        <HBox alignment="CENTER">
+            <Label fx:id="signupMassage" alignment="CENTER" maxWidth="1.7976931348623157E308" textFill="RED">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+        </HBox>
+        <HBox alignment="CENTER" layoutY="620.0" prefHeight="80.0" spacing="20.0" style="-fx-background-color: #FAFAFA; -fx-background-radius: 0 0 15 15; -fx-border-color: #EEEEEE; -fx-border-width: 1 0 0 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Button fx:id="btnCancel" onAction="#handleCancel" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: #AAAAAA; -fx-border-radius: 25; -fx-background-radius: 25; -fx-text-fill: #555555; -fx-font-weight: bold; -fx-cursor: hand;" text="CANCEL" />
+                <Button fx:id="signupBtn" onAction="#signup" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to right, #D31027, #EA384D); -fx-background-radius: 25; -fx-text-fill: white; -fx-font-weight: bold; -fx-effect: dropshadow(three-pass-box, rgba(211, 16, 39, 0.3), 10, 0, 0, 4); -fx-cursor: hand;" text="CREATE ACCOUNT" />
+            </children>
+        </HBox>
+
+        </VBox>
+
+    </children>
+</AnchorPane>

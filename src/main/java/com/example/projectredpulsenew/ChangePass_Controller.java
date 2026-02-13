@@ -113,9 +113,8 @@ public class ChangePass_Controller {
             lblMessage.setText("Password updated successfully!");
 
 
-            Parent root = FXMLLoader.load(getClass().getResource("Profile.fxml"));
             Stage stage = (Stage) changePassSaveBtn.getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.close();
 
         } catch(Exception e){
             e.printStackTrace();
@@ -124,12 +123,7 @@ public class ChangePass_Controller {
 
     @FXML
     void handlePassCancel(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("Profile.fxml"));
-            Stage stage = (Stage) changePassCancelBtn.getScene().getWindow();
-            stage.setScene(new Scene(root));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Stage stage = (Stage) changePassCancelBtn.getScene().getWindow();
+        stage.close();
     }
 }

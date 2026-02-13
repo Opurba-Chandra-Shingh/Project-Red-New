@@ -334,7 +334,7 @@ public class Profile_Controller {
 
     @FXML
     void logout_p(ActionEvent event) throws Exception {
-        LoginDetails.temp = null;
+        chkLogin.setlogout();
 
         Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
         Stage stage = (Stage) btnLogOut.getScene().getWindow();

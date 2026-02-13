@@ -27,34 +27,34 @@
         <HBox fx:id="topBar" alignment="CENTER" prefHeight="51.0" prefWidth="1366.0" spacing="8.0" styleClass="topbar" BorderPane.alignment="CENTER">
             <children>
                 <Pane prefHeight="27.0" prefWidth="1194.0" HBox.hgrow="ALWAYS" />
-                <HBox alignment="CENTER" prefHeight="27.0" prefWidth="68.0">
-                    <children>
-                        <Button fx:id="btnLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#login_d" prefHeight="27.0" prefWidth="61.0" styleClass="login-button" stylesheets="@styles.css" text="Login" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="13.0" />
-                            </font>
-                        </Button>
-                    </children>
-                </HBox>
+<!--                <HBox alignment="CENTER" prefHeight="27.0" prefWidth="68.0">-->
+<!--                    <children>-->
+<!--                        <Button fx:id="btnLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#login_d" prefHeight="27.0" prefWidth="61.0" styleClass="login-button" stylesheets="@styles.css" text="Login" textFill="WHITE">-->
+<!--                            <font>-->
+<!--                                <Font name="System Bold" size="13.0" />-->
+<!--                            </font>-->
+<!--                        </Button>-->
+<!--                    </children>-->
+<!--                </HBox>-->
                 <HBox alignment="CENTER" prefHeight="27.0" prefWidth="64.0">
                     <children>
                         <AnchorPane prefHeight="27.0" prefWidth="64.0">
                             <children>
-                                <Button fx:id="btnLogOut" layoutX="3.0" onAction="#logout_d" prefHeight="27.0" prefWidth="61.0" stylesheets="@styles.css" text="Log Out" textFill="WHITE">
-                                    <styleClass>
-                                        <String fx:value="login-button" />
-                                        <String fx:value="login-button" />
-                                    </styleClass>
-                                </Button>
-                                <Button fx:id="btnSignUp" layoutX="3.0" onAction="#signup_d" prefHeight="27.0" prefWidth="61.0" stylesheets="@styles.css" text="Sign Up" textFill="WHITE">
-                                    <styleClass>
-                                        <String fx:value="login-button" />
-                                        <String fx:value="login-button" />
-                                    </styleClass>
-                                    <padding>
-                                        <Insets top="1.0" />
-                                    </padding>
-                                </Button>
+<!--                                <Button fx:id="btnLogOut" layoutX="3.0" onAction="#logout_d" prefHeight="27.0" prefWidth="61.0" stylesheets="@styles.css" text="Log Out" textFill="WHITE">-->
+<!--                                    <styleClass>-->
+<!--                                        <String fx:value="login-button" />-->
+<!--                                        <String fx:value="login-button" />-->
+<!--                                    </styleClass>-->
+<!--                                </Button>-->
+<!--                                <Button fx:id="btnSignUp" layoutX="3.0" onAction="#signup_d" prefHeight="27.0" prefWidth="61.0" stylesheets="@styles.css" text="Sign Up" textFill="WHITE">-->
+<!--                                    <styleClass>-->
+<!--                                        <String fx:value="login-button" />-->
+<!--                                        <String fx:value="login-button" />-->
+<!--                                    </styleClass>-->
+<!--                                    <padding>-->
+<!--                                        <Insets top="1.0" />-->
+<!--                                    </padding>-->
+<!--                                </Button>-->
                             </children>
                         </AnchorPane>
                     </children>
@@ -215,7 +215,8 @@
                 <Separator />
                 <VBox fx:id="sidebarButtons" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="235.0" spacing="15.0">
                     <children>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
+<!--                        Home Button-->
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
                             <padding>
                                 <Insets left="10.0" right="10.0" />
                             </padding>
@@ -240,6 +241,8 @@
                                 </HBox>
                             </children>
                         </HBox>
+
+<!--                        Newsfeed Button-->
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
                             <padding>
                                 <Insets left="10.0" right="10.0" />
@@ -266,6 +269,8 @@
                                 </HBox>
                             </children>
                         </HBox>
+
+<!--                        Create Post-->
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="255.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
                             <padding>
                                 <Insets left="10.0" right="10.0" />
@@ -291,6 +296,8 @@
                                 </HBox>
                             </children>
                         </HBox>
+
+<!--                        Notification-->
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="298.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
                             <padding>
                                 <Insets left="10.0" right="10.0" />
@@ -316,6 +323,8 @@
                                 </HBox>
                             </children>
                         </HBox>
+
+<!--                        Chat-->
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="341.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
                             <padding>
                                 <Insets left="10.0" right="10.0" />
@@ -341,6 +350,8 @@
                                 </HBox>
                             </children>
                         </HBox>
+
+<!--                        profile-->
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="384.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
                             <padding>
                                 <Insets left="10.0" right="10.0" />
@@ -366,6 +377,8 @@
                                 </HBox>
                             </children>
                         </HBox>
+
+<!--                        Setting-->
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="428.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
                             <padding>
                                 <Insets left="10.0" right="10.0" />
@@ -391,6 +404,85 @@
                                 </HBox>
                             </children>
                         </HBox>
+
+<!--                        logIn/logOut-->
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="428.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                        <StackPane layoutX="10.0" layoutY="428.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="186.0">
+
+                            <children>
+                                <HBox fx:id="loginBox" alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                    <children>
+                                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/LogIn.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login_d" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Log in">
+                                            <font>
+                                                <Font name="Bell MT Bold" size="16.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                                    <styleClass>
+                                        <String fx:value="sidebar-button-hbox" />
+                                        <String fx:value="sidebar-button-hbox-h" />
+                                    </styleClass>
+                                </HBox>
+                                <HBox fx:id="logoutBox" visible="false" managed="false" alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                    <children>
+                                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/LogOut.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#logout_d" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Log out">
+                                            <font>
+                                                <Font name="Bell MT Bold" size="16.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                                    <styleClass>
+                                        <String fx:value="sidebar-button-hbox" />
+                                        <String fx:value="sidebar-button-hbox-h" />
+                                    </styleClass>
+                                </HBox>
+                            </children>
+                        </StackPane>
+                        </HBox>
+
+<!--                        sign up-->
+                        <HBox  alignment="CENTER" layoutX="10.0" layoutY="428.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="230.0" spacing="5.0">
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                            <children>
+                                <HBox fx:id="signupBox" alignment="CENTER" prefHeight="35.0" prefWidth="186.0" spacing="5.0" stylesheets="@styles.css">
+                                    <children>
+                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@img/SignUp.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#signup_d" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Sign Up">
+                                            <font>
+                                                <Font name="Bell MT Bold" size="16.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                                    <styleClass>
+                                        <String fx:value="sidebar-button-hbox" />
+                                        <String fx:value="sidebar-button-hbox-h" />
+                                    </styleClass>
+                                </HBox>
+                            </children>
+                        </HBox>
+
+
+
+
                         <Pane prefHeight="203.0" prefWidth="235.0" VBox.vgrow="ALWAYS" />
                     </children>
                 </VBox>

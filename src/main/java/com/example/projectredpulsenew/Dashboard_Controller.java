@@ -32,7 +32,7 @@ public class Dashboard_Controller implements Initializable {
             stat1Title, stat1Title1, stat1Title11, welcomeSubtitle, welcomeTitle;
 
     @FXML
-    private HBox ctaRow, sidebarHeader, statsRow, topBar, topBarRight, welcomeRow;
+    private HBox ctaRow, sidebarHeader, statsRow, topBar, topBarRight, welcomeRow, loginBox, logoutBox, signupBox;
 
     @FXML
     private VBox mainContent, sidebar, sidebarButtons;
@@ -61,7 +61,7 @@ public class Dashboard_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        updateTopButtons();
+        ButtonsVisibility();
 
         XYChart.Series<String, Integer> set1 = new XYChart.Series<>();
         set1.setName("Requests");
@@ -92,13 +92,21 @@ public class Dashboard_Controller implements Initializable {
     }
 
 
-    private void updateTopButtons() {
+    private void ButtonsVisibility() {
         boolean isLogged = chkLogin.isLoggedIn();
 
         btnLogin.setVisible(!isLogged);
         btnSignUp.setVisible(!isLogged);
-
         btnLogOut.setVisible(isLogged);
+
+        // SIDEBAR (IMPORTANT FIX)
+        loginBox.setVisible(!isLogged);
+        loginBox.setManaged(!isLogged);
+
+        logoutBox.setVisible(isLogged);
+        logoutBox.setManaged(isLogged);
+
+        signupBox.setVisible(!isLogged);
     }
 
 
@@ -108,18 +116,44 @@ public class Dashboard_Controller implements Initializable {
 
     @FXML
     void login_d(ActionEvent event) throws Exception {
-        Parent root_login = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
-        Stage stage_dashboard = (Stage) btnLogin.getScene().getWindow();
-        stage_dashboard.setScene(new Scene(root_login));
-        stage_dashboard.show();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("LogIn.fxml"));
+            Parent root = loader.load();
+
+            Stage popupStage = new Stage();
+            popupStage.setScene(new Scene(root));
+            popupStage.setTitle("Log in");
+
+            popupStage.initOwner(btnLogin.getScene().getWindow());
+            popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void signup_d(ActionEvent event) throws Exception {
-        Parent root_signup = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
-        Stage stage_dashboard = (Stage) btnSignUp.getScene().getWindow();
-        stage_dashboard.setScene(new Scene(root_signup));
-        stage_dashboard.show();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
+            Parent root = loader.load();
+
+            Stage popupStage = new Stage();
+            popupStage.setScene(new Scene(root));
+            popupStage.setTitle("Sign up");
+
+            popupStage.initOwner(btnSignUp.getScene().getWindow());
+            popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -228,7 +262,7 @@ public class Dashboard_Controller implements Initializable {
     @FXML
     void logout_d(ActionEvent event) throws Exception {
         chkLogin.setlogout();
-        updateTopButtons();
+        ButtonsVisibility();
 
         Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
         Stage stage = (Stage) btnLogOut.getScene().getWindow();

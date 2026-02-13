@@ -68,10 +68,21 @@ public class LogIn_Controller {
             loginMessage.setStyle("-fx-text-fill: green;");
             chkLogin.setlogin();
             try {
+                // 1️⃣ Get popup stage
+                Stage popupStage = (Stage) loginBtn.getScene().getWindow();
+
+                // 2️⃣ Get main (owner) stage
+                Stage mainStage = (Stage) popupStage.getOwner();
+
+                // 3️⃣ Load Newsfeed
                 Parent root = FXMLLoader.load(getClass().getResource("Newsfeed.fxml"));
-                Stage stage = (Stage) loginBtn.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
+
+                // 4️⃣ Set scene to main window
+                mainStage.setScene(new Scene(root));
+                mainStage.show();
+
+                // 5️⃣ Close popup
+                popupStage.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -80,6 +91,7 @@ public class LogIn_Controller {
             loginMessage.setStyle("-fx-text-fill: red;");
         }
     }
+
 
     private List<User> loadUsersFromJson() {
         List<User> userList = new ArrayList<>();
@@ -102,9 +114,22 @@ public class LogIn_Controller {
     }
 
     public void logtosign(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
-        Stage stage = (Stage) login_signup.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
+            Parent root = loader.load();
+
+            Stage popupStage = new Stage();
+            popupStage.setScene(new Scene(root));
+            popupStage.setTitle("Sign Up");
+
+            popupStage.initOwner(login_signup.getScene().getWindow());
+            popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

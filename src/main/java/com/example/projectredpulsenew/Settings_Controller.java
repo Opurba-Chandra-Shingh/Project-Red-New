@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -187,10 +188,23 @@ public class Settings_Controller {
 
     @FXML
     void gotoChangePass(ActionEvent event)throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("ChangePass.fxml"));
-        Stage stage = (Stage) btnChangePass.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ChangePass.fxml"));
+            Parent root = loader.load();
+
+            Stage popupStage = new Stage();
+            popupStage.setTitle("Change Password");
+            popupStage.setScene(new Scene(root));
+
+            // Block background
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -198,7 +212,6 @@ public class Settings_Controller {
     @FXML
     void logout_stng(ActionEvent event) throws Exception {
         chkLogin.setlogout();
-        //updateTopButtons();
 
         Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
         Stage stage = (Stage) btnLogOut.getScene().getWindow();
