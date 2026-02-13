@@ -45,7 +45,8 @@ public class Newsfeed_Controller implements Initializable {
     @FXML private Button btnNotifications;
     @FXML private Button btnProfile;
     @FXML private Button btnSettings;
-    @FXML private Button btnLogOut;
+    @FXML private Button btnLogOut, btnLogin, btnSignUp;
+    @FXML private HBox loginBox, logoutBox, signupBox;
 
     @FXML private VBox sidebar;
     @FXML private VBox sidebarButtons;
@@ -65,55 +66,86 @@ public class Newsfeed_Controller implements Initializable {
     //--------------------Navigatin bar start---------------------------
     @FXML
     void NewstoDash(ActionEvent event) throws Exception {
+        if(chkLogin.isLoggedIn()) {
         Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
         Stage stage = (Stage) btnNewsHome.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+        }
+        else{
+            chkLogin.alert();
+        }
     }
 
     @FXML
     void NewstoCreat(ActionEvent event) throws Exception {
+        if(chkLogin.isLoggedIn()) {
         Parent root = FXMLLoader.load(getClass().getResource("CreatePost.fxml"));
         Stage stage = (Stage) btnCreatePost.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+        }
+        else{
+            chkLogin.alert();
+        }
     }
 
     @FXML
     void NewstoNoti(ActionEvent event) throws Exception {
+        if(chkLogin.isLoggedIn()) {
         Parent root = FXMLLoader.load(getClass().getResource("Notification.fxml"));
         Stage stage = (Stage) btnNotifications.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+        }
+        else{
+            chkLogin.alert();
+        }
     }
 
     @FXML
     void NewstoChat(ActionEvent event) throws Exception {
+        if(chkLogin.isLoggedIn()) {
         Parent root = FXMLLoader.load(getClass().getResource("Chat.fxml"));
         Stage stage = (Stage) btnChat.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+        }
+        else{
+            chkLogin.alert();
+        }
     }
 
     @FXML
     void NewstoProf(ActionEvent event) throws Exception {
+        if(chkLogin.isLoggedIn()) {
         Parent root = FXMLLoader.load(getClass().getResource("Profile.fxml"));
         Stage stage = (Stage) btnProfile.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+        }
+        else{
+            chkLogin.alert();
+        }
     }
 
     @FXML
     void NewstoStng(ActionEvent event) throws Exception {
+        if(chkLogin.isLoggedIn()) {
         Parent root = FXMLLoader.load(getClass().getResource("Settings.fxml"));
         Stage stage = (Stage) btnSettings.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+        }
+        else{
+            chkLogin.alert();
+        }
     }
     //------------------------------Navigation bar end--------------------------------------------------------------------
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ButtonsVisibility();
         loadPostOwners();
         loadPosts();
     }
@@ -333,7 +365,8 @@ public class Newsfeed_Controller implements Initializable {
     //------------------------------------Handle Interest button start------------------------------------------------
     private void handleInterest(PostDetails post) {
 
-        // 1️⃣ Clicker (current logged-in user)
+        if(chkLogin.isLoggedIn()) {
+            // 1️⃣ Clicker (current logged-in user)
         User clicker = LoginDetails.getUser();
         if (clicker == null) {
             System.out.println("No user logged in!");
@@ -359,6 +392,10 @@ public class Newsfeed_Controller implements Initializable {
         );
 
         saveNotification(noti);
+        }
+        else{
+            chkLogin.alert();
+        }
     }
 
     private void saveNotification(NotificationDetails noti) {
@@ -458,14 +495,80 @@ public class Newsfeed_Controller implements Initializable {
     //-------------------------------------Handle Contact-Info Button End-------------------------------------------
 
 
-    //---------------------------Log Out Button Handle------------------------------------------------------
+
+
+    private void ButtonsVisibility() {
+        boolean isLogged = chkLogin.isLoggedIn();
+
+        btnLogin.setVisible(!isLogged);
+        btnSignUp.setVisible(!isLogged);
+        btnLogOut.setVisible(isLogged);
+
+        // SIDEBAR (IMPORTANT FIX)
+        loginBox.setVisible(!isLogged);
+        loginBox.setManaged(!isLogged);
+
+        logoutBox.setVisible(isLogged);
+        logoutBox.setManaged(isLogged);
+
+        signupBox.setVisible(!isLogged);
+    }
+
+    @FXML
+    void login_n(ActionEvent event) throws Exception {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("LogIn.fxml"));
+            Parent root = loader.load();
+
+            Stage popupStage = new Stage();
+            popupStage.setScene(new Scene(root));
+            popupStage.setTitle("Log in");
+
+            popupStage.initOwner(btnLogin.getScene().getWindow());
+            popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void signup_n(ActionEvent event) throws Exception {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
+            Parent root = loader.load();
+
+            Stage popupStage = new Stage();
+            popupStage.setScene(new Scene(root));
+            popupStage.setTitle("Sign up");
+
+            popupStage.initOwner(btnSignUp.getScene().getWindow());
+            popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     void logout_n(ActionEvent event) throws Exception {
         chkLogin.setlogout();
+        ButtonsVisibility();
 
-        Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Newsfeed.fxml"));
         Stage stage = (Stage) btnLogOut.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+
+
+
+
 }

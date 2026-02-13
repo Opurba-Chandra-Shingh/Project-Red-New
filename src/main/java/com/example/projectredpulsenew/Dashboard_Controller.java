@@ -61,7 +61,7 @@ public class Dashboard_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        ButtonsVisibility();
+//        ButtonsVisibility();
 
         XYChart.Series<String, Integer> set1 = new XYChart.Series<>();
         set1.setName("Requests");
@@ -92,48 +92,48 @@ public class Dashboard_Controller implements Initializable {
     }
 
 
-    private void ButtonsVisibility() {
-        boolean isLogged = chkLogin.isLoggedIn();
-
-        btnLogin.setVisible(!isLogged);
-        btnSignUp.setVisible(!isLogged);
-        btnLogOut.setVisible(isLogged);
-
-        // SIDEBAR (IMPORTANT FIX)
-        loginBox.setVisible(!isLogged);
-        loginBox.setManaged(!isLogged);
-
-        logoutBox.setVisible(isLogged);
-        logoutBox.setManaged(isLogged);
-
-        signupBox.setVisible(!isLogged);
-    }
-
-
+//    private void ButtonsVisibility() {
+//        boolean isLogged = chkLogin.isLoggedIn();
+//
+//        btnLogin.setVisible(!isLogged);
+//        btnSignUp.setVisible(!isLogged);
+//        btnLogOut.setVisible(isLogged);
+//
+//        // SIDEBAR (IMPORTANT FIX)
+//        loginBox.setVisible(!isLogged);
+//        loginBox.setManaged(!isLogged);
+//
+//        logoutBox.setVisible(isLogged);
+//        logoutBox.setManaged(isLogged);
+//
+//        signupBox.setVisible(!isLogged);
+//    }
 
 
 
 
-    @FXML
-    void login_d(ActionEvent event) throws Exception {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("LogIn.fxml"));
-            Parent root = loader.load();
 
-            Stage popupStage = new Stage();
-            popupStage.setScene(new Scene(root));
-            popupStage.setTitle("Log in");
 
-            popupStage.initOwner(btnLogin.getScene().getWindow());
-            popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
-            popupStage.setResizable(false);
-
-            popupStage.showAndWait();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    @FXML
+//    void login_d(ActionEvent event) throws Exception {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("LogIn.fxml"));
+//            Parent root = loader.load();
+//
+//            Stage popupStage = new Stage();
+//            popupStage.setScene(new Scene(root));
+//            popupStage.setTitle("Log in");
+//
+//            popupStage.initOwner(btnLogin.getScene().getWindow());
+//            popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+//            popupStage.setResizable(false);
+//
+//            popupStage.showAndWait();
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @FXML
     void signup_d(ActionEvent event) throws Exception {
@@ -156,88 +156,58 @@ public class Dashboard_Controller implements Initializable {
         }
     }
 
+
+//    Sidebar Buttons
     @FXML
     void DashtoNews(ActionEvent event)throws Exception{
-
-        if(chkLogin.isLoggedIn()) {
-            Parent root = FXMLLoader.load(getClass().getResource("Newsfeed.fxml"));
-            Stage stage = (Stage) btnNewsFeed.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        }
-        else{
-            chkLogin.alert();
-        }
+        Parent root = FXMLLoader.load(getClass().getResource("Newsfeed.fxml"));
+        Stage stage = (Stage) btnNewsFeed.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML
     void DashtoCreate(ActionEvent event)throws Exception{
-
-        if(chkLogin.isLoggedIn()) {
-            Parent root = FXMLLoader.load(getClass().getResource("CreatePost.fxml"));
-            Stage stage = (Stage) btnCreatePost.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        }
-        else{
-            chkLogin.alert();
-        }
+        Parent root = FXMLLoader.load(getClass().getResource("CreatePost.fxml"));
+        Stage stage = (Stage) btnCreatePost.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML
     void DashtoNoti(ActionEvent event)throws Exception{
 
-        if(chkLogin.isLoggedIn()) {
             Parent root = FXMLLoader.load(getClass().getResource("Notification.fxml"));
             Stage stage = (Stage) btnNotifications.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
-        }
-        else{
-            chkLogin.alert();
-        }
     }
 
     @FXML
     void DashtoChat(ActionEvent event)throws Exception{
 
-        if(chkLogin.isLoggedIn()) {
             Parent root = FXMLLoader.load(getClass().getResource("Chat.fxml"));
             Stage stage = (Stage) btnChat.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
-        }
-        else{
-            chkLogin.alert();
-        }
     }
 
     @FXML
     void DashtoProf(ActionEvent event)throws Exception{
 
-        if(chkLogin.isLoggedIn()) {
-            Parent root = FXMLLoader.load(getClass().getResource("Profile.fxml"));
-            Stage stage = (Stage) btnProfile.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        }
-        else{
-            chkLogin.alert();
-        }
+        Parent root = FXMLLoader.load(getClass().getResource("Profile.fxml"));
+        Stage stage = (Stage) btnProfile.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML
     void Dashtostng(ActionEvent event)throws Exception{
 
-        if(chkLogin.isLoggedIn()) {
             Parent root = FXMLLoader.load(getClass().getResource("Settings.fxml"));
             Stage stage = (Stage) btnSettings.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
-        }
-        else{
-            chkLogin.alert();
-        }
     }
 
 
@@ -245,26 +215,30 @@ public class Dashboard_Controller implements Initializable {
 
     @FXML
     void RequestBlood(ActionEvent event)throws Exception{
-
-        if(chkLogin.isLoggedIn()) {
             Parent root = FXMLLoader.load(getClass().getResource("CreatePost.fxml"));
             Stage stage = (Stage) btnRequestBlood.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
-        }
-        else{
-            chkLogin.alert();
-        }
     }
 
 
 
+//    @FXML
+//    void logout_d(ActionEvent event) throws Exception {
+//        chkLogin.setlogout();
+//        ButtonsVisibility();
+//
+//        Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
+//        Stage stage = (Stage) btnLogOut.getScene().getWindow();
+//        stage.setScene(new Scene(root));
+//        stage.show();
+//    }
+//}
     @FXML
     void logout_d(ActionEvent event) throws Exception {
         chkLogin.setlogout();
-        ButtonsVisibility();
 
-        Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Newsfeed.fxml"));
         Stage stage = (Stage) btnLogOut.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
