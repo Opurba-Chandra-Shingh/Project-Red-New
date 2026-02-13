@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 
 public class EditDocuments_Controller {
 
-    @FXML private Button btnMedicalPdf, btnNidFront, btnNidBack, btnSave, btnCancel;
+    @FXML private Button btnMedicalPdf, btnNidFront, btnNidBack, btnSaveDoc, btnCancelDoc;
 
     private String medicalPdfPath, nidFrontPath, nidBackPath;
 
@@ -89,11 +90,9 @@ public class EditDocuments_Controller {
 
             System.out.println("Documents updated successfully!");
 
-            // Go back to Profile page
-            Parent root = FXMLLoader.load(getClass().getResource("Profile.fxml"));
-            Stage stage = (Stage) btnSave.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
+            // Close popup only
+            Stage stage = (Stage) btnSaveDoc.getScene().getWindow();
+            stage.close();
 
         } catch(Exception e){
             e.printStackTrace();
@@ -103,13 +102,7 @@ public class EditDocuments_Controller {
     // ================== CANCEL ==================
     @FXML
     void handleCancelDoc(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("Profile.fxml"));
-            Stage stage = (Stage) btnCancel.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Stage stage = (Stage) btnCancelDoc.getScene().getWindow();
+        stage.close();
     }
 }

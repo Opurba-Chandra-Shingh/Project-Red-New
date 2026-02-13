@@ -101,29 +101,7 @@ public class Dashboard_Controller implements Initializable {
         btnLogOut.setVisible(isLogged);
     }
 
-//    public void refreshUIAfterLogin() {
-//        updateTopButtons();
-//    }
-//private boolean checkLoginBeforeAction() {
-//    if (!AuthService.isLoggedIn()) {
-//        // Show alert
-//        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
-//        alert.setTitle("Login Required");
-//        alert.setHeaderText(null);
-//        alert.setContentText("Please login first to perform this action.");
-//        alert.showAndWait();
-//        return false;   // Not logged in
-//    }
-//    return true;        // Logged in
-//}
 
-//    public void alert() {
-//        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
-//        alert.setTitle("Login Required");
-//        alert.setHeaderText(null);
-//        alert.setContentText("Please login first to perform this action.");
-//        alert.showAndWait();
-//    }
 
 
 
@@ -228,6 +206,22 @@ public class Dashboard_Controller implements Initializable {
         }
     }
 
+
+
+
+    @FXML
+    void RequestBlood(ActionEvent event)throws Exception{
+
+        if(chkLogin.isLoggedIn()) {
+            Parent root = FXMLLoader.load(getClass().getResource("CreatePost.fxml"));
+            Stage stage = (Stage) btnRequestBlood.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        else{
+            chkLogin.alert();
+        }
+    }
 
 
 

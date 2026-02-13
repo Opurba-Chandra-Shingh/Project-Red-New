@@ -90,7 +90,7 @@
                             </VBox>
                             <Pane HBox.hgrow="ALWAYS" />
                             <!-- Moved Request Button Here to match Image -->
-                            <Button fx:id="btnRequestBlood" graphicTextGap="10.0" prefHeight="45.0" prefWidth="180.0" styleClass="btn-request-blood" text="+ Request Blood" textFill="WHITE" />
+                            <Button fx:id="btnRequestBlood" onAction="#RequestBlood" graphicTextGap="10.0" prefHeight="45.0" prefWidth="180.0" styleClass="btn-request-blood" text="+ Request Blood" textFill="WHITE" />
                         </children>
                   <padding>
                      <Insets left="5.0" right="5.0" />

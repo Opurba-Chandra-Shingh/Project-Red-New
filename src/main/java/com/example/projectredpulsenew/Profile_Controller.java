@@ -76,7 +76,9 @@ public class Profile_Controller {
 
     @FXML private Button btnMedicalPdf;  // Opens medical certificate PDF
     @FXML private ImageView imgNidFront; // NID front image
-    @FXML private ImageView imgNidBack;  // NID back image
+    @FXML private ImageView imgNidBack;// NID back image
+
+    @FXML private Button btnEditProfile, btnUpdatePhoto, btnUpdateDocuments;
 
     // Default profile image if user has no image
     private final String DEFAULT_IMAGE_PATH =
@@ -208,6 +210,72 @@ public class Profile_Controller {
 
     private String safe(String value) {
         return (value != null && !value.isEmpty()) ? value : "N/A";
+    }
+
+
+    @FXML
+    void editprof(ActionEvent event)throws Exception{
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("EditProf.fxml"));
+            Parent root = loader.load();
+
+            Stage popupStage = new Stage();
+            popupStage.setScene(new Scene(root));
+            popupStage.setTitle("Edit Profile");
+
+            popupStage.initOwner(btnEditProfile.getScene().getWindow());
+            popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    void editPP(ActionEvent event)throws Exception{
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateProfilePic.fxml"));
+            Parent root = loader.load();
+
+            Stage popupStage = new Stage();
+            popupStage.setScene(new Scene(root));
+            popupStage.setTitle("Update Profile Picture");
+
+            popupStage.initOwner(btnUpdatePhoto.getScene().getWindow());
+            popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    void editdoc(ActionEvent event)throws Exception{
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("EditDocuments.fxml"));
+            Parent root = loader.load();
+
+            Stage popupStage = new Stage();
+            popupStage.setScene(new Scene(root));
+            popupStage.setTitle("Update Documents");
+
+            popupStage.initOwner(btnUpdateDocuments.getScene().getWindow());
+            popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

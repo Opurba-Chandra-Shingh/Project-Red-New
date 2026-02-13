@@ -58,4 +58,5 @@ public class NotificationDetails {
     public void setReceiverEmail(String receiverEmail) { this.receiverEmail = receiverEmail; }
     public void setReceiverPassword(String receiverPassword) { this.receiverPassword = receiverPassword; }
     public void setNotiType(String notiType) { this.notiType = notiType; }
+    public void setClickerPic(String clickerProfilePic) { this.clickerProfilePic = clickerProfilePic; }
 }

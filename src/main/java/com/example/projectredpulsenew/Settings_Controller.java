@@ -45,6 +45,10 @@ public class Settings_Controller {
     private Button btnProfEdit;
 
     @FXML
+    private Button btnProfPic;
+
+
+    @FXML
     private Button btnDocEdit;
 
     @FXML
@@ -119,19 +123,66 @@ public class Settings_Controller {
     }
 
     @FXML
-    void gotoEdit(ActionEvent event)throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Edit.fxml"));
-        Stage stage = (Stage) btnProfEdit.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+    void gotoEdit(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("EditProf.fxml"));
+            Parent root = loader.load();
+
+            Stage popupStage = new Stage();
+            popupStage.setScene(new Scene(root));
+            popupStage.setTitle("Edit Profile");
+
+            popupStage.initOwner(btnProfEdit.getScene().getWindow());
+            popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void gotoProfPic(ActionEvent event)throws Exception{
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateProfilePic.fxml"));
+            Parent root = loader.load();
+
+            Stage popupStage = new Stage();
+            popupStage.setScene(new Scene(root));
+            popupStage.setTitle("Update Profile Picture");
+
+            popupStage.initOwner(btnProfPic.getScene().getWindow());
+            popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void gotoDocEdit(ActionEvent event)throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("EditDocuments.fxml"));
-        Stage stage = (Stage) btnDocEdit.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("EditDocuments.fxml"));
+            Parent root = loader.load();
+
+            Stage popupStage = new Stage();
+            popupStage.setScene(new Scene(root));
+            popupStage.setTitle("Update Documents");
+
+            popupStage.initOwner(btnDocEdit.getScene().getWindow());
+            popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            popupStage.setResizable(false);
+
+            popupStage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

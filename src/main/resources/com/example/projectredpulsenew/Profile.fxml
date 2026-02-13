@@ -343,9 +343,9 @@
                         <padding>
                             <Insets bottom="20" left="0" right="0" top="20" />
                         </padding>
-                        <Button fx:id="btnEditProfile" styleClass="prof-btn-primary" text="Edit Profile" />
-                        <Button fx:id="btnUpdatePhoto" styleClass="prof-btn-text" text="Update Photo" />
-                        <Button fx:id="btnUpdateDocuments" styleClass="prof-btn-text" text="Update Documents" />
+                        <Button fx:id="btnEditProfile" onAction="#editprof" styleClass="prof-btn-primary" text="Edit Profile" />
+                        <Button fx:id="btnUpdatePhoto" onAction="#editPP" styleClass="prof-btn-text" text="Update Photo" />
+                        <Button fx:id="btnUpdateDocuments" onAction="#editdoc" styleClass="prof-btn-text" text="Update Documents" />
                     </HBox>
 
                 </VBox>

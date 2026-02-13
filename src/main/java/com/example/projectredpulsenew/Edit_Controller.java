@@ -145,10 +145,9 @@ public class Edit_Controller {
             alert.setContentText("Profile Updated Successfully!");
             alert.showAndWait();
 
-            Parent root = FXMLLoader.load(getClass().getResource("Profile.fxml"));
+            // Close popup only
             Stage stage = (Stage) btnSave.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
+            stage.close();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -159,10 +158,8 @@ public class Edit_Controller {
 
     @FXML
     void handleCancel(ActionEvent event) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Profile.fxml"));
         Stage stage = (Stage) btnCancel.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+        stage.close();
     }
 
 }

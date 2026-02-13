@@ -21,11 +21,11 @@
     "district": "Netrokona",
     "email": "Apurbo@",
     "password": "88888",
-    "Number": "01781691400",
-    "profilePicPath": "D:\\project-redpulse-new\\files\\apurbo.jpg",
+    "Number": "0178169140*",
+    "profilePicPath": "C:\\Users\\HP\\Downloads\\Code and caffeinated creativity.png",
     "medicalPdfPath": "D:\\project-redpulse-new\\files\\Medical Certificate.pdf",
     "nidFrontPath": "D:\\project-redpulse-new\\files\\NID front 3.png",
-    "nidBackPath": "D:\\project-redpulse-new\\files\\Id back.png"
+    "nidBackPath": "D:\\project-redpulse-new\\files\\NID back 3.png"
   },
   {
     "name": "Mahmudul Hasa",
@@ -65,6 +65,20 @@
     "password": "sojib",
     "Number": "09839878",
     "profilePicPath": "D:\\project-redpulse-new\\files\\Sojib.jpg",
+    "medicalPdfPath": "D:\\project-redpulse-new\\files\\Medical Certificate.pdf",
+    "nidFrontPath": "D:\\project-redpulse-new\\files\\Id front.png",
+    "nidBackPath": "D:\\project-redpulse-new\\files\\Id back.png"
+  },
+  {
+    "name": "Nahid Hasan Nahid",
+    "age": "22",
+    "gender": "Male",
+    "bloodGroup": "O+",
+    "district": "Sunamganj",
+    "email": "Nahid@",
+    "password": "1111",
+    "Number": "01612223551",
+    "profilePicPath": "D:\\project-redpulse-new\\files\\Nahid.jpg",
     "medicalPdfPath": "D:\\project-redpulse-new\\files\\Medical Certificate.pdf",
     "nidFrontPath": "D:\\project-redpulse-new\\files\\Id front.png",
     "nidBackPath": "D:\\project-redpulse-new\\files\\Id back.png"
