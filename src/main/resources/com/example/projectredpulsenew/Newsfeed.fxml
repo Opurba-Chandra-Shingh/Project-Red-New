@@ -296,7 +296,7 @@
                                         </ImageView>
                                         <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#signup_n" prefHeight="33.0" prefWidth="134.0" styleClass="sidebar-button" stylesheets="@styles.css" text="Sign Up">
                                             <font>
-                                                <Font name="Bell MT Bold" size="16.0" />
+                                                  <Font name="Bell MT Bold" size="16.0" />
                                             </font>
                                         </Button>
                                     </children>
