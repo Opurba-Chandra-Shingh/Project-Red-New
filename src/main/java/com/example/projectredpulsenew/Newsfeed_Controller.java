@@ -66,15 +66,11 @@ public class Newsfeed_Controller implements Initializable {
     //--------------------Navigatin bar start---------------------------
     @FXML
     void NewstoDash(ActionEvent event) throws Exception {
-        if(chkLogin.isLoggedIn()) {
+
         Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
         Stage stage = (Stage) btnNewsHome.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
-        }
-        else{
-            chkLogin.alert();
-        }
     }
 
     @FXML

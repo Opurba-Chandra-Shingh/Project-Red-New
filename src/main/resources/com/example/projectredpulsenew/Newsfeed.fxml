@@ -334,6 +334,96 @@
 
     <!-- ================= CENTER: NEWSFEED ================= -->
     <center>
+        <VBox>
+
+        <!-- ================= FIXED HEADER ================= -->
+        <HBox spacing="20"
+              alignment="CENTER_LEFT"
+              style="-fx-background-color: #CAF1DE;
+                         -fx-background-radius: 2;
+                         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 6, 0, 0, 0);">
+
+            <padding>
+                <Insets top="15" bottom="15" left="20" right="20"/>
+            </padding>
+
+            <!-- Title Section -->
+            <VBox>
+                <Label text="Recent Requests" textFill="#2c3e50">
+                    <font>
+                        <Font name="System Bold" size="28"/>
+                    </font>
+                </Label>
+
+                <Label text="Urgent blood donation appeals"
+                       textFill="#7f8c8d"/>
+            </VBox>
+
+            <Pane HBox.hgrow="ALWAYS"/>
+
+            <!-- Search: Location -->
+            <HBox prefWidth="220"
+                  alignment="CENTER_RIGHT"
+                  style="-fx-background-color: white;
+                             -fx-background-radius: 20;
+                             -fx-border-radius: 20;
+                             -fx-border-color: #bdc3c7;">
+
+                <padding>
+                    <Insets left="10" right="5"/>
+                </padding>
+
+                <TextField fx:id="txtSearchLocation"
+                           promptText="Search Location..."
+                           style="-fx-background-color: transparent;"
+                           HBox.hgrow="ALWAYS"/>
+
+                <Button fx:id="btnSearchLocation"
+                        style="-fx-background-color: transparent;">
+                    <graphic>
+                        <ImageView fitWidth="18" fitHeight="18"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@img/icons8-search-50.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </HBox>
+
+            <!-- Search: Blood Group -->
+            <HBox prefWidth="220"
+                  alignment="CENTER_RIGHT"
+                  style="-fx-background-color: white;
+                             -fx-background-radius: 20;
+                             -fx-border-radius: 20;
+                             -fx-border-color: #bdc3c7;">
+
+                <padding>
+                    <Insets left="10" right="5"/>
+                </padding>
+
+                <TextField fx:id="txtSearchBlood"
+                           promptText="Blood Group..."
+                           style="-fx-background-color: transparent;"
+                           HBox.hgrow="ALWAYS"/>
+
+                <Button fx:id="btnSearchBlood"
+                        style="-fx-background-color: transparent;">
+                    <graphic>
+                        <ImageView fitWidth="18" fitHeight="18"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@img/icons8-search-50.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </HBox>
+
+        </HBox>
+
+<!--            Scrollpane Post Area-->
         <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent;" stylesheets="@styles.css" BorderPane.alignment="CENTER">
             <content>
                 <VBox  fx:id="feedContainer" alignment="TOP_CENTER" spacing="20.0">
@@ -342,42 +432,11 @@
                     </padding>
                     <children>
 
-                        <!-- Page Title & SEARCH BARS -->
-                        <HBox alignment="CENTER_LEFT" maxWidth="800.0" spacing="15.0" style="-fx-border-color: black; -fx-border-width: 0.5; -fx-border-radius: 10; -fx-background-color: CAF1DE;">
-                            <children>
-                                <VBox>
-                                    <children>
-                                        <Label text="Recent Requests" textFill="#2c3e50">
-                                            <font>
-                                                <Font name="System Bold" size="28.0" />
-                                            </font>
-                                        </Label>
-                                        <Label text="Urgent blood donation appeals" textFill="#7f8c8d">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Label>
-                                    </children>
-                                </VBox>
-                                <Pane HBox.hgrow="ALWAYS" />
-                                <!-- Search 1: Location -->
-                                <TextField promptText="Search Location..." styleClass="search-field" stylesheets="@styles.css" />
-                                <!-- Search 2: Blood Group -->
-                                <TextField promptText="Blood Group..." styleClass="search-field" stylesheets="@styles.css" />
-                            </children>
-                            <VBox.margin>
-                                <Insets bottom="10.0" />
-                            </VBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" left="10.0" right="5.0" />
-                     </padding>
-                        </HBox>
-
-
 
                     </children>
                 </VBox>
             </content>
         </ScrollPane>
+        </VBox>
     </center>
 </BorderPane>

@@ -215,10 +215,15 @@ public class Dashboard_Controller implements Initializable {
 
     @FXML
     void RequestBlood(ActionEvent event)throws Exception{
+        if(chkLogin.isLoggedIn()) {
             Parent root = FXMLLoader.load(getClass().getResource("CreatePost.fxml"));
             Stage stage = (Stage) btnRequestBlood.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
+        }
+        else{
+            chkLogin.alert();
+        }
     }
 
 
