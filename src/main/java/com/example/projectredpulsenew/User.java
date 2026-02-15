@@ -16,6 +16,12 @@ public class User {
     private String nidFrontPath;
     private String nidBackPath;
 
+    // ================= NEW FIELDS =================
+    private String lastDonateDate; // Format: yyyy-MM-dd
+    private String nextDonateDate; // Format: yyyy-MM-dd
+    private String eligibility;
+
+
 
     public User() {
     }
@@ -33,6 +39,7 @@ public class User {
         this.medicalPdfPath = medicalPdfPath;
         this.nidFrontPath = nidFrontPath;
         this.nidBackPath = nidBackPath;
+        this.eligibility = "Eligible";  // default value
     }
 
     // Getters & Setters
@@ -73,5 +80,32 @@ public class User {
 
     public String getNidBackPath() { return nidBackPath; }
     public void setNidBackPath(String nidBackPath) { this.nidBackPath = nidBackPath; }
+
+    // ================= NEW GETTERS & SETTERS =================
+    public String getLastDonateDate() {
+        return lastDonateDate;
+    }
+
+    public void setLastDonateDate(String lastDonateDate) {
+        this.lastDonateDate = lastDonateDate;
+    }
+
+    public String getNextDonateDate() {
+        return nextDonateDate;
+    }
+
+    public void setNextDonateDate(String nextDonateDate) {
+        this.nextDonateDate = nextDonateDate;
+    }
+
+
+    public String getEligibility() {
+        return eligibility;
+    }
+
+    public void setEligibility(String eligibility) {
+        this.eligibility = eligibility;
+    }
+
 }
 

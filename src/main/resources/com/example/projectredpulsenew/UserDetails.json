@@ -25,7 +25,10 @@
     "profilePicPath": "D:\\project-redpulse-new\\files\\apurbo.jpg",
     "medicalPdfPath": "D:\\project-redpulse-new\\files\\Medical Certificate.pdf",
     "nidFrontPath": "D:\\project-redpulse-new\\files\\NID front 3.png",
-    "nidBackPath": "D:\\project-redpulse-new\\files\\NID back 3.png"
+    "nidBackPath": "D:\\project-redpulse-new\\files\\NID back 3.png",
+    "lastDonateDate": "2025-12-02",
+    "nextDonateDate": "2026-04-02",
+    "eligibility": "Not Eligible"
   },
   {
     "name": "Mahmudul Hasa",
@@ -39,7 +42,9 @@
     "profilePicPath": "D:\\project-redpulse-new\\files\\Abin.jpg",
     "medicalPdfPath": "D:\\project-redpulse-new\\files\\Medical Certificate.pdf",
     "nidFrontPath": "D:\\project-redpulse-new\\files\\Id front.png",
-    "nidBackPath": "D:\\project-redpulse-new\\files\\Id back.png"
+    "nidBackPath": "D:\\project-redpulse-new\\files\\Id back.png",
+    "lastDonateDate": "2026-01-05",
+    "eligibility": "Not Eligible"
   },
   {
     "name": "Muaj",

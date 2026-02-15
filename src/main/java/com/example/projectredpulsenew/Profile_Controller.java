@@ -1,11 +1,14 @@
 package com.example.projectredpulsenew;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,6 +18,26 @@ import javafx.stage.Stage;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+
+
+
+
+import java.time.format.DateTimeFormatter;
+
+import com.google.gson.reflect.TypeToken;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.Reader;
+import java.io.Writer;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+
+
 
 /*
 ==========================================================
@@ -80,9 +103,16 @@ public class Profile_Controller {
 
     @FXML private Button btnEditProfile, btnUpdatePhoto, btnUpdateDocuments;
 
+    // ================= নতুন ডেট সেকশনের জন্য ভেরিয়েবল =================
+    @FXML private Label lblLastDonateDate;      // শেষ ডোনেশনের তারিখ দেখানোর জন্য
+    @FXML private Label lblNextEligibleDate;    // পরবর্তী এলিজিবল তারিখ দেখানোর জন্য
+    @FXML private Label lblEligibilityStatus;   // এলিজিবল নাকি আন-এলিজিবল লেবেল
+    @FXML private DatePicker dpHidden;          // লুকানো ডেটপিকার
+    @FXML private Button btnPickDate;           // ডেটপিকার ওপেন করার বাটন
+
     // Default profile image if user has no image
-    private final String DEFAULT_IMAGE_PATH =
-            "D:\\project-redpulse-new\\files\\default.jpg";
+    private final String DEFAULT_IMAGE_PATH = "D:\\project-redpulse-new\\files\\default.jpg";
+    private final String USER_FILE_PATH = "D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\UserDetails.json"; // ফাইলের নাম
 
 
     // ======================================================
@@ -93,6 +123,20 @@ public class Profile_Controller {
     @FXML
     public void initialize() {
         loadUserData();   // Load current logged-in user data
+
+        // ২. ডেটপিকারের লিসেনার যোগ করা
+        // যখনই ইউজার ডেট সিলেক্ট করবে, এই কোডটি রান হবে
+        dpHidden.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                updateDonationDate(newValue);
+            }
+        });
+    }
+
+    // ================= ডেটপিকার পপ-আপ ওপেন করা =================
+    @FXML
+    void openDatePicker(ActionEvent event) {
+        dpHidden.show(); // লুকানো ক্যালেন্ডারটি ওপেন হবে
     }
 
 
@@ -134,6 +178,119 @@ public class Profile_Controller {
 
         // Set PDF open action
         btnMedicalPdf.setOnAction(e -> openPdf(user.getMedicalPdfPath()));
+
+
+        // --- নতুন: ডোনেশন ডেট চেক করা ---
+        if (user.getLastDonateDate() != null && !user.getLastDonateDate().isEmpty()) {
+            try {
+                // স্ট্রিং থেকে LocalDate এ কনভার্ট করা
+                LocalDate lastDate = LocalDate.parse(user.getLastDonateDate());
+
+                // ক্যালকুলেশন এবং UI আপডেট করা
+                calculateAndShowDates(lastDate);
+
+            } catch (Exception e) {
+                System.out.println("Date parse error: " + e.getMessage());
+                setEligibilityUI(true); // এরর হলে বাই ডিফল্ট এলিজিবল
+            }
+        } else {
+            // যদি ইউজার আগে কখনো ডেট সেট না করে থাকে
+            lblLastDonateDate.setText("Not Set");
+            lblNextEligibleDate.setText("Available Now");
+            setEligibilityUI(true);
+        }
+
+    }
+
+    // ================= ডেট আপডেট এবং সেভ করার লজিক =================
+    private void updateDonationDate(LocalDate date) {
+        // ১. ইউজার অবজেক্ট আপডেট করা
+        User user = LoginDetails.getUser();
+        user.setLastDonateDate(date.toString());
+
+        // ২. UI তে তারিখ এবং স্ট্যাটাস আপডেট করা
+        calculateAndShowDates(date);
+
+        // ৩. JSON ফাইলে পার্মানেন্টলি সেভ করা
+        saveUserToJson(user);
+    }
+
+    // ================= তারিখ হিসাব এবং লেবেল শো করা =================
+    private void calculateAndShowDates(LocalDate lastDate) {
+        // লাস্ট ডেট শো করা
+        lblLastDonateDate.setText(lastDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
+
+        // ৪ মাস যোগ করে নেক্সট ডেট বের করা
+        LocalDate nextDate = lastDate.plusMonths(4);
+        lblNextEligibleDate.setText(nextDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
+
+        User user = LoginDetails.getUser();
+        user.setNextDonateDate(nextDate.toString());
+
+        // আজকের তারিখের সাথে তুলনা করা
+        // যদি আজ >= নেক্সট ডেট হয়, তাহলে এলিজিবল
+        boolean isEligible = LocalDate.now().isAfter(nextDate) || LocalDate.now().equals(nextDate);
+
+        // কালার এবং টেক্সট সেট করা
+        setEligibilityUI(isEligible);
+    }
+
+    // ================= এলিজিবিলিটি লেবেল ডিজাইন চেঞ্জ =================
+    private void setEligibilityUI(boolean isEligible) {
+        User user = LoginDetails.getUser();
+        if (isEligible) {
+            lblEligibilityStatus.setText("Eligible for Donation");
+            // সবুজ ব্যাকগ্রাউন্ড
+            lblEligibilityStatus.setStyle("-fx-background-color: #D1FAE5; -fx-text-fill: #065F46; -fx-background-radius: 15; -fx-padding: 5 15;");
+            user.setEligibility("Eligible");
+        } else {
+            lblEligibilityStatus.setText("Not Eligible");
+            // লাল ব্যাকগ্রাউন্ড
+            lblEligibilityStatus.setStyle("-fx-background-color: #FEE2E2; -fx-text-fill: #991B1B; -fx-background-radius: 15; -fx-padding: 5 15;");
+            user.setEligibility("Not Eligible");
+        }
+    }
+
+    // ================= JSON ফাইলে সেভ করা (GSON ব্যবহার করে) =================
+    private void saveUserToJson(User updatedUser) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        List<User> userList = new ArrayList<>();
+
+        // ১. ফাইল থেকে আগের সব ইউজার পড়া
+        try (Reader reader = new FileReader(USER_FILE_PATH)) {
+            Type userListType = new TypeToken<ArrayList<User>>(){}.getType();
+            userList = gson.fromJson(reader, userListType);
+            if (userList == null) userList = new ArrayList<>();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found, creating new.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        // ২. নির্দিষ্ট ইউজারকে খুঁজে বের করে আপডেট করা
+        boolean found = false;
+        for (int i = 0; i < userList.size(); i++) {
+            // ইমেইল দিয়ে চেক করা হচ্ছে (ইউনিক আইডি হিসেবে)
+            if (userList.get(i).getEmail().equals(updatedUser.getEmail())) {
+                userList.set(i, updatedUser); // লিস্ট আপডেট করা হলো
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("User not found in JSON list!");
+            return;
+        }
+
+        // ৩. ফাইল আবার রাইট করা (সেভ)
+        try (Writer writer = new FileWriter(USER_FILE_PATH)) {
+            gson.toJson(userList, writer);
+            System.out.println("Donation date saved successfully to JSON.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
