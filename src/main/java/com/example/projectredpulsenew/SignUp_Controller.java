@@ -49,6 +49,8 @@ public class SignUp_Controller implements Initializable {
     // File references to store selected files
     private File profilePicFile, medicalPdfFile, nidFrontFile, nidBackFile;
 
+    private Runnable onSignUpSuccess;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Gender options
@@ -201,6 +203,11 @@ public class SignUp_Controller implements Initializable {
             // Save files paths
             saveUserToJson(newUser);
 
+
+            if (onSignUpSuccess != null) {
+                onSignUpSuccess.run();   // 🔥 Caller page refresh হবে
+            }
+
             Stage stage = (Stage) signupBtn.getScene().getWindow();
             stage.close();
 
@@ -227,5 +234,10 @@ public class SignUp_Controller implements Initializable {
     void handleCancel(ActionEvent event) {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
+    }
+
+
+    public void setOnSignUpSuccess(Runnable onLoginSuccess) {
+        this.onSignUpSuccess = onLoginSuccess;
     }
 }

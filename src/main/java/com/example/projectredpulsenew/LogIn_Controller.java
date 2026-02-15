@@ -37,6 +37,8 @@ public class LogIn_Controller {
     @FXML
     private Label loginMessage;
 
+    private Runnable onLoginSuccess;
+
 
 
 
@@ -68,20 +70,25 @@ public class LogIn_Controller {
             loginMessage.setStyle("-fx-text-fill: green;");
             chkLogin.setlogin();
             try {
-                // 1️⃣ Get popup stage
-                Stage popupStage = (Stage) loginBtn.getScene().getWindow();
+//                // 1️⃣ Get popup stage
+//                Stage popupStage = (Stage) loginBtn.getScene().getWindow();
+//
+//                // 2️⃣ Get main (owner) stage
+//                Stage mainStage = (Stage) popupStage.getOwner();
+//
+//                // 3️⃣ Load Newsfeed
+//                Parent root = FXMLLoader.load(getClass().getResource("Newsfeed.fxml"));
+//
+//                // 4️⃣ Set scene to main window
+//                mainStage.setScene(new Scene(root));
+//                mainStage.show();
 
-                // 2️⃣ Get main (owner) stage
-                Stage mainStage = (Stage) popupStage.getOwner();
-
-                // 3️⃣ Load Newsfeed
-                Parent root = FXMLLoader.load(getClass().getResource("Newsfeed.fxml"));
-
-                // 4️⃣ Set scene to main window
-                mainStage.setScene(new Scene(root));
-                mainStage.show();
+                if (onLoginSuccess != null) {
+                    onLoginSuccess.run();   // 🔥 Caller page refresh হবে
+                }
 
                 // 5️⃣ Close popup
+                Stage popupStage = (Stage) loginBtn.getScene().getWindow();
                 popupStage.close();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -131,5 +138,10 @@ public class LogIn_Controller {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void setOnLoginSuccess(Runnable onLoginSuccess) {
+        this.onLoginSuccess = onLoginSuccess;
     }
 }

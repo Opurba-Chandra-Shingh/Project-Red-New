@@ -516,6 +516,12 @@ public class Newsfeed_Controller implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("LogIn.fxml"));
             Parent root = loader.load();
 
+            // 🔥 Controller instance নাও
+            LogIn_Controller controller = loader.getController();
+
+            // 🔥 এখানে বলছি login success হলে কী হবে
+            controller.setOnLoginSuccess(() -> ButtonsVisibility());
+
             Stage popupStage = new Stage();
             popupStage.setScene(new Scene(root));
             popupStage.setTitle("Log in");
@@ -536,6 +542,12 @@ public class Newsfeed_Controller implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
             Parent root = loader.load();
+
+            // 🔥 Controller instance নাও
+            SignUp_Controller controller = loader.getController();
+
+            // 🔥 এখানে বলছি login success হলে কী হবে
+            controller.setOnSignUpSuccess(() -> ButtonsVisibility());
 
             Stage popupStage = new Stage();
             popupStage.setScene(new Scene(root));
