@@ -20,6 +20,14 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.FileReader;
+import java.io.Reader;
+import java.lang.reflect.Type;
+import java.util.List;
+
+
 public class Dashboard_Controller implements Initializable {
 
     @FXML
@@ -34,6 +42,8 @@ public class Dashboard_Controller implements Initializable {
 
     @FXML private VBox interestedDonorsContainer, availableDonorsContainer;
 
+    @FXML private Label lblAvailableDonorsCount, lblRequestCount, lblTotalDonorCount, lblWelcome;
+
 
 
 
@@ -45,61 +55,109 @@ public class Dashboard_Controller implements Initializable {
 
         ButtonsVisibility();
         //---------------------------------------------------------------------------------
-        // 1. Load Chart Data
-        ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList(
-                new PieChart.Data("Completed Donations", 65),
-                new PieChart.Data("Pending Requests", 25),
-                new PieChart.Data("Cancelled", 10)
-        );
-        donationPieChart.setData(pieData);
-
-        // 2. Load Dummy Lists (Replace with real data from JSON/Database)
-        loadInterestedDonors();
-        loadAvailableDonors();
+        loadAvailableDonorsFromJson();
+        loadTotalRequestsFromJson();
+        updateWelcome();
     }
 
 
-// Helper to create list rows programmatically
-private HBox createListItem(String name, String blood, String phone, String district, String actionText) {
-    HBox row = new HBox();
-    row.setAlignment(Pos.CENTER_LEFT);
-    row.getStyleClass().add("list-item");
-    row.setSpacing(10);
+    private void loadAvailableDonorsFromJson() {
 
-    Label lblName = new Label(name); lblName.setPrefWidth(200);
-    Label lblBlood = new Label(blood); lblBlood.setPrefWidth(100); lblBlood.setStyle("-fx-font-weight: bold; -fx-text-fill: #D32F2F;");
-    Label lblPhone = new Label(phone); lblPhone.setPrefWidth(150);
-    Label lblDist = new Label(district); lblDist.setPrefWidth(150);
+        availableDonorsContainer.getChildren().clear();
+        int availableDonorCount = 0;
 
-    Button actionBtn = new Button(actionText);
-    actionBtn.setStyle("-fx-background-color: #E3F2FD; -fx-text-fill: #1976D2; -fx-background-radius: 15; -fx-font-size: 11px;");
+        try {
 
-    row.getChildren().addAll(lblName, lblBlood, lblPhone, lblDist, actionBtn);
-    return row;
-}
+            Gson gson = new Gson();
+            Reader reader = new FileReader("D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\UserDetails.json");
 
+            Type listType = new TypeToken<List<User>>() {}.getType();
+            List<User> users = gson.fromJson(reader, listType);
 
-private void loadAvailableDonors() {
-    for (int i = 0; i < 5; i++) {
-        availableDonorsContainer.getChildren().add(
-                createListItem("Karim Hasan", "A-", "01812345678", "Sylhet", "Available")
-        );
+            for (User user : users) {
+
+                if ("Eligible".equalsIgnoreCase(user.getEligibility())) {
+
+                    HBox row = createAvailableUserRow(user);
+                    availableDonorsContainer.getChildren().add(row);
+
+                    availableDonorCount++;  // Count increase
+                }
+            }
+            lblAvailableDonorsCount.setText(String.valueOf(availableDonorCount));
+
+            int totalDonorCount = users.size(); // সব user
+            lblTotalDonorCount.setText(String.valueOf(totalDonorCount));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-}
 
-private void loadInterestedDonors() {
-    // Add dummy rows
-    for (int i = 0; i < 5; i++) {
-        interestedDonorsContainer.getChildren().add(
-                createListItem("Rahim Uddin", "O+", "01712345678", "Dhaka", "Call")
-        );
+
+    private HBox createAvailableUserRow(User user) {
+
+        HBox row = new HBox(10);
+        row.setAlignment(Pos.CENTER_LEFT);
+        row.getStyleClass().add("list-item");
+
+        Label name = new Label(user.getName());
+        name.setPrefWidth(200);
+
+        Label blood = new Label(user.getBloodGroup());
+        blood.setPrefWidth(100);
+        blood.setStyle("-fx-font-weight: bold; -fx-text-fill: #2E7D32;");
+
+        Label phone = new Label(user.getNumber());
+        phone.setPrefWidth(150);
+
+        Label district = new Label(user.getDistrict());
+        district.setPrefWidth(150);
+
+        Label status = new Label("Available");
+        status.setStyle("-fx-background-color:#E8F5E9; -fx-text-fill:#2E7D32; -fx-padding:4 10; -fx-background-radius:15;");
+
+        row.getChildren().addAll(name, blood, phone, district, status);
+
+        return row;
     }
-}
+
+
+    private void loadTotalRequestsFromJson() {
+        try {
+            Gson gson = new Gson();
+            Reader reader = new FileReader(
+                    "D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\PostDetails.json"
+            );
+
+            Type listType = new TypeToken<List<PostDetails>>() {}.getType();
+            List<PostDetails> posts = gson.fromJson(reader, listType);
+
+            // ✅ Total requests = total number of posts
+            int totalRequests = posts != null ? posts.size() : 0;
+
+            lblRequestCount.setText(String.valueOf(totalRequests));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            lblRequestCount.setText("0");
+        }
+    }
+
+    public void updateWelcome(){
+        User loggedinUser = LoginDetails.getUser();
+
+        if (loggedinUser != null && loggedinUser.getName() != null && !loggedinUser.getName().isEmpty()) {
+            lblWelcome.setText("Welcome back, " + loggedinUser.getName() + "!");
+        } else {
+            lblWelcome.setText("Welcome back!");
+        }
+    }
 
 
 
 
-//    Sidebar Buttons
+    //    Sidebar Buttons
     @FXML
     void DashtoNews(ActionEvent event)throws Exception{
 
@@ -232,7 +290,10 @@ private void loadInterestedDonors() {
             LogIn_Controller controller = loader.getController();
 
             // 🔥 এখানে বলছি login success হলে কী হবে
-            controller.setOnLoginSuccess(() -> ButtonsVisibility());
+            controller.setOnLoginSuccess(() ->{
+                ButtonsVisibility();
+                updateWelcome();
+            });
 
 
             Stage popupStage = new Stage();

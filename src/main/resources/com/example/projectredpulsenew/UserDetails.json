@@ -26,9 +26,9 @@
     "medicalPdfPath": "D:\\project-redpulse-new\\files\\Medical Certificate.pdf",
     "nidFrontPath": "D:\\project-redpulse-new\\files\\NID front 3.png",
     "nidBackPath": "D:\\project-redpulse-new\\files\\NID back 3.png",
-    "lastDonateDate": "2025-12-02",
-    "nextDonateDate": "2026-04-02",
-    "eligibility": "Not Eligible"
+    "lastDonateDate": "2026-01-07",
+    "nextDonateDate": "2026-05-07",
+    "eligibility": "Eligible"
   },
   {
     "name": "Mahmudul Hasa",
@@ -44,13 +44,13 @@
     "nidFrontPath": "D:\\project-redpulse-new\\files\\Id front.png",
     "nidBackPath": "D:\\project-redpulse-new\\files\\Id back.png",
     "lastDonateDate": "2026-01-05",
-    "eligibility": "Not Eligible"
+    "eligibility": "Eligible"
   },
   {
     "name": "Muaj",
     "age": "23",
     "gender": "Male",
-    "bloodGroup": "O+",
+    "bloodGroup": "A+",
     "district": "Sylhet",
     "email": "Muaj@",
     "password": "muaj",
@@ -58,7 +58,8 @@
     "profilePicPath": "D:\\project-redpulse-new\\files\\muaj.jpg",
     "medicalPdfPath": "D:\\project-redpulse-new\\files\\Medical Certificate.pdf",
     "nidFrontPath": "D:\\project-redpulse-new\\files\\Id front.png",
-    "nidBackPath": "D:\\project-redpulse-new\\files\\Id back.png"
+    "nidBackPath": "D:\\project-redpulse-new\\files\\Id back.png",
+    "eligibility": "Eligible"
   },
   {
     "name": "Sojib",
@@ -72,7 +73,8 @@
     "profilePicPath": "D:\\project-redpulse-new\\files\\Sojib.jpg",
     "medicalPdfPath": "D:\\project-redpulse-new\\files\\Medical Certificate.pdf",
     "nidFrontPath": "D:\\project-redpulse-new\\files\\Id front.png",
-    "nidBackPath": "D:\\project-redpulse-new\\files\\Id back.png"
+    "nidBackPath": "D:\\project-redpulse-new\\files\\Id back.png",
+    "eligibility": "Not Eligible"
   },
   {
     "name": "Nahid Hasan Nahid",
@@ -86,6 +88,7 @@
     "profilePicPath": "D:\\project-redpulse-new\\files\\Nahid.jpg",
     "medicalPdfPath": "D:\\project-redpulse-new\\files\\Medical Certificate.pdf",
     "nidFrontPath": "D:\\project-redpulse-new\\files\\Id front.png",
-    "nidBackPath": "D:\\project-redpulse-new\\files\\Id back.png"
+    "nidBackPath": "D:\\project-redpulse-new\\files\\Id back.png",
+    "eligibility": "Not Eligible"
   }
 ]

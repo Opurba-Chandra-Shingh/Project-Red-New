@@ -412,11 +412,6 @@
                         </children>
                     </VBox>
                     <Pane HBox.hgrow="ALWAYS" />
-                    <Label text="Date: 25 Jan, 2025" textFill="#95a5a6">
-                        <font>
-                            <Font name="System Bold" size="14.0" />
-                        </font>
-                    </Label>
                 </children>
             </HBox>
 
@@ -432,11 +427,11 @@
                             <!-- 2. SLIDABLE BANNER -->
                             <StackPane fx:id="bannerContainer" prefHeight="220.0" styleClass="banner-container">
                                 <children>
-                                    <ImageView fx:id="bannerImage" fitHeight="220.0" fitWidth="1050.0" pickOnBounds="true" preserveRatio="false">
-                                        <!-- Placeholder Image (Replace with real logic) -->
-                                        <!--                                        <image>-->
-                                        <!--                                            <Image url="@img/banner1.jpg" />-->
-                                        <!--                                        </image>-->
+                                    <ImageView fx:id="bannerImage" styleClass="banner-Image" fitHeight="220.0" fitWidth="1050.0" pickOnBounds="true" preserveRatio="false">
+<!--                                         Placeholder Image (Replace with real logic) -->
+                                        <image>
+                                            <Image url="@img/Banner-1.png" />
+                                        </image>
                                     </ImageView>
                                     <VBox alignment="CENTER_LEFT" spacing="10.0" styleClass="banner-overlay">
                                         <children>
@@ -450,7 +445,6 @@
                                                     <Font size="16.0" />
                                                 </font>
                                             </Label>
-                                            <Button styleClass="banner-btn" text="Learn More" />
                                         </children>
                                         <padding>
                                             <Insets left="50.0" />
@@ -466,7 +460,7 @@
                                     <VBox styleClass="stat-card, card-blue" HBox.hgrow="ALWAYS">
                                         <children>
                                             <Label text="Total Donors" textFill="WHITE" opacity="0.9" />
-                                            <Label fx:id="lblDonorCount" text="1,250" textFill="WHITE">
+                                            <Label fx:id="lblTotalDonorCount" text="1,250" textFill="WHITE">
                                                 <font>
                                                     <Font name="System Bold" size="36.0" />
                                                 </font>
@@ -492,8 +486,8 @@
                                     <!-- Card 3: Donations -->
                                     <VBox styleClass="stat-card, card-green" HBox.hgrow="ALWAYS">
                                         <children>
-                                            <Label text="Donations Made" textFill="WHITE" opacity="0.9" />
-                                            <Label fx:id="lblDonationMadeCount" text="890" textFill="WHITE">
+                                            <Label text="Total Available Donors" textFill="WHITE" opacity="0.9" />
+                                            <Label fx:id="lblAvailableDonorsCount" text="890" textFill="WHITE">
                                                 <font>
                                                     <Font name="System Bold" size="36.0" />
                                                 </font>
@@ -503,55 +497,20 @@
                                 </children>
                             </HBox>
 
-                            <!-- 4. PIE CHART SECTION -->
-                            <VBox styleClass="content-card">
-                                <children>
-                                    <Label styleClass="section-title" text="Donation Statistics" />
-                                    <PieChart fx:id="donationPieChart" prefHeight="300.0" title="Donations vs Requests" />
-                                </children>
-                            </VBox>
 
-                            <!-- 5. INTERESTED DONOR LIST -->
+
+                            <!-- 5. Available DONOR LIST -->
                             <VBox spacing="15.0" styleClass="content-card">
                                 <children>
+
                                     <HBox alignment="CENTER_LEFT">
                                         <children>
-                                            <Label styleClass="section-title" text="Interested Donors" />
+                                            <Label styleClass="section-title" text="Available Donors List" />
                                             <Pane HBox.hgrow="ALWAYS" />
-                                            <Button styleClass="view-all-btn" text="View All" />
                                         </children>
                                     </HBox>
 
-                                    <!-- List Header -->
-                                    <HBox styleClass="list-header">
-                                        <children>
-                                            <Label prefWidth="200.0" text="Name" />
-                                            <Label prefWidth="100.0" text="Blood Group" />
-                                            <Label prefWidth="150.0" text="Phone" />
-                                            <Label prefWidth="150.0" text="District" />
-                                            <Label text="Action" />
-                                        </children>
-                                    </HBox>
-
-                                    <!-- List Container (Dynamic Content) -->
-                                    <VBox fx:id="interestedDonorsContainer" spacing="10.0">
-                                        <!-- Items will be added here via Controller -->
-                                    </VBox>
-                                </children>
-                            </VBox>
-
-                            <!-- 6. AVAILABLE DONOR LIST -->
-                            <VBox spacing="15.0" styleClass="content-card">
-                                <children>
-                                    <HBox alignment="CENTER_LEFT">
-                                        <children>
-                                            <Label styleClass="section-title" text="Available Donors (Upcoming)" />
-                                            <Pane HBox.hgrow="ALWAYS" />
-                                            <Button styleClass="view-all-btn" text="View All" />
-                                        </children>
-                                    </HBox>
-
-                                    <!-- List Header -->
+                                    <!-- Header -->
                                     <HBox styleClass="list-header">
                                         <children>
                                             <Label prefWidth="200.0" text="Name" />
@@ -562,12 +521,69 @@
                                         </children>
                                     </HBox>
 
-                                    <!-- List Container -->
-                                    <VBox fx:id="availableDonorsContainer" spacing="10.0">
-                                        <!-- Items will be added here via Controller -->
-                                    </VBox>
+                                    <!-- ScrollPane Added -->
+                                    <ScrollPane fitToWidth="true"
+                                                prefHeight="250"
+                                                vbarPolicy="AS_NEEDED"
+                                                hbarPolicy="NEVER">
+
+                                        <content>
+                                            <VBox fx:id="availableDonorsContainer" spacing="10.0">
+                                                <padding>
+                                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                </padding>
+                                            </VBox>
+                                        </content>
+
+                                    </ScrollPane>
+
                                 </children>
                             </VBox>
+
+
+
+<!--                            &lt;!&ndash; 5. INTERESTED DONOR LIST &ndash;&gt;-->
+<!--                            <VBox spacing="15.0" styleClass="content-card">-->
+<!--                                <children>-->
+
+<!--                                    <HBox alignment="CENTER_LEFT">-->
+<!--                                        <children>-->
+<!--                                            <Label styleClass="section-title" text="Interested Donors" />-->
+<!--                                            <Pane HBox.hgrow="ALWAYS" />-->
+<!--                                            <Button styleClass="view-all-btn" text="View All" />-->
+<!--                                        </children>-->
+<!--                                    </HBox>-->
+
+<!--                                    &lt;!&ndash; Header &ndash;&gt;-->
+<!--                                    <HBox styleClass="list-header">-->
+<!--                                        <children>-->
+<!--                                            <Label prefWidth="200.0" text="Name" />-->
+<!--                                            <Label prefWidth="100.0" text="Blood Group" />-->
+<!--                                            <Label prefWidth="150.0" text="Phone" />-->
+<!--                                            <Label prefWidth="150.0" text="District" />-->
+<!--                                            <Label text="Action" />-->
+<!--                                        </children>-->
+<!--                                    </HBox>-->
+
+<!--                                    &lt;!&ndash; ScrollPane Added &ndash;&gt;-->
+<!--                                    <ScrollPane fitToWidth="true"-->
+<!--                                                prefHeight="250"-->
+<!--                                                vbarPolicy="AS_NEEDED"-->
+<!--                                                hbarPolicy="NEVER">-->
+
+<!--                                        <content>-->
+<!--                                            <VBox fx:id="interestedDonorsContainer" spacing="10.0">-->
+<!--                                                <padding>-->
+<!--                                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />-->
+<!--                                                </padding>-->
+<!--                                            </VBox>-->
+<!--                                        </content>-->
+
+<!--                                    </ScrollPane>-->
+
+<!--                                </children>-->
+<!--                            </VBox>-->
+
 
                         </children>
                     </VBox>
