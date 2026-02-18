@@ -53,10 +53,16 @@ public class Settings_Controller {
     private Button btnDocEdit;
 
     @FXML
+    private Button btnLogOutPage;;
+
+    @FXML
     private Button btnChangePass;
 
     @FXML
     private Button btnSettings;
+
+    @FXML
+    private Button btnAdminPannel;
 
     @FXML
     private VBox sidebar;
@@ -72,6 +78,24 @@ public class Settings_Controller {
 
     @FXML
     private HBox topBarRight;
+
+    @FXML
+    public void initialize() {
+
+        User currentUser = LoginDetails.getUser();
+
+        if(currentUser != null &&
+                (currentUser.isAdmin() || currentUser.isModerator())) {
+
+            btnAdminPannel.setVisible(true);
+            btnAdminPannel.setManaged(true);   // layout space নিবে
+
+        } else {
+
+            btnAdminPannel.setVisible(false);
+            btnAdminPannel.setManaged(false);  // layout space নিবে না
+        }
+    }
 
 
     @FXML
@@ -207,6 +231,14 @@ public class Settings_Controller {
         }
     }
 
+    @FXML
+    void gotoAdminPanel(ActionEvent event)throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("AdminPanel.fxml"));
+        Stage stage = (Stage) btnAdminPannel.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
 
 
     @FXML
@@ -215,6 +247,15 @@ public class Settings_Controller {
 
         Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
         Stage stage = (Stage) btnLogOut.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+    @FXML
+    void logout_stng_page(ActionEvent event) throws Exception {
+        chkLogin.setlogout();
+
+        Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
+        Stage stage = (Stage) btnLogOutPage.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
     }

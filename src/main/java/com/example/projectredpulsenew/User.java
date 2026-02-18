@@ -20,6 +20,9 @@ public class User {
     private String lastDonateDate; // Format: yyyy-MM-dd
     private String nextDonateDate; // Format: yyyy-MM-dd
     private String eligibility;
+    private boolean isAdmin = false;
+    private boolean isModerator = false;
+
 
 
 
@@ -40,6 +43,8 @@ public class User {
         this.nidFrontPath = nidFrontPath;
         this.nidBackPath = nidBackPath;
         this.eligibility = "Eligible";  // default value
+        this.isAdmin = false;
+        this.isModerator = false;
     }
 
     // Getters & Setters
@@ -85,27 +90,25 @@ public class User {
     public String getLastDonateDate() {
         return lastDonateDate;
     }
-
     public void setLastDonateDate(String lastDonateDate) {
         this.lastDonateDate = lastDonateDate;
     }
 
-    public String getNextDonateDate() {
-        return nextDonateDate;
-    }
-
-    public void setNextDonateDate(String nextDonateDate) {
-        this.nextDonateDate = nextDonateDate;
-    }
-
+    public String getNextDonateDate() {return nextDonateDate;}
+    public void setNextDonateDate(String nextDonateDate) {this.nextDonateDate = nextDonateDate;}
 
     public String getEligibility() {
         return eligibility;
     }
-
     public void setEligibility(String eligibility) {
         this.eligibility = eligibility;
     }
+
+    public boolean isAdmin() { return isAdmin; }
+    public void setAdmin(boolean admin) { this.isAdmin = admin; }
+
+    public boolean isModerator() { return isModerator; }
+    public void setModerator(boolean isModerator) { this.isModerator = isModerator; }
 
 }
 

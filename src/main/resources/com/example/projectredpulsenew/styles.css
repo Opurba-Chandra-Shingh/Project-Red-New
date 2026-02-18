@@ -259,6 +259,14 @@
     -fx-background-color: #ffebee;
 }
 
+.notice-label {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #1565c0;
+    -fx-padding: 10 15 10 15;
+    -fx-font-size: 13px;
+}
+
+
 
 /* --- Dashboard Dark Theme Styles --- */
 

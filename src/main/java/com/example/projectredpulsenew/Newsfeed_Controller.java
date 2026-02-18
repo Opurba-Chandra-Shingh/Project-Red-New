@@ -6,8 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -20,7 +19,6 @@ import com.google.gson.reflect.TypeToken;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Separator;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -254,7 +252,37 @@ public class Newsfeed_Controller implements Initializable {
         Label urgent = new Label("URGENT");
         urgent.getStyleClass().add("urgent-badge");
 
-        topRow.getChildren().addAll(avatar, nameBox, spacer, urgent);
+
+        // Done Button:---------------------------------------
+        Button btnDone = new Button("✔");
+        btnDone.getStyleClass().add("btn-outline");
+        btnDone.setStyle("-fx-font-size: 10px; -fx-padding: 3 8 3 8;");
+
+        User currentUser = LoginDetails.getUser();
+
+        // Only show button if logged user is post owner
+        if (currentUser != null &&
+                currentUser.getEmail().equals(post.getUserEmail()) && currentUser.getPassword().equals(post.getUserPassword())) {
+
+            btnDone.setOnAction(e -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText("Remove this post?");
+                alert.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        removePost(post);
+                        feedContainer.getChildren().remove(card);
+                    }
+                });
+
+            });
+
+        } else {
+            btnDone.setVisible(false);
+            btnDone.setManaged(false);
+        }
+        //--------------------------------------------------------
+
+        topRow.getChildren().addAll(avatar, nameBox, spacer, urgent, btnDone);
 
         // Separator
         Separator sep = new Separator();
@@ -520,7 +548,11 @@ public class Newsfeed_Controller implements Initializable {
             LogIn_Controller controller = loader.getController();
 
             // 🔥 এখানে বলছি login success হলে কী হবে
-            controller.setOnLoginSuccess(() -> ButtonsVisibility());
+            // 🔥 Login success হলে feed refresh
+            controller.setOnLoginSuccess(() -> {
+                ButtonsVisibility();
+                refreshFeed();
+            });
 
             Stage popupStage = new Stage();
             popupStage.setScene(new Scene(root));
@@ -576,7 +608,44 @@ public class Newsfeed_Controller implements Initializable {
     }
 
 
+    private void removePost(PostDetails postToRemove) {
 
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        List<PostDetails> posts = new ArrayList<>();
+
+        try {
+            File file = new File(POST_DETAILS_FILE);
+
+            if (file.exists() && file.length() > 0) {
+                Reader reader = new FileReader(file);
+                Type listType = new TypeToken<List<PostDetails>>(){}.getType();
+                List<PostDetails> existing = gson.fromJson(reader, listType);
+                if (existing != null) posts = existing;
+                reader.close();
+            }
+
+            // Remove post by matching unique fields
+            posts.removeIf(post ->
+                    post.getUserEmail().equals(postToRemove.getUserEmail()) &&
+                            post.getPatientName().equals(postToRemove.getPatientName()) &&
+                            post.getDateNeeded().equals(postToRemove.getDateNeeded())
+            );
+
+            Writer writer = new FileWriter(file);
+            gson.toJson(posts, writer);
+            writer.close();
+
+            System.out.println("Post removed successfully!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void refreshFeed() {
+        feedContainer.getChildren().clear();
+        loadPosts();
+    }
 
 
 }
