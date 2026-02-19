@@ -13,6 +13,7 @@ public class PostDetails {
     private String location;
     private String dateNeeded;
     private String phone;
+    private String district;
     private String notes;
 
     // Default constructor for Gson
@@ -21,7 +22,7 @@ public class PostDetails {
     // Constructor with all fields
     public PostDetails(String userName, String userEmail, String userPassword, String UserProfilePic, String patientName, String bloodGroup,
                        String units, String location, String dateNeeded,
-                       String phone, String notes) {
+                       String phone, String district, String notes) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
@@ -32,6 +33,7 @@ public class PostDetails {
         this.location = location;
         this.dateNeeded = dateNeeded;
         this.phone = phone;
+        this.district = district;
         this.notes = notes;
     }
 
@@ -44,6 +46,10 @@ public class PostDetails {
     public String getUserProfilePic() { return UserProfilePic != null && !UserProfilePic.isEmpty() ? UserProfilePic : "N/A"; }
 
     public String getPatientName() {return patientName != null && !patientName.isEmpty() ? patientName : "N/A";}
+
+    public String getDistrict() {
+        return district != null && !district.isEmpty() ? district : "N/A";
+    }
 
     public String getBloodGroup() {
         return bloodGroup != null && !bloodGroup.isEmpty() ? bloodGroup : "N/A";
@@ -92,6 +98,10 @@ public class PostDetails {
 
     public void setBloodGroup(String bloodGroup) {
         this.bloodGroup = bloodGroup;
+    }
+
+    public void setDistrict2(String district) {
+        this.district = district;
     }
 
     public void setUnits(String units) {

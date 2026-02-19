@@ -65,6 +65,9 @@ public class Settings_Controller {
     private Button btnAdminPannel;
 
     @FXML
+    private Button btnDeleteAccount;
+
+    @FXML
     private VBox sidebar;
 
     @FXML
@@ -238,6 +241,59 @@ public class Settings_Controller {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+    @FXML
+    void deleteAccount(ActionEvent event) {
+        User currentUser = LoginDetails.getUser();
+        if (currentUser == null) return;
+
+        // Step 1: Show confirmation dialog
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Account");
+        alert.setHeaderText("Are you sure you want to delete your account?");
+        alert.setContentText("This action cannot be undone.");
+
+        java.util.Optional<javafx.scene.control.ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == javafx.scene.control.ButtonType.OK) {
+
+            try {
+                // Step 2: Read existing users
+                java.io.File file = new java.io.File("D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\UserDetails.json");
+                java.util.List<User> users = new java.util.ArrayList<>();
+
+                if (file.exists()) {
+                    com.google.gson.Gson gson = new com.google.gson.Gson();
+                    java.io.FileReader reader = new java.io.FileReader(file);
+                    java.lang.reflect.Type userListType = new com.google.gson.reflect.TypeToken<java.util.List<User>>() {}.getType();
+                    users = gson.fromJson(reader, userListType);
+                    reader.close();
+                }
+
+                // Remove current user
+                users.removeIf(u -> u.getEmail().equals(currentUser.getEmail()));
+
+                // Write updated list back
+                com.google.gson.Gson gsonWriter = new com.google.gson.GsonBuilder().setPrettyPrinting().create();
+                java.io.FileWriter writer = new java.io.FileWriter(file);
+                gsonWriter.toJson(users, writer);
+                writer.flush();
+                writer.close();
+
+                // Step 3: Logout user
+                chkLogin.setlogout();
+
+                // Step 4: Redirect to Dashboard
+                Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
+                Stage stage = (Stage) btnDeleteAccount.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
 
 

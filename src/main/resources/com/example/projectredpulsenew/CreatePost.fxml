@@ -383,6 +383,19 @@
                                     </children>
                                 </VBox>
 
+                                <!-- District -->
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label styleClass="field-label" text="District" />
+                                        <ComboBox fx:id="districtField"
+                                                  maxWidth="1.7976931348623157E308"
+                                                  promptText="Select District"
+                                                  styleClass="combo-box-field">
+                                        </ComboBox>
+                                    </children>
+                                </VBox>
+
+
                                 <!-- Additional Notes -->
                                 <VBox spacing="5.0">
                                     <children>

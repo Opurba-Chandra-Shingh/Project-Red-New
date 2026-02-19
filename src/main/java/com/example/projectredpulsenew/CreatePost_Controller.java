@@ -1,8 +1,10 @@
 package com.example.projectredpulsenew;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -16,10 +18,12 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class CreatePost_Controller {
+public class CreatePost_Controller implements Initializable {
 
     @FXML private Label appNameLabel;
 
@@ -48,8 +52,28 @@ public class CreatePost_Controller {
     @FXML private TextField phoneField;
     @FXML private TextArea notesArea;
     @FXML private Button submitBtn;
+    @FXML private ComboBox<String> districtField;
 
     private final String filePath = System.getProperty("user.dir") + File.separator + "D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\PostDetails.json";
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        districtField.setItems(FXCollections.observableArrayList(
+                "Bagerhat", "Bandarban", "Barguna", "Barishal", "Bhola", "Bogura",
+                "Brahmanbaria", "Chandpur", "Chapainawabganj", "Chattogram", "Chuadanga",
+                "Cox's Bazar", "Cumilla", "Dhaka", "Dinajpur", "Faridpur", "Feni",
+                "Gaibandha", "Gazipur", "Gopalganj", "Habiganj", "Jamalpur", "Jashore",
+                "Jhalokati", "Jhenaidah", "Joypurhat", "Khagrachhari", "Khulna",
+                "Kishoreganj", "Kurigram", "Kushtia", "Lakshmipur", "Lalmonirhat",
+                "Madaripur", "Magura", "Manikganj", "Meherpur", "Moulvibazar",
+                "Munshiganj", "Mymensingh", "Naogaon", "Narail", "Narayanganj",
+                "Narsingdi", "Natore", "Netrokona", "Nilphamari", "Noakhali", "Pabna",
+                "Panchagarh", "Patuakhali", "Pirojpur", "Rajbari", "Rajshahi",
+                "Rangamati", "Rangpur", "Satkhira", "Shariatpur", "Sherpur",
+                "Sirajganj", "Sunamganj", "Sylhet", "Tangail", "Thakurgaon"
+        ));
+    }
 
     // ------------------- Navigation Buttons -------------------
 
@@ -150,24 +174,59 @@ public class CreatePost_Controller {
             String loc = locationField.getText();
             String date = dateNeededField.getValue() != null ? dateNeededField.getValue().toString() : "";
             String phone = phoneField.getText();
+            String district = districtField.getValue();
             String notes = notesArea.getText();
 
             // Validation
-            if (patient.isEmpty() || phone.isEmpty()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setContentText("Please fill required fields (Patient Name and Phone).");
-                alert.show();
+            if (patient.isEmpty()) {
+                showAlert("Error", "Please Enter Patient Name!");
+                return;
+            }
+            if (!isValidName(patient)) {
+                showAlert("Error", "Patient Name must contain only letters and spaces (3-50 chars).");
                 return;
             }
 
             if (blood == null || blood.isEmpty()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setContentText("Please select a blood group.");
-                alert.show();
+                showAlert("Error", "Please select a blood group.");
                 return;
             }
+
+            if (!isValidUnit(unit)) {
+                showAlert("Error", "Unit Needed must be a positive number.");
+                return;
+            }
+
+            if (!isValidLocation(loc)) {
+                showAlert("Error", "Hospital name must have at least 3 characters.");
+                return;
+            }
+
+            if (!isValidDate(dateNeededField)) {
+                showAlert("Error", "Please select a valid date (today or future).");
+                return;
+            }
+
+            if (phone.isEmpty()) {
+                showAlert("Error", "Please Enter Phone Number!");
+                return;
+            }
+            if (!isValidPhone(phone)) {
+                showAlert("Error", "Phone must be 11 digits, Bangladesh format (01XXXXXXXXX).");
+                return;
+            }
+
+            if (district == null || district.isEmpty()) {
+                showAlert("Error", "Please select a district.");
+                return;
+            }
+
+            if (!isValidNotes(notes)) {
+                showAlert("Error", "Notes cannot exceed 200 characters.");
+                return;
+            }
+
+
 
             // Get current user's name
             String currentUserName = "Anonymous";
@@ -199,6 +258,7 @@ public class CreatePost_Controller {
                     loc,
                     date,
                     phone,
+                    district,
                     notes
             );
 
@@ -236,8 +296,64 @@ public class CreatePost_Controller {
         locationField.clear();
         dateNeededField.setValue(null);
         phoneField.clear();
+        districtField.setValue(null);
         notesArea.clear();
     }
+
+    // ================= VALIDATION HELPERS =================
+    private boolean isValidName(String name) {
+        if (name == null) return false;
+
+        // Trim leading/trailing spaces
+        name = name.trim();
+
+        // Regex: Only letters and single spaces between words, 3-50 chars
+        String regex = "^[A-Za-z]+( [A-Za-z]+)*$";
+
+        return name.matches(regex) && name.length() >= 3 && name.length() <= 50;
+    }
+    private boolean isValidUnit(String unit) {
+        if (unit == null || unit.isEmpty()) return false;
+        try {
+            int u = Integer.parseInt(unit);
+            return u > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    private boolean isValidLocation(String loc) {
+        return loc != null && loc.length() >= 3;
+    }
+    private boolean isValidDate(DatePicker datePicker) {
+        if (datePicker.getValue() == null) return false;
+        return !datePicker.getValue().isBefore(java.time.LocalDate.now());
+    }
+    private boolean isValidNotes(String notes) {
+        return notes.length() <= 200;
+    }
+    private boolean isValidPhone(String phone) {
+        if (phone == null) return false;
+
+        // Remove leading/trailing spaces
+        phone = phone.trim();
+
+        // Bangladesh mobile number format: 01XXXXXXXXX (11 digits)
+        String regex = "^01[3-9]\\d{8}$";
+
+        return phone.matches(regex);
+    }
+
+
+
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 
     @FXML
     void logout_c(ActionEvent event) throws Exception {

@@ -181,13 +181,43 @@ public class SignUp_Controller implements Initializable {
 
             // ================= VALIDATION =================
             if (nameInput.isEmpty()) { showError("Please Enter your Name!"); return; }
+            if (!isValidName(nameInput)) {
+                showError("Name must contain only letters (min 3 characters).");
+                return;
+            }
+
             if (ageInput.isEmpty()) { showError("Please Enter your Age!"); return; }
+            if (!isValidAge(ageInput)) {
+                showError("Age must be between 18 - 65.");
+                return;
+            }
+
             if (genderInput == null || genderInput.isEmpty()) { showError("Please Select your Gender!"); return; }
             if (bloodInput == null || bloodInput.isEmpty()) { showError("Please Select your Blood Group!"); return; }
             if (districtInput == null || districtInput.isEmpty()) { showError("Please Enter your Address!"); return; }
+
             if (emailInput.isEmpty()) { showError("Please Enter a valid Email!"); return; }
+            if (!isValidEmail(emailInput)) {
+                showError("Invalid Email! Must be Gmail or Yahoo, no consecutive dots, valid TLD.");
+                return;
+            }
+            if (isEmailAlreadyExists(emailInput)) {
+                showError("Email already registered!");
+                return;
+            }
+
             if (numberInput.isEmpty()) { showError("Please Enter Phone Number!"); return; }
+            if (!isValidPhone(numberInput)) {
+                showError("Invalid Phone Number! Use 01XXXXXXXXX format.");
+                return;
+            }
+
             if (passwordInput == null || passwordInput.isEmpty()) { showError("Please enter a Valid Password!"); return; }
+            if (!isStrongPassword(passwordInput)) {
+                showError("Password must be 6+ chars with letters & numbers.");
+                return;
+            }
+
             if (confirmPasswordInput == null || confirmPasswordInput.isEmpty()) { showError("Please Write again to Confirm the Password!"); return; }
             if (!passwordInput.equals(confirmPasswordInput)) { showError("Passwords do not match!"); return; }
 
@@ -196,6 +226,12 @@ public class SignUp_Controller implements Initializable {
             if (medicalPdfFile == null) { showError("Please upload Medical Certificate!"); return; }
             if (nidFrontFile == null) { showError("Please upload NID Front Image!"); return; }
             if (nidBackFile == null) { showError("Please upload NID Back Image!"); return; }
+
+
+
+
+
+
 
             // ================= CREATE USER =================
             User newUser = new User(nameInput, ageInput, genderInput, bloodInput, districtInput, numberInput, emailInput, passwordInput, profilePicFile.getAbsolutePath(), medicalPdfFile.getAbsolutePath(), nidFrontFile.getAbsolutePath(), nidBackFile.getAbsolutePath());
@@ -221,6 +257,83 @@ public class SignUp_Controller implements Initializable {
             e.printStackTrace();
         }
     }
+
+    // ================= VALIDATION HELPERS =================
+    private boolean isValidName(String name) {
+        if (name == null) return false;
+
+        // Trim leading/trailing spaces
+        name = name.trim();
+
+        // Regex: Only letters and single spaces between words, 3-50 chars
+        String regex = "^[A-Za-z]+( [A-Za-z]+)*$";
+
+        return name.matches(regex) && name.length() >= 3 && name.length() <= 50;
+    }
+    private boolean isValidAge(String age) {
+        try {
+            int a = Integer.parseInt(age);
+            return a >= 18 && a <= 65;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    private boolean isValidEmail(String email) {
+        if (email == null || email.isEmpty()) return false;
+
+        // Regex explanation:
+        // ^[A-Za-z0-9]+([._%+-]?[A-Za-z0-9]+)* --> username part (dots, _, %, +, - allowed but not consecutively or at start/end)
+        // @(gmail|yahoo)\\.com$                --> only gmail.com or yahoo.com allowed
+        String regex = "^[A-Za-z0-9]+([._%+-]?[A-Za-z0-9]+)*@(gmail|yahoo)\\.com$";
+
+        // check for consecutive dots
+        if (email.contains("..")) return false;
+
+        return email.matches(regex);
+    }
+    private boolean isEmailAlreadyExists(String emailInput) {
+        try {
+            File file = new File("D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\UserDetails.json");
+
+            if (!file.exists()) return false;
+
+            Gson gson = new Gson();
+            Reader reader = new FileReader(file);
+            Type listType = new TypeToken<List<User>>() {}.getType();
+            List<User> users = gson.fromJson(reader, listType);
+            reader.close();
+
+            if (users == null) return false;
+
+            for (User user : users) {
+                if (user.getEmail().equalsIgnoreCase(emailInput)) {
+                    return true;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+    private boolean isValidPhone(String phone) {
+        if (phone == null) return false;
+
+        // Remove leading/trailing spaces
+        phone = phone.trim();
+
+        // Bangladesh mobile number format: 01XXXXXXXXX (11 digits)
+        String regex = "^01[3-9]\\d{8}$";
+
+        return phone.matches(regex);
+    }
+    private boolean isStrongPassword(String password) {
+        // Minimum 6 chars, 1 letter, 1 number
+        return password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$");
+    }
+
+
 
     // ================= HELPER METHOD =================
     private void showError(String message) {

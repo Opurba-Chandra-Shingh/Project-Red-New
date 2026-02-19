@@ -53,6 +53,12 @@ public class Newsfeed_Controller implements Initializable {
     @FXML private HBox topBarRight;
     @FXML private VBox feedContainer;
 
+
+    @FXML private TextField txtSearchLocation;
+    @FXML private TextField txtSearchBlood;
+    @FXML private Button btnSearchLocation;
+    @FXML private Button btnSearchBlood;
+
     private final String filePath = System.getProperty("user.dir") + File.separator + "D:\\project-redpulse-new\\src\\main\\resources\\com\\example\\projectredpulsenew\\PostDetails.json";
 
 
@@ -142,6 +148,86 @@ public class Newsfeed_Controller implements Initializable {
         ButtonsVisibility();
         loadPostOwners();
         loadPosts();
+        setupSearch();
+    }
+
+    // ---------------- SEARCH SETUP ----------------
+    private void setupSearch() {
+
+        btnSearchLocation.setOnAction(e -> searchPosts());
+        btnSearchBlood.setOnAction(e -> searchPosts());
+
+        txtSearchLocation.setOnAction(e -> searchPosts());
+        txtSearchBlood.setOnAction(e -> searchPosts());
+    }
+
+    // ---------------- SEARCH LOGIC ----------------
+    private void searchPosts() {
+
+        String locationKeyword = txtSearchLocation.getText() == null
+                ? ""
+                : txtSearchLocation.getText().trim().toLowerCase();
+
+        String bloodKeyword = txtSearchBlood.getText() == null
+                ? ""
+                : txtSearchBlood.getText().trim().toLowerCase();
+
+        List<PostDetails> posts = readPostsFromFile();
+
+        feedContainer.getChildren().clear();
+
+        boolean found = false;
+
+        for (PostDetails post : posts) {
+
+            boolean matchesLocation =
+                    locationKeyword.isEmpty()
+                            || post.getLocation().toLowerCase().contains(locationKeyword)
+                            || post.getDistrict().toLowerCase().contains(locationKeyword);
+
+            boolean matchesBlood =
+                    bloodKeyword.isEmpty()
+                            || post.getBloodGroup().toLowerCase().contains(bloodKeyword);
+
+            if (matchesLocation && matchesBlood) {
+                addPostCard(post);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            Label emptyLabel = new Label("No matching posts found.");
+            emptyLabel.setStyle("-fx-text-fill: #888888; -fx-font-size: 16px;");
+            feedContainer.getChildren().add(emptyLabel);
+        }
+    }
+
+    // ---------------- READ JSON ----------------
+    private List<PostDetails> readPostsFromFile() {
+
+        List<PostDetails> posts = new ArrayList<>();
+        Gson gson = new Gson();
+
+        try {
+            File file = new File(POST_DETAILS_FILE);
+
+            if (file.exists() && file.length() > 0) {
+
+                try (Reader reader = new FileReader(file)) {
+                    Type listType = new TypeToken<List<PostDetails>>() {}.getType();
+                    List<PostDetails> existing = gson.fromJson(reader, listType);
+
+                    if (existing != null) {
+                        posts = existing;
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return posts;
     }
 
     //---------------------------------Main Profile Show Start----------------------------------------------------------
@@ -330,6 +416,7 @@ public class Newsfeed_Controller implements Initializable {
         addGridRow(grid, 2, "Date Needed:", post.getDateNeeded(), false);
         addGridRow(grid, 3, "Units (Bags):", post.getUnits(), false);
         addGridRow(grid, 4, "Contact:", post.getPhone(), false);
+        addGridRow(grid, 5, "District:", post.getDistrict(), false);
 
         contentRow.getChildren().addAll(bloodPane, grid);
 
