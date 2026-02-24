@@ -487,6 +487,7 @@ public class Newsfeed_Controller implements Initializable {
         // 2️⃣ Receiver (post owner)
         String receiverEmail = post.getUserEmail();
         String receiverPassword = post.getUserPassword();
+        long currentTime = System.currentTimeMillis();
 
         // 3️⃣ Notification object
         NotificationDetails noti = new NotificationDetails(
@@ -499,7 +500,8 @@ public class Newsfeed_Controller implements Initializable {
                 clicker.getProfilePicPath(),
                 receiverEmail,
                 receiverPassword,
-                "interested"
+                "interested",
+                currentTime
         );
 
         saveNotification(noti);

@@ -14,6 +14,7 @@ public class NotificationDetails {
     private String receiverPassword;
 
     private String notiType;
+    private long timestamp;   // store time in milliseconds
 
     // ✅ No-argument constructor (required for Gson)
     public NotificationDetails() {
@@ -23,7 +24,7 @@ public class NotificationDetails {
     public NotificationDetails(String clickerName, String clickerBloodgroup, String clickerDistrict, String clickerNumber,
                                String clickerEmail, String clickerPassword, String clickerProfilePic,
                                String receiverEmail, String receiverPassword,
-                               String notiType) {
+                               String notiType, long timestamp) {
         this.clickerName = clickerName;
         this.clickerBloodgroup = clickerBloodgroup;
         this.clickerDistrict = clickerDistrict;
@@ -34,6 +35,7 @@ public class NotificationDetails {
         this.receiverEmail = receiverEmail;
         this.receiverPassword = receiverPassword;
         this.notiType = notiType;
+        this.timestamp = timestamp;
     }
 
     // =================== Getters ===================
@@ -47,6 +49,7 @@ public class NotificationDetails {
     public String getReceiverEmail() { return receiverEmail; }
     public String getReceiverPassword() { return receiverPassword; }
     public String getNotiType() { return notiType; }
+    public long getTimestamp() { return timestamp; }
 
     // =================== Setters =================== (optional)
     public void setClickerName(String clickerName) { this.clickerName = clickerName; }
@@ -59,4 +62,6 @@ public class NotificationDetails {
     public void setReceiverPassword(String receiverPassword) { this.receiverPassword = receiverPassword; }
     public void setNotiType(String notiType) { this.notiType = notiType; }
     public void setClickerPic(String clickerProfilePic) { this.clickerProfilePic = clickerProfilePic; }
+    public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
+
 }

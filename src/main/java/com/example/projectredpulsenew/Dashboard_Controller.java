@@ -45,11 +45,6 @@ public class Dashboard_Controller implements Initializable {
     @FXML private Label lblAvailableDonorsCount, lblRequestCount, lblTotalDonorCount, lblWelcome;
 
 
-
-
-
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

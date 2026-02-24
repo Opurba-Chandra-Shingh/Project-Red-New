@@ -34,7 +34,7 @@
     "lastDonateDate": "2026-01-05",
     "eligibility": "Eligible",
     "isAdmin": false,
-    "isModerator": false
+    "isModerator": true
   },
   {
     "name": "Sojib",

@@ -1,5 +1,4 @@
 package com.example.projectredpulsenew;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,7 +15,6 @@ public class MainApplication extends Application {
         stage.setScene(dashboard_scene);
         stage.show();
     }
-     // <-- ADD THIS
     public static void main(String[] args) {
         launch(args);  // Launches the JavaFX application
     }
